@@ -40,8 +40,8 @@ return [
     'default_timezone'       => 'PRC',
     // 是否开启多语言
     'lang_switch_on'         => false,
-    // 默认全局过滤方法 用逗号分隔多个
-    'default_filter'         => '',
+    // 默认全局过滤方法 用逗号分隔多个（内容|html_entity_decode：前端显示）
+    'default_filter'         => 'htmlentities',
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
@@ -238,6 +238,8 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    //验证码
     'captcha' =>    [
         // 验证码字体大小
         'fontSize'    =>    30,
@@ -245,5 +247,7 @@ return [
         'length'      =>    2,
         // 关闭验证码杂点
         'useNoise'    =>    false,
+        //是否画混淆曲线
+        'useCurve'    => true,
     ];
 ];
