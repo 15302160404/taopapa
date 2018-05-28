@@ -249,5 +249,5 @@ return [
         'useNoise'    =>    false,
         //是否画混淆曲线
         'useCurve'    => true,
-    ];
+    ],
 ];
