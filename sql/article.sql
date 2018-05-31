@@ -13,7 +13,7 @@ primary key(`id`),
 unique key username(`username`)
 )engine=innodb AUTO_INCREMENT=1 default charset=utf8;
 INSERT INTO `work_admin`(username,realname,password,code,status,create_time,update_time) 
-VALUES ( 'superadmin', '程程', '3993a05d83718bac2049649aea3c49ba', '3643', '1', '1521725536', '1521951698');
+VALUES ( 'taopapa', '陈锦涛', '123', '3643', '1', '1521725536', '1521951698');
 
 
 #用户表
