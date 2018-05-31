@@ -28,7 +28,8 @@ class User extends Controller
 				return $this->error($validate->getError());
 			}
 			$userInfo = model('Admin')->where('username',$data['username'])->find();
-			if($data['username'] == $userInfo['username'] && md5($data['password']) == $userInfo['password'])
+			$password = md5($data['password'].$userInfo['code']);
+			if($data['username'] == $userInfo['username'] && $password == $userInfo['password'])
 			{
 				session('username',$userInfo['username']);
 				return $this->success('登录成功','index/index');
@@ -44,19 +45,22 @@ class User extends Controller
 	 */
 	public function regist()
 	{
+		
 		if(request()->isPost())
 		{
 			$data = input('post.');
-			echo $data['realname'];
 			$validate = validate('admin');
 			if(!$validate->scene('regist')->check($data))
 			{
 				return $this->error($validate->getError());
 			}
+			$code = rand(1000,9999);
+			$password = $data['password'].$code;
 			$result = model('admin')->save([
 				'username'=>$data['username'],
 				'realname'=>$data['realname'],
-				'password'=>md5($data['password'])
+				'code'=>$code,
+				'password'=>md5($password)
 			]);
 			if($result){
 				session('username',$data['username']);
@@ -65,7 +69,6 @@ class User extends Controller
 			return $this->error('注册失败，不要气馁');
 		}
 	}
-
 	/**
 	 * 登出
 	 * @return [type] [description]
@@ -82,7 +85,7 @@ class User extends Controller
 	 */
 	public function profile()
 	{
-		$admin = model('admin');
-		return $this->fetch('',['admin'=>$admin]);
+		$user = model('admin')->where('username',session('username'))->find();
+		return $this->fetch('',['user'=>$user]);
 	}
 }
