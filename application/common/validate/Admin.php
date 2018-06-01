@@ -20,6 +20,7 @@ class Admin extends Validate
 	];
 	protected $scene = [
 		'login' => ['username','password'],
-		'regist' => ['username','realname','password','re_password']
+		'regist' => ['username','realname','password','re_password'],
+		'modifyPwd'=>['password'],
 	];
 }

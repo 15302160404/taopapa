@@ -88,4 +88,33 @@ class User extends Controller
 		$user = model('admin')->where('username',session('username'))->find();
 		return $this->fetch('',['user'=>$user]);
 	}
+	/**
+	 * 修改密码
+	 * @return [type] [description]
+	 */
+	public function modifyPwd()
+	{
+		if(request()->isPost())
+		{
+			$data = input('post.');
+			$validate = validate('admin');
+			if(!$validate->scene('modifyPwd')->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$user = model('admin')->where('username',$data['username'])->find();
+			if($user)
+			{
+				$result = model('admin')->save([
+					'password'=>md5($data['password'].$user['code']),
+				],['username'=>$data['username']]);
+				if($result)
+				{
+					return $this->success('密码修改成功了，快去登录吧');
+				}
+				return $this->error('不要气馁，再来一遍');
+			}
+			return $this->error('用户不存在，请前往注册');
+		}
+	}
 }

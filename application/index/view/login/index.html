@@ -33,7 +33,7 @@
                     <div class="login-container">
                         <div class="center">
                             <h1>
-									<span class="white">管理员登录</span>
+									<span class="white">会员登录</span>
 								</h1>
                         </div>
                         <div class="space-6"></div>
@@ -46,7 +46,7 @@
 												输入登录信息
 											</h4>
                                         <div class="space-6"></div>
-                                        <form action="{:url('user/login')}" method="post">
+                                        <form action="{:url('login/check')}" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
@@ -105,13 +105,13 @@
                                         <p>
                                             请输入你的新密码，无须验证旧密码
                                         </p>
-                                        <form action="{:url('user/modifyPwd')}" method="post">
+                                        <form action="{:url('login/modifyPwd')}" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                            <input type="text" class="form-control" placeholder="用户名" name="username" />
-                                                            <i class="ace-icon fa fa-user"></i>
-                                                        </span>
+															<input type="text" class="form-control" placeholder="用户名" name="username" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
                                                 </label>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
@@ -122,7 +122,7 @@
                                                 <div class="clearfix">
                                                     <button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
                                                         <i class="ace-icon fa fa-lightbulb-o"></i>
-                                                        <span class="bigger-110">发送!</span>
+                                                        <span class="bigger-110">提交!</span>
                                                     </button>
                                                 </div>
                                             </fieldset>
@@ -148,7 +148,7 @@
 											</h4>
                                         <div class="space-6"></div>
                                         <p> 输入详细信息: </p>
-                                        <form action="{:url('user/regist')}" method="post">
+                                        <form action="{:url('login/regist')}" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
@@ -161,6 +161,18 @@
 															<input type="text" name="realname"  class="form-control" placeholder="真实姓名"/>
 															<i class="ace-icon fa fa-mortar-board"></i>
 														</span>
+                                                </label>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="tel"  class="form-control" placeholder="电话"/>
+                                                            <i class="ace-icon fa fa-phone"></i>
+                                                        </span>
+                                                </label>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                            <input type="text" name="email"  class="form-control" placeholder="邮箱"/>
+                                                            <i class="ace-icon fa fa-envelope"></i>
+                                                        </span>
                                                 </label>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
