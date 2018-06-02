@@ -31,7 +31,7 @@ class User extends Controller
 			$password = md5($data['password'].$userInfo['code']);
 			if($data['username'] == $userInfo['username'] && $password == $userInfo['password'])
 			{
-				session('username',$userInfo['username']);
+				session('username',$userInfo['username'],'admin');
 				return $this->success('登录成功','index/index');
 			}
 			return $this->error('用户名或密码错误');
@@ -63,7 +63,7 @@ class User extends Controller
 				'password'=>md5($password)
 			]);
 			if($result){
-				session('username',$data['username']);
+				session('username',$data['username'],'admin');
 				return $this->success('注册成功，即将跳转网站后台首页','index/index');
 			}
 			return $this->error('注册失败，不要气馁');
@@ -85,8 +85,25 @@ class User extends Controller
 	 */
 	public function profile()
 	{
-		$user = model('admin')->where('username',session('username'))->find();
-		return $this->fetch('',['user'=>$user]);
+		$path = ROOT_PATH . 'public' . DS . 'Photos';
+		if(is_dir($path))
+		{
+			$dirs=scandir($path);
+			$imgs = [];
+			$i = 0;
+			foreach ($dirs as $file)
+			{
+				if(!is_dir($file))
+				{
+					$imgs[$i] = dirname($_SERVER['SCRIPT_NAME']).DS.'Photos'.DS.$file;
+					$i++;
+				}
+				
+
+			}
+		}
+		$user = model('admin')->where('username',session('username','','admin'))->find();
+		return $this->fetch('',['user'=>$user,'imgs'=>$imgs]);
 	}
 	/**
 	 * 修改密码
@@ -116,5 +133,61 @@ class User extends Controller
 			}
 			return $this->error('用户不存在，请前往注册');
 		}
+	}
+	/**
+	 * 更换头像
+	 * @return [type] [description]
+	 */
+	public function upload(){
+	    // 获取表单上传文件 例如上传了001.jpg
+	    $file = request()->file('image');
+	    // 移动到框架应用根目录/public/uploads/ 目录下
+	    if($file){
+	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS . session('username','','admin') .'_admin' . DS . date('Ymd'));
+	        // echo ROOT_PATH . 'public' . DS . session('username','','admin') . DS . date('Ymd') . DS .$info->getSaveName();
+	        // exit;
+	        if($info){
+	            // 成功上传后 获取上传信息
+	            // 输出 jpg
+	            // echo $info->getExtension();
+	            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+	            // echo $info->getSaveName();
+	            // 输出 42a79759f284b767dfcb2a0197904287.jpg
+	            // echo $info->getFilename();
+	            $changeLogo = model('admin')->save([
+	            	'logo' => dirname($_SERVER['SCRIPT_NAME']) . DS . session('username','','admin').'_admin' . DS . date('Ymd') . DS .$info->getSaveName(),
+	            ],['username'=>session('username','','admin')]);
+	            return $this->success('头像上传成功，你上传的是--'.$info->getSaveName());
+	        }else{
+	            // 上传失败获取错误信息
+	            return $this->error($file->getError());
+	        }
+	    }
+	}
+	/**
+	 * 相册批量上传
+	 * @return [type] [description]
+	 */
+	public function uploads(){
+	    // 获取表单上传文件 例如上传了001.jpg
+	    $files = request()->file('image');
+	    // 移动到框架应用根目录/public/uploads/ 目录下
+	    $i = 0;
+	    $msg = '';
+	    foreach($files as $file){
+	        // 移动到框架应用根目录/public/uploads/ 目录下
+	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'Photos');
+	        if($info){
+	            // 输出 42a79759f284b767dfcb2a0197904287.jpg
+	            $i++;
+	            $msg .= $i.'、此图片由系统命名为：'.$info->getSaveName().'已上传成功';
+	            if($i == count($files)){
+	            	return $this->success($msg);
+	            }
+	        }else{
+	            // 上传失败获取错误信息
+	            return $this->error($file->getError());
+	        }
+	    }
 	}
 }

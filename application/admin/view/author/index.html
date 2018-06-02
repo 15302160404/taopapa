@@ -68,7 +68,7 @@
 										</td>
 
 										<td>
-											<a href="{:url('author/details')}">{$vo.username}</a>
+											<a href="{:url('author/details',['username'=>$vo.username])}">{$vo.username}</a>
 										</td>
 										<td>{$vo.realname}</td>
 										<td class="hidden-480">2件</td>
@@ -88,7 +88,7 @@
 										<td>
 											<div class="hidden-sm hidden-xs btn-group">
 												<button class="btn btn-xs btn-success" title="">
-													<i class="ace-icon fa fa-search-plus bigger-120"></i>
+													<a href="{:url('author/details',['username'=>$vo.username])}" class="ace-icon fa fa-search-plus bigger-120" style="color:#fff"></a>
 												</button>
 
 												<button class="btn btn-xs btn-info">

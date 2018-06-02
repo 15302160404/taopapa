@@ -30,7 +30,7 @@ class Login extends Controller
 			$author = model('author')->where('username',$data['username'])->find();
 			if($author['password'] == md5($data['password'].$author['code']))
 			{
-				session('username',$author['username']);
+				session('username',$author['username'],'author');
 				return $this->success('欢迎来到  Taopapa博客之家','index/index');
 			}
 			return $this->error('用户名或密码错误');
@@ -61,7 +61,7 @@ class Login extends Controller
 			]);
 			if($result)
 			{
-				session('username',$data['username']);
+				session('username',$data['username'],'author');
 				return $this->success('恭喜你成为我们的一员,快开始写你的博客吧！','index/index');
 			}
 			return $this->error('不要气馁，重新开始吧~');

@@ -6,10 +6,10 @@
         <ul class="breadcrumb">
             <li>
                 <i class="ace-icon fa fa-home home-icon"></i>
-                <a href="index.html">UI库首页</a>
+                <a href="index.html">后台首页</a>
             </li>
             <li>
-                <a href="javascript:void(0)">用户个人资料</a>
+                <a href="javascript:void(0)">管理员个人资料</a>
             </li>
         </ul>
         <!-- /.breadcrumb -->
@@ -57,8 +57,8 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-3 center">
                                             <span class="profile-picture">
-																<img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="__STATIC__/assets/avatars/profile-pic.jpg" />
-															</span>
+												<img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="{eq name='$user.logo' value=''} __STATIC__/assets/avatars/profile-pic.jpg {else}{$user.logo}{/eq}" />
+											</span>
                                             <div class="space space-4"></div>
                                             <a href="#" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#upload">
 												<i class="icon-envelope-alt bigger-110"></i>
@@ -74,10 +74,16 @@
                                                             </button>
                                                             <h4 class="modal-title" id="gridSystemModalLabel">上传头像</h4>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <!-- aaa -->
-                                                        </div>
-                                                        <div class="modal-footer">c</div>
+                                                        <form action="{:url('user/upload')}" enctype="multipart/form-data" method="post">
+                                                            <div class="modal-body">
+                                                                <input type="file" name="image" />
+                                                                <small class="text-warning">图片大小不得超过3Mb</small>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                <input type="submit" value="上传" class="btn btn-success" />
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,7 +95,13 @@
 
 																<span class="label label-purple arrowed-in-right">
 																	<i class="icon-circle smaller-80 align-middle"></i>
-																	在线
+																	{switch name="$user.status"}
+                                                                        {case value="0"}删除{/case}
+                                                                        {case value="1"}在线{/case}
+                                                                        {case value="2"}私有{/case}
+                                                                        {case value="3"}禁用{/case}
+                                                                        {default/}
+                                                                    {/switch}
 																</span>
 															</h4>
                                             <div class="profile-user-info">
@@ -554,180 +566,71 @@
                                 <!-- /#friends -->
                                 <div id="pictures" class="tab-pane">
                                     <ul class="ace-thumbnails">
+                                        {volist name="imgs" id="vo"}
                                         <li>
                                             <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-1.jpg" />
-																<div class="text">
-																	<div class="inner">Sample Caption on Hover</div>
-																</div>
-															</a>
+                                                <img alt="150x150" src="{$vo}" style="height:150px;width:150px;" />
+                                                <div class="text">
+                                                    <div class="inner">Sample Caption on Hover</div>
+                                                </div>
+                                            </a>
                                             <div class="tools tools-bottom">
                                                 <a href="#">
-																	<i class="icon-link"></i>
-																</a>
+                                                    <i class="icon-link"></i>
+                                                </a>
                                                 <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
+                                                    <i class="icon-paper-clip"></i>
+                                                </a>
                                                 <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
+                                                    <i class="icon-pencil"></i>
+                                                </a>
                                                 <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
+                                                    <i class="icon-remove red"></i>
+                                                </a>
                                             </div>
                                         </li>
+                                        {/volist}
+
+
+
+
+
+
+
                                         <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-2.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-3.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-4.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-5.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-6.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-1.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-rel="colorbox">
-																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-2.jpg" />
-																<div class="text">
-																	<div class="inner">带遮罩提示的相册例子</div>
-																</div>
-															</a>
-                                            <div class="tools tools-bottom">
-                                                <a href="#">
-																	<i class="icon-link"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-paper-clip"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-pencil"></i>
-																</a>
-                                                <a href="#">
-																	<i class="icon-remove red"></i>
-																</a>
+                                            <a href="#"><img src="__STATIC__/assets/images/add.png" alt="批量上传" data-toggle="modal" data-target="#addPhotos"></a>
+                                            <div class="modal fade" tagindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addPhotos">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            <h4 class="modal-title" id="gridSystemModalLabel">批量上传图片至相册</h4>
+                                                        </div>
+                                                        <form action="{:url('user/uploads')}" enctype="multipart/form-data" method="post">
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-4"><input type="file" name="image[]" /></div>
+                                                                    <div class="col-xs-4"><input type="file" name="image[]" /></div>
+                                                                    <div class="col-xs-4"><input type="file" name="image[]" /></div>
+                                                                </div>
+                                                                <div class="row" style="height:10px;"></div>
+                                                                <div class="row">
+                                                                    <div class="col-xs-4"><input type="file" name="image[]" /></div>
+                                                                    <div class="col-xs-4"><input type="file" name="image[]" /></div>
+                                                                    <div class="col-xs-4"><input type="file" name="image[]" /></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消上传</button>
+                                                                <input type="submit" class="btn btn-primary" value="开始上传" />
+                                                            </div>
+                                                            
+                                                            </form> 
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                         </li>
                                     </ul>
