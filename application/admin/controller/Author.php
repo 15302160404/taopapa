@@ -49,30 +49,4 @@ class Author extends Controller
 	        }
 	    }
 	}
-	/**
-	 * 相册批量上传
-	 * @return [type] [description]
-	 */
-	public function uploads(){
-	    // 获取表单上传文件 例如上传了001.jpg
-	    $files = request()->file('image');
-	    // 移动到框架应用根目录/public/uploads/ 目录下
-	    $i = 0;
-	    $msg = '';
-	    foreach($files as $file){
-	        // 移动到框架应用根目录/public/uploads/ 目录下
-	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'Photos');
-	        if($info){
-	            // 输出 42a79759f284b767dfcb2a0197904287.jpg
-	            $i++;
-	            $msg .= $i.'、此图片由系统命名为：'.$info->getFilename().'已上传成功';
-	            if($i == count($files)){
-	            	return $this->success($msg);
-	            }
-	        }else{
-	            // 上传失败获取错误信息
-	            return $this->error($file->getError());
-	        }
-	    }
-	}
 }

@@ -1,0 +1,87 @@
+{extend name="base"} {block name="content"}
+<section>
+    <script>
+    $(document).ready(function() {
+        $('#aa').modal({
+            keyboard: false,
+            backdrop: "static",
+        });
+    });
+    </script>
+    <div id="aa" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Taopapa-博客之家 发现技术的地方</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="startEdit">开始写博客</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</section>
+<div class="container">
+  <form  enctype="multipart/form-data" action="{:url('article/finishEdit',['author_username'=>session('username','','author')])}" method="post" class="form-horizontal">
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-1 control-label">标题：</label>
+      <div class="col-sm-9">
+        <input type="text" name="title" class="form-control" id="inputEmail3" placeholder="请把标题写在这里">
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#upLogo">发表</button>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="upLogo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">上传博客封面</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset style="border: 1px solid #CDCDCD; padding: 8px; padding-bottom:0px; margin: 8px 0">
+     <legend> <strong> 多文件上传</strong></legend>
+     <div><input id="fileInput2" name="fileInput2" type="file" />
+     <input type="button" value="确定上传" onclick="javascript:$('#fileInput2').uploadifyUpload();">&nbsp;&nbsp;
+     ||&nbsp;&nbsp;<a href="javascript:$('#fileInput2').uploadifyClearQueue();">清除上传列表</a></div>
+     <p></p>
+     </fieldset>
+     <FORM name="form2" METHOD=POST ACTION="db.php">
+     <div id="divTxt" style="display:none"><span style="color:red"><strong>已经上传的图片有：</strong></span><br></div><br>
+     <INPUT TYPE="submit" value="提  交">
+     </FORM>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-default">不需要封面并发布</button>
+              <button type="submit" class="btn btn-primary">选好封面并发布</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail3" class="col-sm-1 control-label">描述：</label>
+      <div class="col-sm-11">
+        <input type="text" name="description" class="form-control" id="inputEmail3" placeholder="描述">
+      </div>
+    </div>
+    <div id="editormd"><textarea name="content" hidden>>提示：内容写这里</textarea></div>
+  </form>
+</div>
+
+{/block}
