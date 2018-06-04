@@ -8,12 +8,12 @@
                     <li data-target="#focusslide" data-slide-to="1"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
+                    <div class="item active" style="height:161.875px;">
                         <a href="{:url('index/index')}" target="_blank" title="青山">
                           <img src="__STATIC__/frontend/images/list1.jpg" alt="青山" class="img-responsive">
                         </a>
                     </div>
-                    <div class="item">
+                    <div class="item" style="height:161.875px;">
                         <a href="http://web.muzhuangnet.com/" target="_blank" title="湖泊">
                           <img src="__STATIC__/frontend/images/list2.jpg" alt="湖泊" class="img-responsive">
                         </a>
@@ -35,71 +35,22 @@
                     <a href="http://www.muzhuangnet.com/list/news/" title="资讯分享">资讯分享</a>
                 </div>
             </div>
+            {if condition="($lists)"}
+            {volist name="lists" id="vo"}
             <article class="excerpt excerpt-1" style="">
                 <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank"><img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">MZ-NetBlog主题<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >用DTcms做一个独立博客网站（响应式模板）</a>
+                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">{$vo.title}<i></i></a>
+                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >{$vo.title}</a>
                 </h2>
                 </header>
                 <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>{$vo.create_time}</time>
                     <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
                 </p>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
+                <p class="note">{$vo.content}</p>
             </article>
-            <article class="excerpt excerpt-2" style=""><a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank"><img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">MZ-NetBlog主题<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >用DTcms做一个独立博客网站（响应式模板）</a>
-                </h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i>216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i>4</a>
-                </p>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
-            <article class="excerpt excerpt-3" style=""><a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank"><img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">MZ-NetBlog主题<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >用DTcms做一个独立博客网站（响应式模板）</a>
-                </h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
-                </p>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
-            <article class="excerpt excerpt-4" style=""><a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank"><img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">MZ-NetBlog主题<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >用DTcms做一个独立博客网站（响应式模板）</a>
-                </h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
-                </p>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
-            <article class="excerpt excerpt-5" style=""><a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank"><img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">MZ-NetBlog主题<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >用DTcms做一个独立博客网站（响应式模板）</a>
-                </h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
-                </p>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
-            <nav class="pagination" style="display: none;">
-                <ul>
-                    <li class="prev-page"></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="?page=2">2</a></li>
-                    <li class="next-page"><a href="?page=2">下一页</a></li>
-                    <li><span>共 2 页</span></li>
-                </ul>
-            </nav>
+            {/volist}
+            {/if}
         </div>
     </div>
     <aside class="sidebar">

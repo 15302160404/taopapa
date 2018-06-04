@@ -6,6 +6,7 @@ class Index extends Controller
 {
     public function index()
     {
-        return $this->fetch();
+    	$lists = model('article')->order(['id'=>'desc'])->paginate();
+        return $this->fetch('',['lists'=>$lists]);
     }
 }

@@ -54,17 +54,7 @@
               <h4 class="modal-title" id="myModalLabel">上传博客封面</h4>
             </div>
             <div class="modal-body">
-                <fieldset style="border: 1px solid #CDCDCD; padding: 8px; padding-bottom:0px; margin: 8px 0">
-     <legend> <strong> 多文件上传</strong></legend>
-     <div><input id="fileInput2" name="fileInput2" type="file" />
-     <input type="button" value="确定上传" onclick="javascript:$('#fileInput2').uploadifyUpload();">&nbsp;&nbsp;
-     ||&nbsp;&nbsp;<a href="javascript:$('#fileInput2').uploadifyClearQueue();">清除上传列表</a></div>
-     <p></p>
-     </fieldset>
-     <FORM name="form2" METHOD=POST ACTION="db.php">
-     <div id="divTxt" style="display:none"><span style="color:red"><strong>已经上传的图片有：</strong></span><br></div><br>
-     <INPUT TYPE="submit" value="提  交">
-     </FORM>
+                  <input type="file" name="image" /> <br> 
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-default">不需要封面并发布</button>

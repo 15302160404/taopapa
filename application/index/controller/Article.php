@@ -29,7 +29,7 @@ class Article extends Common
 		    if($file){
 		        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS .'article_logo' . DS . $author_username);
 		        if($info){
-		            $imgPath = $info->getSaveName();
+		            $imgPath = dirname($_SERVER['SCRIPT_NAME']).DS.'static'.DS.$author_username.'_blog_logo'.DS.$info->getSaveName();
 		        }else{
 		            return $this->error($file->getError());
 		        }
@@ -48,7 +48,7 @@ class Article extends Common
 			]);
 			if($result)
 			{
-				return $this->success('发布成功！！快去看看效果怎么样','article/edit');
+				return $this->success('发布成功！！快去看看效果怎么样','article/list1');
 			}
 			return $this->error('发布失败');
 		}
@@ -57,10 +57,10 @@ class Article extends Common
 	 * 博客列表
 	 * @return [type] [description]
 	 */
-	public function list()
+	public function list1()
 	{
 		$author = model('author')->where('username',input('param.username'))->find()['username'];
-		$articles = model('article')->where('status',1)->paginate();
+		$articles = model('article')->where('status',1)->order(['id'=>'desc'])->paginate();
 		return $this->fetch('',['articles'=>$articles,'author'=>$author]);
 	}
 }
