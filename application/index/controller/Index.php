@@ -9,4 +9,9 @@ class Index extends Controller
     	$lists = model('article')->order(['id'=>'desc'])->paginate();
         return $this->fetch('',['lists'=>$lists]);
     }
+    public function logout()
+    {
+    	session(null,'author');
+    	return $this->success('注销成功','index/index');
+    }
 }

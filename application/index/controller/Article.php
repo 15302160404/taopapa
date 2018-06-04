@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+// use think\Controller;
 class Article extends Common
 {
 	/**
@@ -27,9 +28,9 @@ class Article extends Common
 		    $imgPath = '';
 		    // 移动到框架应用根目录/public/uploads/ 目录下
 		    if($file){
-		        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS .'article_logo' . DS . $author_username);
+		        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' .DS.'article'. DS . $author_username.'_blogLogo');
 		        if($info){
-		            $imgPath = dirname($_SERVER['SCRIPT_NAME']).DS.'static'.DS.$author_username.'_blog_logo'.DS.$info->getSaveName();
+		            $imgPath = dirname($_SERVER['SCRIPT_NAME']). DS .'article'. DS . $author_username .'_blogLogo'.DS.$info->getSaveName();
 		        }else{
 		            return $this->error($file->getError());
 		        }

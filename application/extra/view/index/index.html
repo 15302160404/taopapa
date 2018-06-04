@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>uploadify</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/uploadify/uploadify.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="__STATIC__/uploadify/jquery.uploadify.js"></script>
+	<script type="text/javascript">
+	$(function() {
+	    $('#file_upload').uploadify({
+	        'swf'      : '__STATIC__/uploadify/uploadify.swf',
+	        'uploader' : {:url('index/uploadify')},
+	        'buttonText' : '上传头像',
+	        'onUploadSuccess' : function(file, data, response) {
+	            $('#image').attr('src','/Public/images/130_'+data);
+	            $('#pic').val(data);
+	        },
+	    });
+	});
+	</script>
+</head>
+<body>
+	<div class="avatar_box">
+		<img id="image" src="" width="130" height="130" border="0" />
+    	<div class="upload_avatar">
+    		<input id="file_upload" name="file_upload" type="file" multiple="true" value="" />
+    	</div>
+	</div>
+</body>
+</html>

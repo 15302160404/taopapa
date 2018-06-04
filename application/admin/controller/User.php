@@ -31,7 +31,7 @@ class User extends Controller
 			$password = md5($data['password'].$userInfo['code']);
 			if($data['username'] == $userInfo['username'] && $password == $userInfo['password'])
 			{
-				session('username',$userInfo['username'],'admin');
+				session('username_user',$userInfo['username'],'admin');
 				return $this->success('登录成功','index/index');
 			}
 			return $this->error('用户名或密码错误');
@@ -63,7 +63,7 @@ class User extends Controller
 				'password'=>md5($password)
 			]);
 			if($result){
-				session('username',$data['username'],'admin');
+				session('username_user',$data['username'],'admin');
 				return $this->success('注册成功，即将跳转网站后台首页','index/index');
 			}
 			return $this->error('注册失败，不要气馁');
@@ -102,7 +102,7 @@ class User extends Controller
 
 			}
 		}
-		$user = model('admin')->where('username',session('username','','admin'))->find();
+		$user = model('admin')->where('username',session('username_user','','admin'))->find();
 		return $this->fetch('',['user'=>$user,'imgs'=>$imgs]);
 	}
 	/**
@@ -143,7 +143,7 @@ class User extends Controller
 	    $file = request()->file('image');
 	    // 移动到框架应用根目录/public/uploads/ 目录下
 	    if($file){
-	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS . session('username','','admin') .'_admin' . DS . date('Ymd'));
+	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'user' . DS . session('username_user','','admin') .'_admin' . DS . date('Ymd'));
 	        // echo ROOT_PATH . 'public' . DS . session('username','','admin') . DS . date('Ymd') . DS .$info->getSaveName();
 	        // exit;
 	        if($info){
@@ -155,8 +155,8 @@ class User extends Controller
 	            // 输出 42a79759f284b767dfcb2a0197904287.jpg
 	            // echo $info->getFilename();
 	            $changeLogo = model('admin')->save([
-	            	'logo' => dirname($_SERVER['SCRIPT_NAME']) . DS . session('username','','admin').'_admin' . DS . date('Ymd') . DS .$info->getSaveName(),
-	            ],['username'=>session('username','','admin')]);
+	            	'logo' => dirname($_SERVER['SCRIPT_NAME']) . DS . 'user' . DS . session('username_user','','admin').'_admin' . DS . date('Ymd') . DS .$info->getSaveName(),
+	            ],['username'=>session('username_user','','admin')]);
 	            return $this->success('头像上传成功，你上传的是--'.$info->getSaveName());
 	        }else{
 	            // 上传失败获取错误信息

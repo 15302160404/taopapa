@@ -19,6 +19,14 @@
                         </a>
                     </div>
                 </div>
+                <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">上一个</span>
+                </a>
+                <a class="right carousel-control" href="#focusslide" role="button" data-slide="next" rel="nofollow">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">下一个</span>
+                </a> 
             </div>
             <article class="excerpt-minic excerpt-minic-index">
                 <h2><span class="red">【推荐】</span><a target="_blank" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" >用DTcms做一个独立博客网站（响应式模板）</a>
@@ -38,9 +46,16 @@
             {if condition="($lists)"}
             {volist name="lists" id="vo"}
             <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank"><img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">{$vo.title}<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >{$vo.title}</a>
+                
+                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="{$vo.title}" target="_blank">
+                    {eq name="$vo.logo" value=""}
+                    <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: inline;">
+                    {else}
+                    <img class="thumb" data-original="{$vo.logo}" src="{$vo.logo}" alt="{$vo.title}"  style="display: inline;">
+                    {/eq}
+                </a>
+                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="{$vo.title}">{$vo.title}<i></i></a>
+                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="{$vo.title}" target="_blank" >{$vo.title}</a>
                 </h2>
                 </header>
                 <p class="meta">
@@ -51,6 +66,8 @@
             </article>
             {/volist}
             {/if}
+            {$lists->render()}
+
         </div>
     </div>
     <aside class="sidebar">
@@ -63,7 +80,7 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane contact active" id="notice">
                         <h2>日志总数:
-                  888篇
+                  {:count($lists)}篇
               </h2>
                         <h2>网站运行:
               <span id="sitetime">{:floor((time()-strtotime('2018-05-28'))/86400)}天 </span></h2>

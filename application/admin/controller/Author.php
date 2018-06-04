@@ -28,7 +28,7 @@ class Author extends Controller
 	    // 移动到框架应用根目录/public/uploads/ 目录下
 	    if($file){
 	    	$author = input('param.username');
-	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS . $author . DS . date('Ymd'));
+	        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS. 'author' . DS . $author . DS . date('Ymd'));
 	        // echo ROOT_PATH . 'public' . DS . session('username','','admin') . DS . date('Ymd') . DS .$info->getSaveName();
 	        // exit;
 	        if($info){

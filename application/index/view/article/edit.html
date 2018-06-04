@@ -54,7 +54,7 @@
               <h4 class="modal-title" id="myModalLabel">上传博客封面</h4>
             </div>
             <div class="modal-body">
-                  <input type="file" name="image" /> <br> 
+                  <input type="file" name="image" /><br>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-default">不需要封面并发布</button>
@@ -70,7 +70,15 @@
         <input type="text" name="description" class="form-control" id="inputEmail3" placeholder="描述">
       </div>
     </div>
-    <div id="editormd"><textarea name="content" hidden>>提示：内容写这里</textarea></div>
+    <!-- 文章编辑页面 -->
+    <div class="form-group">
+        <label for="myEditor" class="col-sm-1 control-label">内容</label>
+        <div class="col-sm-11">
+            <!--style给定宽度可以影响编辑器的最终宽度-->
+            <textarea name="content" id="myEditor"></textarea>
+            
+        </div>
+    </div>
   </form>
 </div>
 
