@@ -138,9 +138,20 @@
 		            		<div class="col-lg-3 col-md-4 col-xs-6">
 		            			<div class="thumbnail">
 		            				{eq name="$vo.logo" value=""}
-		            				<a href="#" title="{$vo.title}"><img src="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"></a>
+		            				<a href="{:url('author/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="/taopapa/public/article/default.jpg" alt="{$vo.title}">
+		            				</a>
+		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
+										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
+									</span>
 		            				{else}
-		            				<a href="#" title="{$vo.title}"><img src="{$vo.logo}" alt="{$vo.title}"></a>
+		            				<a href="{:url('author/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="{$vo.logo}" alt="{$vo.title}"></a>
+		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
+										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
+									</span>
 		            				{/eq}
 								    <div class="caption">
 								        <h3>{$vo.title}</h3>

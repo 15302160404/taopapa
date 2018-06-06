@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528288363;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528290653;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\detail.html";i:1528272803;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528290653;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -110,74 +110,80 @@
     </header>
     
 <section class="container">
-    <div class="content-wrap">
-        <div class="content">
-            <div id="focusslide" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#focusslide" data-slide-to="0" class="active"></li>
-                    <li data-target="#focusslide" data-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active" style="height:161.875px;">
-                        <a href="<?php echo url('index/index'); ?>" target="_blank" title="青山">
-                          <img src="/taopapa/public/static/frontend/images/list1.jpg" alt="青山" class="img-responsive">
-                        </a>
-                    </div>
-                    <div class="item" style="height:161.875px;">
-                        <a href="http://web.muzhuangnet.com/" target="_blank" title="湖泊">
-                          <img src="/taopapa/public/static/frontend/images/list2.jpg" alt="湖泊" class="img-responsive">
-                        </a>
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">上一个</span>
-                </a>
-                <a class="right carousel-control" href="#focusslide" role="button" data-slide="next" rel="nofollow">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">下一个</span>
-                </a> 
-            </div>
-            <article class="excerpt-minic excerpt-minic-index">
-                <h2><span class="red">【推荐】</span><a target="_blank" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" >用DTcms做一个独立博客网站（响应式模板）</a>
-            </h2>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
-            <div class="title">
-                <h3>最新发布</h3>
-                <div class="more">
-                    <a href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">业界新闻</a>
-                    <a href="http://www.muzhuangnet.com/list/code/" title="IT技术笔记">IT技术笔记</a>
-                    <a href="http://www.muzhuangnet.com/list/share/" title="源码分享">源码分享</a>
-                    <a href="http://www.muzhuangnet.com/list/money/" title="靠谱网赚">靠谱网赚</a>
-                    <a href="http://www.muzhuangnet.com/list/news/" title="资讯分享">资讯分享</a>
-                </div>
-            </div>
-            <?php if(($lists)): if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-            <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank">
-                    <?php if($vo['logo'] == ''): ?>
-                    <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
-                    <?php else: ?>
-                    <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
-                    <?php endif; ?>
-                </a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a>
-                </h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $vo['create_time']; ?></time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
-                </p>
-                <p class="note"><?php echo $vo['content']; ?></p>
-            </article>
-            <?php endforeach; endif; else: echo "" ;endif; endif; ?>
-            <?php echo $lists->render(); ?>
+  <div class="content-wrap">
+    <div class="content">
+      <header class="article-header">
+        <h1 class="article-title"><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" ><?php echo $article['title']; ?></a></h1>
+        <div class="article-meta"> <span class="item article-meta-time">
+          <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：<?php echo $article['create_time']; ?>"><i class="glyphicon glyphicon-time"></i> <?php echo $article['create_time']; ?></time>
+          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：<?php echo session('username','','author'); ?>"><i class="glyphicon glyphicon-list"></i> <a href="http://www.muzhuangnet.com/list/mznetblog/" title="作者：<?php echo session('username','','author'); ?>" >作者：<?php echo session('username','','author'); ?></a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
+      </header>
 
+      <article class="article-content">
+        <p><img data-original="/taopapa/public/article/default2.jpg" src="/taopapa/public/article/default2.jpg" alt=""/></p>
+        <?php echo html_entity_decode($article['content']); ?>
+        <!-- <pre class="prettyprint lang-cs">代码示例：
+        public static double JieCheng(int number)
+        {
+            if (number == 0)
+            {
+                return 0;
+            }
+
+            //初始值必须设置为1
+            double result = 1; 
+
+            for (int i = number; i &gt;= 1; i--)
+            {
+                result = result*i;
+            }
+            return result;
+        }</pre> -->
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a></div>
+
+              <script>                  window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+      </article>
+      <div class="article-tags">标签：<a href="http://www.muzhuangnet.com/tags/list/3/" rel="tag" >taopapa博客之家</a><a href="http://www.muzhuangnet.com/tags/list/5/" rel="tag" >修复优化</a>
         </div>
+      <div class="relates">
+        <div class="title">
+          <h3>相关推荐</h3>
+        </div>
+        <ul>
+          <li><a href="https://blog.csdn.net/growing_tree/article/details/80572577" title="GitHub被收购" >如果 GitHub 被中国互联网巨头收购，一定会换一个响当当的 Slogan！</a></li>
+          <li><a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="跨镜追踪(ReID)技术" >刷新三项世界纪录的跨镜追踪(ReID)技术是怎样实现的？</a></li>
+          <li><a href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="鹅厂" >鹅厂，隐藏着让4万员工拼命工作的套路！</a></li>
+          <li><a href="https://blog.csdn.net/guleileo/article/details/80585981" title="人工智能" >身份采集、活体检测、人脸比对...旷视是如何做FaceID的？</a></li>
+        </ul>
+      </div>
+      <div class="title" id="comment">
+        <h3>评论</h3>
+      </div>
+      <div id="respond">
+            <form id="comment-form" name="comment-form" action="" method="POST">
+                <div class="comment">
+                    <input name="" id="" class="form-control" size="22" placeholder="您的昵称（必填）" maxlength="15" autocomplete="off" tabindex="1" type="text">
+                    <input name="" id="" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
+                    <div class="comment-box">
+                        <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
+                        <div class="comment-ctrl">
+                            <div class="comment-prompt" style="display: none;"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text">评论正在提交中...请稍后</span> </div>
+                            <div class="comment-success" style="display: none;"> <i class="fa fa-check"></i> <span class="comment-prompt-text">评论提交成功...</span> </div>
+                            <button type="submit" name="comment-submit" id="comment-submit" tabindex="4">评论</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+      <div id="postcomments">
+        <ol id="comment_list" class="commentlist">        
+        <li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="http://www.muzhuangnet.com/" rel="nofollow" target="_blank">木庄网络博客</a><span class="time">(2016/10/28 11:41:03)</span><br>不错的网站主题，看着相当舒服</p></div></li>
+        <li class="comment-content"><span class="comment-f">#1</span><div class="comment-main"><p><a class="address" href="http://www.muzhuangnet.com/" rel="nofollow" target="_blank">木庄网络博客</a><span class="time">(2016/10/14 21:02:39)</span><br>博客做得好漂亮哦！</p></div></li></ol>
+      </div>
     </div>
-    <aside class="sidebar">
+  </div>
+<aside class="sidebar">
         <div class="fixed">
             <div class="widget widget-tabs">
                 <ul class="nav nav-tabs" role="tablist">
@@ -210,20 +216,6 @@
             </span> </div>
                 </form>
             </div>
-        </div>
-        <div class="panel panel-success m1">
-            <div class="panel-heading"><small style="font-size: 18px;">友情链接</small></div>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="http://v3.bootcss.com" title="bootstrap" target="_blank">bootstrap</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://www.fontawesome.com.cn/" title="font-awesome" target="_blank">font-awesome</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="https://www.pexels.com/" title="pexels" target="_blank">pexels高清图片</a>
-                </li>
-            </ul>
         </div>
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>

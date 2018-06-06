@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528210356;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528249595;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528210356;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528265040;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 

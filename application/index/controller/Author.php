@@ -5,12 +5,20 @@ use think\Controller;
 
 class Author extends Controller
 {
+	/**
+	 * 用户个人中心页面渲染
+	 * @return [type] [description]
+	 */
 	public function index()
 	{
 		$author = model('author')->where('username',session('username','','author'))->find();
 		$articles = model('article')->where('author_id',$author['id'])->order(['id'=>'desc'])->select();
 		return $this->fetch('',['author'=>$author,'articles'=>$articles]);
 	}
+	/**
+	 * 用户修改头像
+	 * @return [type] [description]
+	 */
 	public function face()
 	{
 		$author_username = input('param.username');
@@ -33,4 +41,11 @@ class Author extends Controller
 	    	return $this->success('修改成功','author/index');
 	    }
 	}
+
+	public function detail()
+	{
+		$id = input('param.id');
+		$article = model('article')->where('id',$id)->find();
+		return $this->fetch('',['article'=>$article]);
+	} 
 }

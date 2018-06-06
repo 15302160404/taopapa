@@ -61,3 +61,6 @@ primary key(`id`),
 key author_id(`author_id`),
 key category_id(`category_id`)
 )engine=innodb AUTO_INCREMENT=1 default charset=utf8;
+
+
+#评论表

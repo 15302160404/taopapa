@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528267464;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528265040;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528293973;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528290653;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -33,6 +33,21 @@
     <style>
       .pagination{
         display: block !important;
+      }
+      .caozuo{
+        display: none;
+      }
+      .caozuo a{
+        color:#777 !important;
+        font-size: 25px;
+        padding:0px 10px;
+      }
+      .caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
+      .list_blog .thumbnail:hover .caozuo{
+        display: block;
       }
     </style>
 </head>
@@ -175,6 +190,12 @@
 
                 <!-- 我的博客 start -->
                 <div role="tabpanel" class="tab-pane contact" id="blog">
+                	<div class="tisi_del" style="display: none;position: absolute;top:0;">
+						<div class="alert alert-danger" role="alert" style="text-align: center">删除成功</div>
+					</div>
+					<div class="tisi_zhiding" style="display: none;position: absolute;top:0;">
+						<div class="alert alert-success" role="alert" style="text-align: center">置顶成功</div>
+					</div>
                 	<!-- <aside class="col-xs-3">
                 		<div class="list-group blog_left">
 						  	<strong class="list-group-item active">
@@ -233,9 +254,27 @@
 		            		<div class="col-lg-3 col-md-4 col-xs-6">
 		            			<div class="thumbnail">
 		            				<?php if($vo['logo'] == ''): ?>
-		            				<a href="#" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"></a>
+		            				<img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
+		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
+										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
+									</span>
 		            				<?php else: ?>
-		            				<a href="#" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
+		            				<img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>">
+		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
+										<a href="<?php echo url('author/edit'); ?>" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+										<a href="<?php echo model('article')->where('id',$vo['id'])->delete(); ?>" title="删除" class="glyphicon glyphicon-trash del" aria-hidden="true"></a>
+										<a href="<?php echo model('article')->save(['up'=>1],['id'=>$vo['id']]); ?>" title="置顶" class="glyphicon glyphicon-open zhiding" aria-hidden="true"></a>
+									</span>
+									<script type="text/javascript">
+										$('.del').click(function(){
+											$('.tisi_del').show();
+										});
+										$('.zhiding').click(function(){
+											$('.tisi_zhiding').show();
+										});
+									</script>
 		            				<?php endif; ?>
 								    <div class="caption">
 								        <h3><?php echo $vo['title']; ?></h3>
@@ -268,8 +307,7 @@
                 </div>
                 <!-- 我的博客 end -->
 
-				
-
+                
 				<!-- 我的消息 start  -->
                 <div role="tabpanel" class="tab-pane contact" id="news">
 					<a href="#">aaa</a>
