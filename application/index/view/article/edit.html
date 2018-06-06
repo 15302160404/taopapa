@@ -36,7 +36,7 @@
     <!-- /.modal -->
 </section>
 <div class="container">
-  <form  enctype="multipart/form-data" action="{:url('article/finishEdit',['author_username'=>session('username','','author')])}" method="post" class="form-horizontal">
+  <form enctype="multipart/form-data" action="{:url('article/finishEdit',['author_username'=>session('username','','author')])}" method="post" class="form-horizontal">
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-1 control-label">标题：</label>
       <div class="col-sm-9">
@@ -54,11 +54,18 @@
               <h4 class="modal-title" id="myModalLabel">上传博客封面</h4>
             </div>
             <div class="modal-body">
-                  <input type="file" name="image" /><br>
+                  <input type="file" name="image" id="img_bool"/><br>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-default">不需要封面并发布</button>
-              <button type="submit" class="btn btn-primary">选好封面并发布</button>
+              <button type="submit" class="btn btn-default" id="img_false">不需要封面并发布</button>
+              <button type="submit" class="btn btn-primary" id="img_true">选好封面并发布</button>
+              <script>
+                $('#img_true').attr('disabled',"disabled");
+                $('#img_bool').click(function(){
+                    $('#img_true').removeAttr('disabled');
+                    $('#img_false').attr('disabled',"disabled");
+                });
+            </script>
             </div>
           </div>
         </div>
@@ -76,7 +83,6 @@
         <div class="col-sm-11">
             <!--style给定宽度可以影响编辑器的最终宽度-->
             <textarea name="content" id="myEditor"></textarea>
-            
         </div>
     </div>
   </form>

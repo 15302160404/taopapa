@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528109651;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528116394;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528210356;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528249595;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
     <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
@@ -79,8 +80,8 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">博客</a></li>
-                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写文章</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
                         <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
@@ -130,7 +131,7 @@
     <!-- /.modal -->
 </section>
 <div class="container">
-  <form  enctype="multipart/form-data" action="<?php echo url('article/finishEdit',['author_username'=>session('username','','author')]); ?>" method="post" class="form-horizontal">
+  <form enctype="multipart/form-data" action="<?php echo url('article/finishEdit',['author_username'=>session('username','','author')]); ?>" method="post" class="form-horizontal">
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-1 control-label">标题：</label>
       <div class="col-sm-9">
@@ -148,11 +149,18 @@
               <h4 class="modal-title" id="myModalLabel">上传博客封面</h4>
             </div>
             <div class="modal-body">
-                  <input type="file" name="image" /><br>
+                  <input type="file" name="image" id="img_bool"/><br>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-default">不需要封面并发布</button>
-              <button type="submit" class="btn btn-primary">选好封面并发布</button>
+              <button type="submit" class="btn btn-default" id="img_false">不需要封面并发布</button>
+              <button type="submit" class="btn btn-primary" id="img_true">选好封面并发布</button>
+              <script>
+                $('#img_true').attr('disabled',"disabled");
+                $('#img_bool').click(function(){
+                    $('#img_true').removeAttr('disabled');
+                    $('#img_false').attr('disabled',"disabled");
+                });
+            </script>
             </div>
           </div>
         </div>
@@ -170,7 +178,6 @@
         <div class="col-sm-11">
             <!--style给定宽度可以影响编辑器的最终宽度-->
             <textarea name="content" id="myEditor"></textarea>
-            
         </div>
     </div>
   </form>

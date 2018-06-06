@@ -1,0 +1,56 @@
+.aaaa li{
+	display: inline-block;
+	padding:5px 30px;
+}
+.aaaa li a{
+	font-size: 18px;
+}
+.contact .details{
+	margin-left: 240px;
+}
+.contact .details .head h1{
+	font-size: 25px;
+	margin:10px 10px;
+}
+.contact .details .head{
+	border-bottom: 1px solid #ebebeb;
+	box-shadow: 10px 10px 10px #ebebeb;
+}
+.contact .details i{
+	margin-right: 3px;
+}
+.contact .details .readme{
+	margin-top:30px;
+	font-size: 16px;
+	color:#777;
+}
+.contact .details .bb{
+	margin-top:3%;
+}
+.contact .details kbd{
+	padding:5px 10px;
+	color:#777;
+	cursor: pointer;
+}
+.contact .details kbd:hover{
+	font-size: 14px;
+	padding:6px 11px;
+}
+.contact .details kbd .badge:hover{
+	background: orange;
+	color:#777;
+}
+.list_blog{
+	padding-top:40px;
+	width: auto;
+	height:100%;
+}
+.contact .page-header{
+	padding-left: 15px;
+}
+.search_blog{
+	text-align: center;
+}
+.list_bottom{
+	margin-left:90px;
+}

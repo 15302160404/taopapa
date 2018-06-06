@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\list1.html";i:1528113338;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528113199;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\list1.html";i:1528268254;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528265040;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
     <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
@@ -61,7 +62,7 @@
                 </i> RSS订阅
             </a></li>
                         <li><em class="text-info">欢迎您</em></li>
-                        <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow"><?php echo session('username','','author'); ?></a></li>
+                        <li><a href="<?php echo url('author/index'); ?>" rel="nofollow"><?php echo session('username','','author'); ?></a></li>
                         <li><a href="<?php echo url('index/logout'); ?>">注销</a></li>
                     </ul>
                     <?php endif; ?> 勤记录 懂分享</div>
@@ -79,8 +80,8 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">博客</a></li>
-                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写文章</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
                         <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
@@ -96,45 +97,172 @@
 <section class="container">
     <div class="content-wrap">
         <div class="content">
-            <div class="page-header">
-              <h1 style="line-height: 1.3">
-                <div class="title">
-                  "<?php echo session('username','','author'); ?>"全部的博客都在这里了
+            <div class="head_img container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="#">
+                            <img src="/taopapa/public/news/gg.jpg" alt="" class="img-responsive" height="90px" style="margin:0px auto;">
+                        </a>
+                        
+                    </div>
                 </div>
-              </h1>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-xs-8"  style="height:250px;">
+                        <div id="focusslide" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#focusslide" data-slide-to="0" class="active"></li>
+                                <li data-target="#focusslide" data-slide-to="1"></li>
+                                 <li data-target="#focusslide" data-slide-to="2"></li>
+                                <li data-target="#focusslide" data-slide-to="3"></li>
+                                 <li data-target="#focusslide" data-slide-to="4"></li>
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active">
+                                    <a href="<?php echo url('index/index'); ?>" target="_blank" title="">
+                                      <img src="/taopapa/public/news/aa.jpg" alt="" class="img-responsive" height="255">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://web.muzhuangnet.com/" target="_blank" title="">
+                                      <img src="/taopapa/public/news/cc.jpg" alt="" class="img-responsive" height="255">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://web.muzhuangnet.com/" target="_blank" title="">
+                                      <img src="/taopapa/public/news/dd.jpg" alt="" class="img-responsive" height="255">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://web.muzhuangnet.com/" target="_blank" title="">
+                                      <img src="/taopapa/public/news/ee.jpg" alt="" class="img-responsive" height="255">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="http://web.muzhuangnet.com/" target="_blank" title="">
+                                      <img src="/taopapa/public/news/ff.jpg" alt="" class="img-responsive" height="255">
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">上一个</span>
+                            </a>
+                            <a class="right carousel-control" href="#focusslide" role="button" data-slide="next" rel="nofollow">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">下一个</span>
+                            </a> 
+                        </div>
+                    </div>
+                    <div class="col-xs-4 m0">
+                        <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="" target="_blank">
+                            <img class="thumb" data-original="/taopapa/public/news/new1.jpg" src="/taopapa/public/news/new1.jpg" alt=""  style="display: inline;" height="200px" width="250px">
+                        </a>
+                    </div>
+                </div>
             </div>
-            <article class="excerpt-minic excerpt-minic-index">
-                <h2><span class="red">【推荐】</span><a target="_blank" href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" >用DTcms做一个独立博客网站（响应式模板）</a>
-            </h2>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
-            <?php if(($articles)): if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <article class="excerpt excerpt-1">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank">
-                    <?php if($vo['logo'] == ''): ?>
-                    <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/author_blogLogo/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
-                    <?php else: ?>
-                    <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
-                    <?php endif; ?>
+                <a class="focus" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/news_title.jpg" src="/taopapa/public/news/news_title.jpg" alt=""  style="display: inline;">
                 </a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a></h2>
+                <header><a class="cat" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="标题">GitHub被收购<i></i></a>
+                    <h2><a href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank" >如果 GitHub 被中国互联网巨头收购，一定会换一个响当当的 Slogan！</a></h2>
                 </header>
                 <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> <?php echo $vo['create_time']; ?></time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 217</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a></p>
-                <p class="note"><?php echo $vo['description']; ?></p>
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">近日听闻全球最大的代码托管平台 GitHub 或将无奈之下卖身微软，作价 50 亿美元，也可能再多一点，实在唏嘘不已。如此优秀的一款产品，终究也要折服于资本和运营的手段下。</p>
             </article>
-            <?php endforeach; endif; else: echo "" ;endif; else: ?>
-            <div class="jumbotron" style="display: block !important;">
-                <h1>空空如也!</h1>
-                <p>...</p>
-                <p><a class="btn btn-danger" href="<?php echo url('edit'); ?>" role="button"><i class="fa fa-hashtag"></i>写博客</a></p>
-            </div>
-            <?php endif; ?>
+
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/ai.jpg" src="/taopapa/public/news/ai.jpg" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="标题">跨镜追踪(ReID)技术<i></i></a>
+                    <h2><a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="" target="_blank" >刷新三项世界纪录的跨镜追踪(ReID)技术是怎样实现的？</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">跨镜追踪（Person Re-Identification，简称 ReID）技术是现在计算机视觉研究的热门方向，主要解决跨摄像头跨场景下行人的识别与检索。该技术能够根据行人的穿着、体态、发型等信息认知行人，与人脸识别结合能够适用于更多新的应用场景，将人工智能的认知水平提高到一个新阶段。</p>
+            </article>
+
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/ec.png" src="/taopapa/public/news/ec.png" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="标题">腾讯<i></i></a>
+                    <h2><a href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="" target="_blank" >鹅厂，隐藏着让4万员工拼命工作的套路！</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">看一个老板有没有格局就看他身边的人，有没有赚大钱就行了。一个人不愿意把钱分出去，把名让出去，把权利放下去，还说自己有格局，有情怀，绝大部分都是神棍。这个角度看，格局最高的可能是腾讯，因为就是连买腾讯股票的股民基本都没亏过。</p>
+            </article>
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/guleileo/article/details/80585981" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/ai2.jpg" src="/taopapa/public/news/ai2.jpg" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/guleileo/article/details/80585981" title="标题">人工智能头条<i></i></a>
+                    <h2><a href="https://blog.csdn.net/guleileo/article/details/80585981" title="" target="_blank" >身份采集、活体检测、人脸比对...旷视是如何做FaceID的？</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/guleileo/article/details/80585981" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">“刷脸”曾一度是人们互相调侃时的用语，如今早已深深地融入我们的生活。从可以人脸解锁的手机，到人脸识别打卡机，甚至地铁“刷脸”进站……</p>
+            </article>
+
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/news_title.jpg" src="/taopapa/public/news/news_title.jpg" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="标题">GitHub被收购<i></i></a>
+                    <h2><a href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank" >如果 GitHub 被中国互联网巨头收购，一定会换一个响当当的 Slogan！</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">近日听闻全球最大的代码托管平台 GitHub 或将无奈之下卖身微软，作价 50 亿美元，也可能再多一点，实在唏嘘不已。如此优秀的一款产品，终究也要折服于资本和运营的手段下。</p>
+            </article>
+
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/ai.jpg" src="/taopapa/public/news/ai.jpg" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="标题">跨镜追踪(ReID)技术<i></i></a>
+                    <h2><a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="" target="_blank" >刷新三项世界纪录的跨镜追踪(ReID)技术是怎样实现的？</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">跨镜追踪（Person Re-Identification，简称 ReID）技术是现在计算机视觉研究的热门方向，主要解决跨摄像头跨场景下行人的识别与检索。该技术能够根据行人的穿着、体态、发型等信息认知行人，与人脸识别结合能够适用于更多新的应用场景，将人工智能的认知水平提高到一个新阶段。</p>
+            </article>
+
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/ec.png" src="/taopapa/public/news/ec.png" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="标题">腾讯<i></i></a>
+                    <h2><a href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="" target="_blank" >鹅厂，隐藏着让4万员工拼命工作的套路！</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">看一个老板有没有格局就看他身边的人，有没有赚大钱就行了。一个人不愿意把钱分出去，把名让出去，把权利放下去，还说自己有格局，有情怀，绝大部分都是神棍。这个角度看，格局最高的可能是腾讯，因为就是连买腾讯股票的股民基本都没亏过。</p>
+            </article>
+            <article class="excerpt excerpt-1">
+                <a class="focus" href="https://blog.csdn.net/guleileo/article/details/80585981" title="" target="_blank">
+                    <img class="thumb" data-original="/taopapa/public/news/ai2.jpg" src="/taopapa/public/news/ai2.jpg" alt=""  style="display: inline;">
+                </a>
+                <header><a class="cat" href="https://blog.csdn.net/guleileo/article/details/80585981" title="标题">人工智能头条<i></i></a>
+                    <h2><a href="https://blog.csdn.net/guleileo/article/details/80585981" title="" target="_blank" >身份采集、活体检测、人脸比对...旷视是如何做FaceID的？</a></h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/guleileo/article/details/80585981" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
+                <p class="note">“刷脸”曾一度是人们互相调侃时的用语，如今早已深深地融入我们的生活。从可以人脸解锁的手机，到人脸识别打卡机，甚至地铁“刷脸”进站……</p>
+            </article>
 
         </div>
-        <?php echo $articles->render(); ?>
     </div>
     <aside class="sidebar">
         <div class="fixed">
@@ -143,78 +271,85 @@
                     <div class="input-group">
                         <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
                         <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
+                            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+                        </span>
+                    </div>
                 </form>
             </div>
             <div class="widget widget_sentence">
-                <h3>标签云</h3>
+                <h3>热门话题</h3>
                 <div class="widget-sentence-content">
                     <ul class="plinks ptags">
-                        <li><a href="http://www.muzhuangnet.com/tags/list/67/" title="移动统计" draggable="false">移动统计 <span class="badge">1</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/256/" title="404" draggable="false">404 <span class="badge">1</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/252/" title="VS2010" draggable="false">VS2010 <span class="badge">1</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/162/" title="杀毒软件" draggable="false">杀毒软件 <span class="badge">1</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/133/" title="html标签" draggable="false">html标签 <span class="badge">1</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/49/" title="循环" draggable="false">循环 <span class="badge">2</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/22/" title="百度统计" draggable="false">百度统计 <span class="badge">2</span></a></li>
-                        <li><a href="http://www.muzhuangnet.com/tags/list/132/" title="sql" draggable="false">sql <span class="badge">6</span></a></li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/67/" title="互联网" draggable="false">互联网 <span class="badge">1</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/256/" title="IT业界" draggable="false">IT业界 <span class="badge">1</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/252/" title="软件开发" draggable="false">软件开发 <span class="badge">1</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/162/" title="开源" draggable="false">开源 <span class="badge">1</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/133/" title="电脑硬件" draggable="false">电脑硬件 <span class="badge">1</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/49/" title="游戏" draggable="false">游戏 <span class="badge">2</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/22/" title="创业" draggable="false">创业 <span class="badge">2</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/132/" title="手机相关" draggable="false">手机相关 <span class="badge">6</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/132/" title="科学" draggable="false">科学 <span class="badge">6</span></a>
+                        </li>
+                        <li>
+                            <a href="http://www.muzhuangnet.com/tags/list/132/" title="其他" draggable="false">其他 <span class="badge">6</span></a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="widget widget_hot">
-            <h3>最新评论文章</h3>
+            <h3>最新资讯</h3>
             <ul>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-    2016-11-01
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+                <li>
+                    <a title="如果GitHub被中国互联网巨头收购?!" href="http://www.muzhuangnet.com/show/269.html">
+                        <span class="thumbnail">
+                            <img class="thumb" data-original="/taopapa/public/news/news_title.jpg" src="/taopapa/public/news/news_title.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
+                        </span>
+                        <span class="text">如果 GitHub 被中国互联网巨头收购，一定会换一个响当当的 Slogan！</span>
+                        <span class="muted">
+                            <i class="glyphicon glyphicon-time"></i>
+                            2016-11-01
+                        </span>
+                        <span class="muted">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            88
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="widget widget_sentence">
             <a href="http://www.muzhuangnet.com/show/269.html" target="_blank" rel="nofollow" title="MZ-NetBlog主题">
-        <img style="width: 100%" src="images/ad.jpg" alt="MZ-NetBlog主题" ></a>
+                <img style="width: 100%" src="/taopapa/public/news/aa.jpg" alt="MZ-NetBlog主题" >
+            </a>
         </div>
         <div class="widget widget_sentence">
             <a href="http://web.muzhuangnet.com/" target="_blank" rel="nofollow" title="专业网站建设">
-        <img style="width: 100%" src="http://www.muzhuangnet.com/upload/201610/24/201610241224221511.jpg" alt="专业网站建设" ></a>
+                <img style="width: 100%" src="/taopapa/public/news/bb.jpg" alt="专业网站建设" >
+            </a>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading"><small style="font-size: 18px;">关于我们</small></div>
+            <div class="panel-body">
+                ...
+            </div>
         </div>
     </aside>
 </section>

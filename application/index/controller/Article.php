@@ -61,7 +61,7 @@ class Article extends Common
 	public function list1()
 	{
 		$author = model('author')->where('username',input('param.username'))->find()['username'];
-		$articles = model('article')->where('status',1)->order(['id'=>'desc'])->paginate();
+		$articles = model('article')->where('status',1)->order(['id'=>'desc'])->paginate(8);
 		return $this->fetch('',['articles'=>$articles,'author'=>$author]);
 	}
 }

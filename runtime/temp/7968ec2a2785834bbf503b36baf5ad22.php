@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528121026;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528116394;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\menu.html";i:1528121494;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528267464;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528265040;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
     <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
@@ -79,8 +80,8 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">博客</a></li>
-                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写文章</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
                         <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
@@ -95,26 +96,202 @@
     
 <section class="container">
     <div class="content-wrap">
-        <header>
-	<ul class="nav nav-tabs">
-	  <li role="presentation"><a href="<?php echo url('author/index'); ?>">个人中心</a></li>
-	  <li role="presentation"><a href="<?php echo url('author/blog'); ?>">我的博客</a></li>
-	  <li role="presentation"><a href="<?php echo url('author/setting'); ?>">帐号设置</a></li>
-	  <li role="presentation"><a href="<?php echo url('author/news'); ?>">我的消息</a></li>
-	  <li role="presentation"><a href="<?php echo url('author/member'); ?>">我的会员</a></li>
-	  <li role="presentation"><a href="<?php echo url('author/photo'); ?>">我的相册</a></li>
-	</ul>
-</header>
-<script>
-	var pathname = window.location.pathname + window.location.search;
-	$(".nav-tabs li a").each(function() {
-	    var href = $(this).attr("href");
-	    if (pathname == href) {
-	        $(this).parent("li").addClass("active");
-	    }
-	});
-</script>
+        <div class="widget widget-tabs"  style="height:100%;">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                	<a href="#person" aria-controls="notice" role="tab" data-toggle="tab">个人中心</a>
+                </li>
+                <li role="presentation">
+                	<a href="#blog" aria-controls="contact" role="tab" data-toggle="tab">我的博客</a>
+                </li>
+                <li role="presentation">
+                	<a href="#news" aria-controls="contact" role="tab" data-toggle="tab">我的消息</a>
+                </li>
+                <li role="presentation">
+                	<a href="#setting" aria-controls="contact" role="tab" data-toggle="tab">帐号设置</a>
+                </li> 
+            </ul>
+            <div class="tab-content">
+            	<!-- 个人中心 start -->
+                <div role="tabpanel" class="tab-pane contact active" id="person">
+                    <dl class="pull-left">
+                    	<dt>
+                    		<a class="focus" href="#" title="头像" target="_blank" data-toggle="modal" data-target="#face">
+                    			<?php if($author['logo'] == ''): ?>
+                    			<img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt=""  style="display: inline; width: 200px;">
+                    			<?php else: ?>
+                    			<img class="thumb" data-original="<?php echo $author['logo']; ?>" alt=""  style="display: inline; width: 200px;">
+                    			<?php endif; ?>
+                			</a>
+							<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="face">
+							  	<div class="modal-dialog" role="document">
+							    	<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        									<h4 class="modal-title" id="gridSystemModalLabel">修改头像</h4>
+										</div>
+										<form action="<?php echo url('author/face',['username'=>session('username','','author')]); ?>" enctype="multipart/form-data" method="post">
+											<div class="modal-body">
+												<input type="file" name="image">
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        									<button type="submit" class="btn btn-primary">确定</button>
+											</div>
+										</form>
+										
+							    	</div>
+							   	</div>
+							</div>
+                		</dt>
+                    	<dd style="display: inline-block;padding:10px 30px;text-align: center">
+                    		<b style="display: block;"><a href="#" title="有0个用户关注了你">0</a></b>关注
+                    	</dd> | 
+                    	<dd style="display: inline-block;padding:10px 30px;text-align: center">
+                    		<b style="display: block;"><a href="#" title="你拥有0个粉丝">0</a></b>粉丝
+                    	</dd>
+                    </dl>
+                    <div class="details">
+                    	<div class="head">
+                    		<h1>
+	                    		<code><?php echo $author['username']; ?></code>
+	                    	</h1>
+	                    	<ul class="aaaa">
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:1279728601"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:1279728601@qq.com"><i class="fa fa-envelope icons"></i>邮箱</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:男"><i class="fa fa-transgender icons"></i>性别</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:1994-06-01"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
+	                    	</ul>
+                    	</div>
+                    	<p class="readme">
+                    		我是菜鸟
+                    	</p>
+                    	<p class="bb">
+                    		<kbd class="bg-info">等级 <span class="badge">42</span></kbd>
+                    	</p>
+                    </div>
+                </div>
+                <!-- 个人中心 end -->
 
+                <!-- 我的博客 start -->
+                <div role="tabpanel" class="tab-pane contact" id="blog">
+                	<!-- <aside class="col-xs-3">
+                		<div class="list-group blog_left">
+						  	<strong class="list-group-item active">
+						    	管理博客
+						  	</strong>
+						  	<a href="#" class="list-group-item">评论管理</a>
+						  	<a href="#" class="list-group-item">标签管理</a>
+						  	<a href="#" class="list-group-item">媒体管理</a>
+						</div>
+                		<ul class="list-group">
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	计算机语言
+						  	</button>
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	前端设计
+						  	</button>
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	安卓
+						  	</button>
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	iOS
+						  	</button>
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	操作系统
+						  	</button>
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	工作生活
+						  	</button>
+						  	<button type="button" class="list-group-item">
+						  		<span class="badge">14</span>
+						    	工具软件
+						  	</button>
+						    	
+						</ul>
+                	</aside> -->
+                	
+                	<div class="search_blog">
+                		<form class="navbar-form search_blog" action="/Search" method="post">
+	                    	<div class="input-group">
+	                        	<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+	                        	<span class="input-group-btn">
+	            					<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+	            				</span>
+	            			</div>
+	                	</form>
+                	</div>
+		            <div class="list_blog">
+		            	<div class="row">
+		            		<?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+		            		<div class="col-lg-3 col-md-4 col-xs-6">
+		            			<div class="thumbnail">
+		            				<?php if($vo['logo'] == ''): ?>
+		            				<a href="#" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"></a>
+		            				<?php else: ?>
+		            				<a href="#" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
+		            				<?php endif; ?>
+								    <div class="caption">
+								        <h3><?php echo $vo['title']; ?></h3>
+								        <p><?php echo $vo['description']; ?></p>
+								        <p class="list_bottom">
+								        	<a href="#" class="comment" title="发表时间" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-time"></i>
+                    								2016-11-01
+                								</small>
+                							</a>
+								        	<a href="#" class="comment" title="查阅" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-eye-open"></i>
+								        			88
+								        		</small>
+								        	</a>
+								        	<a class="comment" href="#" title="评论" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-comment"></i> 4
+								        		</small>
+								        	</a>
+								        </p>
+								    </div>
+		            			</div>
+						    </div>
+						    <?php endforeach; endif; else: echo "" ;endif; ?>
+		            	</div>	
+		            </div>
+                </div>
+                <!-- 我的博客 end -->
+
+				
+
+				<!-- 我的消息 start  -->
+                <div role="tabpanel" class="tab-pane contact" id="news">
+					<a href="#">aaa</a>
+                </div>
+                <!-- 我的消息 end  -->
+
+
+
+                <!-- 帐号设置 start -->
+                <div role="tabpanel" class="tab-pane contact" id="setting">
+                    <h2>
+                    	QQ:
+                  		<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1279728601&amp;site=qq&amp;menu=yes" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="QQ:1279728601">1279728601</a>
+              		</h2>
+                    <h2>
+                    	Email:
+              			<a href="mailto:1279728601@qq.com" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title=""  data-original-title="Email:1279728601@qq.com">1279728601@qq.com</a>
+              		</h2>
+                </div>
+                <!-- 帐号设置 end -->
+            </div>
+        </div>
     </div>
 </section>
 

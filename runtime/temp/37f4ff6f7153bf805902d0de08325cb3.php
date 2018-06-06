@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528112752;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528116394;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528267109;s:66:"D:\bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528265040;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
     <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
@@ -79,8 +80,8 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">博客</a></li>
-                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写文章</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
                         <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
@@ -130,7 +131,7 @@
             <div class="title">
                 <h3>最新发布</h3>
                 <div class="more">
-                    <a href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">MZ-NetBlog主题</a>
+                    <a href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题">业界新闻</a>
                     <a href="http://www.muzhuangnet.com/list/code/" title="IT技术笔记">IT技术笔记</a>
                     <a href="http://www.muzhuangnet.com/list/share/" title="源码分享">源码分享</a>
                     <a href="http://www.muzhuangnet.com/list/money/" title="靠谱网赚">靠谱网赚</a>
@@ -139,7 +140,6 @@
             </div>
             <?php if(($lists)): if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <article class="excerpt excerpt-1" style="">
-                
                 <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank">
                     <?php if($vo['logo'] == ''): ?>
                     <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
@@ -172,7 +172,7 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane contact active" id="notice">
                         <h2>日志总数:
-                  <?php echo count($lists); ?>篇
+                  <?php echo count(model('article')->select()); ?>篇
               </h2>
                         <h2>网站运行:
               <span id="sitetime"><?php echo floor((time()-strtotime('2018-05-28'))/86400); ?>天 </span></h2>
@@ -196,65 +196,55 @@
                 </form>
             </div>
         </div>
+        <div class="panel panel-success m1">
+            <div class="panel-heading"><small style="font-size: 18px;">友情链接</small></div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="http://v3.bootcss.com" title="bootstrap" target="_blank">bootstrap</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="http://fontawesome.dashgame.com/" title="font-awesome" target="_blank">font-awesome</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="https://www.pexels.com/" title="pexels" target="_blank">pexels高清图片</a>
+                </li>
+            </ul>
+        </div>
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html"><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+                <li>
+                    <a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html">
+                        <span class="thumbnail">
+                            <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
+                        </span>
+                        <span class="text">用DTcms做一个独立博客网站（响应式模板）</span>
+                        <span class="muted">
+                            <i class="glyphicon glyphicon-time"></i>
+                            2016-11-01
+                        </span>
+                        <span class="muted">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            88
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="widget widget_sentence">
-            <a href="http://web.muzhuangnet.com/" target="_blank" rel="nofollow" title="专业网站建设">
-        <img style="width: 100%" src="http://www.muzhuangnet.com/upload/201610/24/201610241224221511.jpg" alt="专业网站建设" ></a>
+            <a href="http://www.muzhuangnet.com/show/269.html" target="_blank" rel="nofollow" title="taopapa博客之家">
+                <img style="width: 100%" src="/taopapa/public/news/aa.jpg" alt="taopapa博客之家" >
+            </a>
         </div>
         <div class="widget widget_sentence">
-            <a href="http://www.muzhuangnet.com/show/269.html" target="_blank" rel="nofollow" title="MZ-NetBlog主题">
-        <img style="width: 100%" src="/taopapa/public/static/frontend/images/ad.jpg" alt="MZ-NetBlog主题" ></a>
+            <a href="http://web.muzhuangnet.com/" target="_blank" rel="nofollow" title="">
+                <img style="width: 100%" src="/taopapa/public/news/bb.jpg" alt="" >
+            </a>
         </div>
-        <div class="widget widget_sentence">
-            <h3>友情链接</h3>
-            <div class="widget-sentence-link">
-                <a href="http://www.bootcss.com" title="bootstrap" target="_blank">bootstrap</a>&nbsp;&nbsp;&nbsp;
-                <a href="http://fontawesome.dashgame.com/" title="font-awesome" target="_blank">font-awesome</a>&nbsp;&nbsp;&nbsp;
-                <a href="https://www.pexels.com/" title="pexels" target="_blank">pexels高清图片</a>&nbsp;&nbsp;&nbsp;
+        <div class="panel panel-warning">
+            <div class="panel-heading"><small style="font-size: 18px;">关于我们</small></div>
+            <div class="panel-body">
+                ...
             </div>
         </div>
     </aside>
