@@ -1,4 +1,117 @@
-{extend name="base"} {block name="content"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:73:"D:\xampp\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528338961;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528339569;}*/ ?>
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taopapa-博客之家 发现技术的地方</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
+    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
+    <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
+    <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/nprogress.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.lazyload.min.js"></script>
+    <!--[if gte IE 9]>
+      <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+      <script src="js/html5shiv.min.js" type="text/javascript"></script>
+      <script src="js/respond.min.js" type="text/javascript"></script>
+      <script src="js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+      <script>window.location.href='upgrade-browser.html';</script>
+    <![endif]-->
+    <style>
+      .pagination{
+        display: block !important;
+      }
+      .caozuo{
+        display: none;
+      }
+      .caozuo a{
+        color:#777 !important;
+        font-size: 25px;
+        padding:0px 10px;
+      }
+      .caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
+      .list_blog .thumbnail:hover .caozuo{
+        display: block;
+      }
+      .me_data{
+        margin-top:20px;
+      }
+    </style>
+</head>
+
+<body class="user-select">
+    <header class="header">
+        <nav class="navbar navbar-default" id="navbar">
+            <div class="container">
+                <div class="header-topbar hidden-xs link-border">
+                    <?php if(session('username','','author') == ''): ?>
+                    <ul class="site-nav topmenu">
+                        <li><a href="http://www.muzhuangnet.com/tags/">标签云</a></li>
+                        <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow">读者墙</a></li>
+                        <li><a href="http://www.muzhuangnet.com/rss.html" title="RSS订阅">
+                <i class="fa fa-rss">
+                </i> RSS订阅
+            </a></li>
+                        <li><a href="<?php echo url('login/index'); ?>" rel="nofollow">登录</a></li>
+                        <li><a href="<?php echo url('regist/index'); ?>" rel="nofollow">注册</a></li>
+                    </ul>
+                    <?php else: ?>
+                    <ul class="site-nav topmenu">
+                        <li><a href="http://www.muzhuangnet.com/tags/">标签云</a></li>
+                        <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow">读者墙</a></li>
+                        <li><a href="http://www.muzhuangnet.com/rss.html" title="RSS订阅">
+                <i class="fa fa-rss">
+                </i> RSS订阅
+            </a></li>
+                        <li><em class="text-info">欢迎您</em></li>
+                        <li><a href="<?php echo url('author/index'); ?>" rel="nofollow"><?php echo session('username','','author'); ?></a></li>
+                        <li><a href="<?php echo url('index/logout'); ?>">注销</a></li>
+                    </ul>
+                    <?php endif; ?> 勤记录 懂分享</div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <h1 class="logo hvr-bounce-in"><a href="<?php echo url('index/index'); ?>" title="Taopapa-博客之家"><img src="/taopapa/public/static/frontend/images/logo.png" alt="Taopapa-博客之家"></a></h1>
+                </div>
+                <div class="collapse navbar-collapse" id="header-navbar">
+                    <form class="navbar-form visible-xs" action="/Search" method="post">
+                        <div class="input-group">
+                            <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
+                            <span class="input-group-btn">
+            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+            </span> </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
+                        <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
+                        <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
+                        <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
+                        <li><a data-cont="源码分享" title="源码分享" href="http://www.muzhuangnet.com/list/share/">源码分享</a></li>
+                        <li><a data-cont="论坛" title="论坛" href="http://www.muzhuangnet.com/list/money/">论坛</a></li>
+                        <li><a data-cont="资讯分享" title="资讯分享" href="http://www.muzhuangnet.com/list/news/">资讯分享</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
 <section class="container">
     <div class="content-wrap">
         <div class="content">
@@ -9,13 +122,13 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="item active" style="height:161.875px;">
-                        <a href="{:url('index/index')}" target="_blank" title="青山">
-                          <img src="__STATIC__/frontend/images/list1.jpg" alt="青山" class="img-responsive">
+                        <a href="<?php echo url('index/index'); ?>" target="_blank" title="青山">
+                          <img src="/taopapa/public/static/frontend/images/list1.jpg" alt="青山" class="img-responsive">
                         </a>
                     </div>
                     <div class="item" style="height:161.875px;">
                         <a href="http://web.muzhuangnet.com/" target="_blank" title="湖泊">
-                          <img src="__STATIC__/frontend/images/list2.jpg" alt="湖泊" class="img-responsive">
+                          <img src="/taopapa/public/static/frontend/images/list2.jpg" alt="湖泊" class="img-responsive">
                         </a>
                     </div>
                 </div>
@@ -36,7 +149,7 @@
             <div class="title">
                 <h3>最新发布</h3>
                 <div class="more">
-                    <a href="{:url('article/list1')}" title="业界新闻">业界新闻</a>
+                    <a href="<?php echo url('article/list1'); ?>" title="业界新闻">业界新闻</a>
                     <a href="http://www.muzhuangnet.com/list/code/" title="IT技术笔记">IT技术笔记</a>
                     <a href="http://www.muzhuangnet.com/list/share/" title="源码分享">源码分享</a>
                     <a href="http://www.muzhuangnet.com/list/money/" title="靠谱网赚">靠谱网赚</a>
@@ -44,28 +157,26 @@
                 </div>
             </div>
             
-            {if condition="($lists)"}
-            {volist name="lists" id="vo"}
+            <?php if(($lists)): if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="{$vo.title}" target="_blank">
-                    {eq name="$vo.logo" value=""}
-                    <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: inline;">
-                    {else}
-                    <img class="thumb" data-original="{$vo.logo}" src="{$vo.logo}" alt="{$vo.title}"  style="display: inline;">
-                    {/eq}
+                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank">
+                    <?php if($vo['logo'] == ''): ?>
+                    <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
+                    <?php else: ?>
+                    <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
+                    <?php endif; ?>
                 </a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="{$vo.title}">{$vo.title}<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="{$vo.title}" target="_blank" >{$vo.title}</a>
+                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
+                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a>
                 </h2>
                 </header>
                 <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i>{$vo.create_time}</time>
+                    <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $vo['create_time']; ?></time>
                     <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
                 </p>
-                <p class="note">{$vo.content}</p>
+                <p class="note"><?php echo $vo['content']; ?></p>
             </article>
-            {/volist}
-            {/if}
+            <?php endforeach; endif; else: echo "" ;endif; endif; ?>
             <article class="excerpt excerpt-1">
                 <a class="focus" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank">
                     <img class="thumb" data-original="/taopapa/public/news/news_title.jpg" src="/taopapa/public/news/news_title.jpg" alt=""  style="display: inline;">
@@ -116,7 +227,7 @@
                     <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/guleileo/article/details/80585981" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
                 <p class="note">“刷脸”曾一度是人们互相调侃时的用语，如今早已深深地融入我们的生活。从可以人脸解锁的手机，到人脸识别打卡机，甚至地铁“刷脸”进站……</p>
             </article>
-            {$lists->render()}
+            <?php echo $lists->render(); ?>
 
         </div>
     </div>
@@ -130,10 +241,10 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane contact active" id="notice">
                         <h2>日志总数:
-                  {:count(model('article')->select())}篇
+                  <?php echo count(model('article')->select()); ?>篇
               </h2>
                         <h2>网站运行:
-              <span id="sitetime">{:floor((time()-strtotime('2018-05-28'))/86400)}天 </span></h2>
+              <span id="sitetime"><?php echo floor((time()-strtotime('2018-05-28'))/86400); ?>天 </span></h2>
                     </div>
                     <div role="tabpanel" class="tab-pane contact" id="contact">
                         <h2>QQ:
@@ -171,20 +282,20 @@
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
-                {volist name="lists" id="vo"}
+                <?php if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                 <li>
-                    <a title="{$vo.title}" href="{:url('author/detail')}">
+                    <a title="<?php echo $vo['title']; ?>" href="<?php echo url('author/detail'); ?>">
                         <span class="thumbnail">
-                            {eq name="$vo.logo" value=""}
-                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: block;">
-                            {else}
-                            <img class="thumb" data-original="{$vo.logo}" src="{$vo.logo}" alt="{$vo.title}"  style="display: block;">
-                            {/eq}
+                            <?php if($vo['logo'] == ''): ?>
+                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: block;">
+                            <?php else: ?>
+                            <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: block;">
+                            <?php endif; ?>
                         </span>
-                        <span class="text">{$vo.title}</span>
+                        <span class="text"><?php echo $vo['title']; ?></span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-time"></i>
-                            {$vo.create_time}
+                            <?php echo $vo['create_time']; ?>
                         </span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-eye-open"></i>
@@ -192,7 +303,7 @@
                         </span>
                     </a>
                 </li>
-                {/volist}
+                <?php endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
         <div class="widget widget_sentence">
@@ -213,4 +324,34 @@
         </div>
     </aside>
 </section>
-{/block}
+
+    <footer class="footer">
+        <div class="container">
+            <div><a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">粤ICP备18054061号-1</a> <br><br>&nbsp;本站[<a href="http://www.whoismy94.top/">Taopapa-博客之家</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！&nbsp; </div>
+        </div>
+    </footer>
+    <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
+    <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+      //实例化编辑器
+      var um = UM.getEditor('myEditor');
+      um.ready(function() {
+          //设置编辑器的内容
+          um.setContent('');
+          //获取html内容，返回: <p>hello</p>
+          var html = um.getContent();
+          //获取纯文本内容，返回: hello
+          var txt = um.getContentTxt();
+          var ww = $('body').width();
+          UM.getEditor('myEditor').setHeight(500);
+          UM.getEditor('myEditor').setWidth(ww*0.805);
+      });
+    </script>
+</body>
+
+</html>

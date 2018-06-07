@@ -71,7 +71,7 @@
 											<a href="{:url('author/details',['username'=>$vo.username])}">{$vo.username}</a>
 										</td>
 										<td>{$vo.realname}</td>
-										<td class="hidden-480">2件</td>
+										<td class="hidden-480">{:count(model('article')->where('author_id',$vo.id)->select())}</td>
 										<td>{$vo.email}</td>
 										<td>{$vo.tel}</td>
 										<td class="hidden-480">
