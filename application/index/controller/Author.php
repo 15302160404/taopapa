@@ -41,11 +41,32 @@ class Author extends Controller
 	    	return $this->success('修改成功','author/index');
 	    }
 	}
-
-	public function detail()
-	{
-		$id = input('param.id');
-		$article = model('article')->where('id',$id)->find();
-		return $this->fetch('',['article'=>$article]);
-	} 
+	public function modifyPassword(){
+		if(request()->isPost())
+		{
+			$id = input('param.id');
+			$data = input('post.');
+			$validate = validate('author');
+			if(!$validate->scene('modifyPwd')->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$author = model('author')->where('id',$id)->find();
+			if($author['password']!=md5($data['oldPassword'].$code1))
+			{
+				return $this->error('旧密码不正确');
+			}
+			echo 1;exit;
+			$code = rand(1000,9999);
+			$result = model('author')->save([
+				'password'=>md5($data['password'].$code),
+				'code' => $code
+			],['id'=>$id]);
+			if(!$result)
+			{
+				return $this->error('修改失败');
+			}
+			return $this->success('修改成功','author/index');
+		}
+	}
 }
