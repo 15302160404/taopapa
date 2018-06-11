@@ -9,8 +9,9 @@ class Author extends Validate
 		'realname' => 'require',
 		'tel' => 'require|max:11',
 		'email' => 'require|email',
+		'oldPassword'=>'require',
 		'password'=>'require',
-		're_password'=>'require|confirm:re_password'
+		're_password'=>'require|confirm:re_password',
 	];
 	protected $message = [
 		'username.require' => '用户名不能为空',
@@ -22,10 +23,13 @@ class Author extends Validate
 		'password.require' => '密码不能为空',
 		're_password.confirm' => '密码和确认密码不一致',
 		're_password.require' => '确认密码不能为空',
+		'oldPassword.require' => '旧密码不能为空',
 	];
 	protected $scene = [
 		'regist'=>['username','realname','tel','email','password'],
 		'login'=>['username','password'],
-		'modifyPwd'=>['password'],
+		'modifyPwd'=>['oldPassword','password','re_password'],
+		'modifyEm'=>['email'],
+		'modifyTel'=>['tel']
 	];
 }

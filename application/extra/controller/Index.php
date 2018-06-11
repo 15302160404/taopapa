@@ -31,7 +31,7 @@ class Index extends Controller
    /**
     *添加评论
     */
-   	public function addComment(){ 
+   	public function addComment(){
     	$data=array();
 	    if((isset($_POST["comment"]))&&(!empty($_POST["comment"]))){
 	        $cm = json_decode($_POST["comment"],true);

@@ -64,4 +64,14 @@ class Article extends Common
 		$articles = model('article')->where('status',1)->order(['id'=>'desc'])->paginate(8);
 		return $this->fetch('',['articles'=>$articles,'author'=>$author]);
 	}
+	/**
+	 * 文章详情
+	 * @return [type] [description]
+	 */
+	public function detail()
+	{
+		$id = input('param.id');
+		$article = model('article')->where('id',$id)->find();
+		return $this->fetch('',['article'=>$article]);
+	}
 }

@@ -30,6 +30,7 @@ create table `work_author`(
 `status` tinyint(1)  not null default 1  COMMENT '状态 1正常 0删除 2私有 3禁用 ',
 `create_time` int(11)  unsigned not null default 0  COMMENT '创建时间',
 `update_time` int(11)  unsigned not null default 0  COMMENT '更新时间',
+`delete_time` int(11)  unsigned not null default 0,
 primary key(`id`),
 unique key username(`username`)
 )engine=innodb AUTO_INCREMENT=1 default charset=utf8;
@@ -41,6 +42,7 @@ create table `work_category`(
 `status` tinyint(1)  not null default 1  COMMENT '状态 1正常 0删除 2禁用 ',
 `create_time` int(11)  unsigned not null default 0  COMMENT '创建时间',
 `update_time` int(11)  unsigned not null default 0  COMMENT '更新时间',
+`delete_time` int(11)  unsigned not null default 0,
 primary key(`id`),
 unique key categoryname(`categoryname`)
 )engine=innodb AUTO_INCREMENT=1 default charset=utf8;
@@ -57,6 +59,7 @@ create table `work_article`(
 `status` tinyint(1)  not null default 1,
 `create_time` int(11)  unsigned not null default 0,
 `update_time` int(11)  unsigned not null default 0,
+`delete_time` int(11)  unsigned not null default 0,
 primary key(`id`),
 key author_id(`author_id`),
 key category_id(`category_id`)

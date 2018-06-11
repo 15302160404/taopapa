@@ -13,6 +13,9 @@
                 	<a href="#news" aria-controls="contact" role="tab" data-toggle="tab">我的消息</a>
                 </li>
                 <li role="presentation">
+                	<a href="#recycle" aria-controls="contact" role="tab" data-toggle="tab">回收站</a>
+                </li>
+                <li role="presentation">
                 	<a href="#setting" aria-controls="contact" role="tab" data-toggle="tab">帐号设置</a>
                 </li> 
             </ul>
@@ -62,10 +65,10 @@
 	                    		<code>{$author.username}</code>
 	                    	</h1>
 	                    	<ul class="aaaa">
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:1279728601"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:1279728601@qq.com"><i class="fa fa-envelope icons"></i>邮箱</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:男"><i class="fa fa-transgender icons"></i>性别</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:1994-06-01"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:{$author.tel}"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:{$author.email}"><i class="fa fa-envelope icons"></i>邮箱</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:未知"><i class="fa fa-transgender icons"></i>性别</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:0000-00-00"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
 	                    	</ul>
                     	</div>
                     	<p class="readme">
@@ -232,22 +235,82 @@
                 
 				<!-- 我的消息 start  -->
                 <div role="tabpanel" class="tab-pane contact" id="news">
-					<a href="#">aaa</a>
+					<a href="#">我的消息</a>
                 </div>
                 <!-- 我的消息 end  -->
+
+                <!-- 回收站 start  -->
+                <div role="tabpanel" class="tab-pane contact" id="recycle">
+					<a href="#">回收站</a>
+                </div>
+                <!-- 回收站 end  -->
 
 
 
                 <!-- 帐号设置 start -->
                 <div role="tabpanel" class="tab-pane contact" id="setting">
-                    <h2>
-                    	QQ:
-                  		<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1279728601&amp;site=qq&amp;menu=yes" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="QQ:1279728601">1279728601</a>
-              		</h2>
-                    <h2>
-                    	Email:
-              			<a href="mailto:1279728601@qq.com" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title=""  data-original-title="Email:1279728601@qq.com">1279728601@qq.com</a>
-              		</h2>
+                    <div class="panel panel-warning">
+						<div class="panel-heading">修改密码</div>
+					  	<div class="panel-body">
+					    	<form class="form-horizontal" method="post" action="{:url('author/modifyPassword',['id'=>$author.id])}">
+							  	<div class="form-group">
+							    	<label for="oldPassword" class="col-sm-2 control-label">旧密码</label>
+							    	<div class="col-sm-3">
+							      	<input type="password" class="form-control" id="oldPassword" name="oldPassword">
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="newPassword" class="col-sm-2 control-label">新密码</label>
+							    	<div class="col-sm-3">
+							      	<input type="password" class="form-control" id="newPassword" name="password">
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
+							    	<div class="col-sm-3">
+							      	<input type="password" class="form-control" id="confirmPassword" name="re_password">
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+								    <div class="col-sm-offset-2 col-sm-10">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+								</div>
+							</form>
+					  	</div>
+                    </div>
+					<div class="panel panel-success">
+						<div class="panel-heading">修改邮箱</div>
+					  	<div class="panel-body">
+					    	<form class="form-horizontal" method="post" action="{:url('author/modifyEmail',['id'=>$author.id])}">
+							  	<div class="form-group">
+							    	<label for="email" class="col-sm-2 control-label">新邮箱</label>
+							    	<div class="col-sm-3">
+							      	<input type="text" class="form-control" id="email" name="email">
+							    	</div>
+							    	<div class="col-sm-3">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+							  	</div>
+							</form>
+					  	</div>
+					</div>
+					<div class="panel panel-info">
+						<div class="panel-heading">修改手机号</div>
+					  	<div class="panel-body">
+					    	<form class="form-horizontal" method="post" action="{:url('author/modifyTel',['id'=>$author.id])}">
+							  	<div class="form-group">
+							    	<label for="tel" class="col-sm-2 control-label">新手机</label>
+							    	<div class="col-sm-3">
+							      	<input type="text" class="form-control" id="tel" name="tel">
+							    	</div>
+							    	<div class="col-sm-3">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+							  	</div>
+							</form>
+					  	</div>
+					</div>
                 </div>
                 <!-- 帐号设置 end -->
             </div>

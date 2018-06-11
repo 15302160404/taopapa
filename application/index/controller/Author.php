@@ -41,11 +41,82 @@ class Author extends Controller
 	    	return $this->success('修改成功','author/index');
 	    }
 	}
-
-	public function detail()
+	public function modifyPassword(){
+		if(request()->isPost())
+		{
+			$id = input('param.id');
+			$data = input('post.');
+			$validate = validate('author');
+			if(!$validate->scene('modifyPwd')->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$author = model('author')->where('id',$id)->find();
+			$code1 = $author['code'];
+			if($author['password']!=md5($data['oldPassword'].$code1))
+			{
+				return $this->error('旧密码不正确');
+			}
+			$code = rand(1000,9999);
+			$result = model('author')->save([
+				'password'=>md5($data['password'].$code),
+				'code' => $code
+			],['id'=>$id]);
+			if(!$result)
+			{
+				return $this->error('修改失败');
+			}
+			return $this->success('修改成功','author/index');
+		}
+	}
+	public function modifyEmail()
 	{
-		$id = input('param.id');
-		$article = model('article')->where('id',$id)->find();
-		return $this->fetch('',['article'=>$article]);
-	} 
+		if(request()->isPost())
+		{
+			$id = input('param.id');
+			$data = input('post.');
+			$validate = validate('author');
+			if(!$validate->scene('modifyEm')->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$email = model('author')->where('id',$id)->find()['email'];
+			if($data['email']==$email){
+				return $this->error('修改内容不能与近期使用的一样');
+			}
+			$result = model('author')->save([
+				'email'=>$data['email']
+			],['id'=>$id]);
+			if(!$result)
+			{
+				return $this->error('修改失败');
+			}
+			return $this->success('修改成功','author/index');
+		}
+	}
+	public function modifyTel()
+	{
+		if(request()->isPost())
+		{
+			$id = input('param.id');
+			$data = input('post.');
+			$validate = validate('author');
+			if(!$validate->scene('modifyTel')->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$tel = model('author')->where('id',$id)->find()['tel'];
+			if($data['tel']==$tel){
+				return $this->error('修改内容不能与近期使用的一样');
+			}
+			$result = model('author')->save([
+				'tel'=>$data['tel']
+			],['id'=>$id]);
+			if(!$result)
+			{
+				return $this->error('修改失败');
+			}
+			return $this->success('修改成功','author/index');		
+		}
+	}
 }

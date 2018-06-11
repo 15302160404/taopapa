@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528337622;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528337622;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528676967;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528676967;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -48,6 +48,9 @@
       }
       .list_blog .thumbnail:hover .caozuo{
         display: block;
+      }
+      .me_data{
+        margin-top:20px;
       }
     </style>
 </head>
