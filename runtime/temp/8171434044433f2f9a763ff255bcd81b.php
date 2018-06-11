@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\regist\index.html";i:1528337622;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\regist\index.html";i:1528676967;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 

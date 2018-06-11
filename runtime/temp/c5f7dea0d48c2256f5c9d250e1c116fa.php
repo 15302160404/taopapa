@@ -1,11 +1,12 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:73:"D:\xampp\htdocs\taopapa\public/../application/extra\view\index\index.html";i:1528682913;}*/ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>php无限级分类实战————评论及回复功能</title>
     <!-- <link rel="stylesheet" type="text/css" href="/Public/css/comment.css"> -->
-    <script type="text/javascript" src="__STATIC__/jquery.min.js" ></script>
-    <script type="text/javascript" src="__STATIC__/comment.js" ></script>
+    <script type="text/javascript" src="/taopapa/public/static/jquery.min.js" ></script>
+    <script type="text/javascript" src="/taopapa/public/static/comment.js" ></script>
     <style>
         .head-pic{
             width:40px;
@@ -42,7 +43,7 @@
   <!--发表评论区begin-->
   <div>
     <div class="comment-num">
-        <span>{$num}条评论</span>
+        <span><?php echo $num; ?>条评论</span>
     </div>
     <div>
         <div>
@@ -61,68 +62,68 @@
         <div class="comment-list" >
             <!--一级评论列表begin-->
             <ul class="comment-ul">
-                {volist name="commlist" id="data"}
-                    <li comment_id="{$data.id}">
+                <?php if(is_array($commlist) || $commlist instanceof \think\Collection || $commlist instanceof \think\Paginator): $i = 0; $__LIST__ = $commlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i;?>
+                    <li comment_id="<?php echo $data['id']; ?>">
                     <div >
                         <div>
-                            <img class="head-pic"  src="{$data.logo}" alt="">  
+                            <img class="head-pic"  src="<?php echo $data['logo']; ?>" alt="">  
                         </div>
                         <div class="cm">
                             <div class="cm-header">
-                            <span>{$data.nickname}</span>
-                            <span>{$data.create_time}</span>
+                            <span><?php echo $data['nickname']; ?></span>
+                            <span><?php echo $data['create_time']; ?></span>
                             </div>
                             <div class="cm-content">
                                 <p>
-                                    {$data.content}
+                                    <?php echo $data['content']; ?>
                                 </p>
                             </div>
                             <div class="cm-footer">
-                                <a class="comment-reply" comment_id="{$data.id}" href="javascript:void(0);">回复</a>                     
+                                <a class="comment-reply" comment_id="<?php echo $data['id']; ?>" href="javascript:void(0);">回复</a>                     
                             </div>  
                         </div>                                                              
                     </div>
 
                     <!--二级评论begin-->
                     <ul class="children">
-                       {volist name="data.children" id="child"}
-                        <li comment_id="{$child.id}">
+                       <?php if(is_array($data['children']) || $data['children'] instanceof \think\Collection || $data['children'] instanceof \think\Paginator): $i = 0; $__LIST__ = $data['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$child): $mod = ($i % 2 );++$i;?>
+                        <li comment_id="<?php echo $child['id']; ?>">
                             <div>
                                 <div>
-                                    <img class="head-pic"  src="{$child.logo}" alt="">
+                                    <img class="head-pic"  src="<?php echo $child['logo']; ?>" alt="">
                                 </div>
                                 <div class="children-cm">
                                     <div  class="cm-header">
-                                    <span>{$child.nickname}</span>
-                                    <span>{$child.create_time}</span>
+                                    <span><?php echo $child['nickname']; ?></span>
+                                    <span><?php echo $child['create_time']; ?></span>
                                     </div>
                                     <div class="cm-content">
                                         <p>
-                                            {$child.content}
+                                            <?php echo $child['content']; ?>
                                         </p>
                                     </div>
                                     <div class="cm-footer">                
-                                        <a class="comment-reply" replyswitch="off" comment_id="{$child.id}"  href="javascript:void(0);">回复</a>
+                                        <a class="comment-reply" replyswitch="off" comment_id="<?php echo $child['id']; ?>"  href="javascript:void(0);">回复</a>
                                     </div>
                                 </div>                                                         
                             </div>
 
                             <!--三级评论begin-->
                             <ul class="children">
-                                {volist name="child.children" id="grandson" }  
-                                <li comment_id="{$grandson.id}">                
+                                <?php if(is_array($child['children']) || $child['children'] instanceof \think\Collection || $child['children'] instanceof \think\Paginator): $i = 0; $__LIST__ = $child['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$grandson): $mod = ($i % 2 );++$i;?>  
+                                <li comment_id="<?php echo $grandson['id']; ?>">                
                                     <div >
                                         <div>
-                                            <img class="head-pic"  src="{$grandson.logo}" alt="">
+                                            <img class="head-pic"  src="<?php echo $grandson['logo']; ?>" alt="">
                                         </div>
                                         <div class="children-cm">
                                             <div  class="cm-header">
-                                            <span>{$grandson.nickname}</span>
-                                            <span>{$grandson.create_time}</span>
+                                            <span><?php echo $grandson['nickname']; ?></span>
+                                            <span><?php echo $grandson['create_time']; ?></span>
                                             </div>
                                             <div class="cm-content">
                                                 <p>
-                                                    {$grandson.content}
+                                                    <?php echo $grandson['content']; ?>
                                                 </p>
                                             </div>
                                             <div class="cm-footer">                             
@@ -131,17 +132,17 @@
                                         </div>                                                              
                                     </div>
                                 </li>
-                                {/volist}
+                                <?php endforeach; endif; else: echo "" ;endif; ?>
                             </ul>   
                             <!--三级评论end-->
 
                         </li>
-                       {/volist}
+                       <?php endforeach; endif; else: echo "" ;endif; ?>
                     </ul>   
                     <!--二级评论end-->
 
                 </li>
-                {/volist}                                                                 
+                <?php endforeach; endif; else: echo "" ;endif; ?>                                                                 
             </ul>
             <!--一级评论列表end-->
         </div>      
