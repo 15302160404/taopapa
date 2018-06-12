@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528555050;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528555050;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528713439;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528555050;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -174,7 +174,7 @@
                     <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $vo['create_time']; ?></time>
                     <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
                 </p>
-                <p class="note"><?php echo $vo['content']; ?></p>
+                <p class="note"><?php echo $vo['description']; ?></p>
             </article>
             <?php endforeach; endif; else: echo "" ;endif; endif; ?>
             <article class="excerpt excerpt-1">

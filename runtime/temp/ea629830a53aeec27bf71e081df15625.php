@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528636279;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528555050;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528721378;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528555050;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -141,7 +141,7 @@
                     			<?php if($author['logo'] == ''): ?>
                     			<img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt=""  style="display: inline; width: 200px;">
                     			<?php else: ?>
-                    			<img class="thumb" data-original="<?php echo $author['logo']; ?>" alt=""  style="display: inline; width: 200px;">
+                    			<img class="thumb" data-original="<?php echo $author['logo']; ?>" src="<?php echo $author['logo']; ?>" alt=""  style="display: inline; width: 200px;">
                     			<?php endif; ?>
                 			</a>
 							<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="face">
@@ -178,10 +178,10 @@
 	                    		<code><?php echo $author['username']; ?></code>
 	                    	</h1>
 	                    	<ul class="aaaa">
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:1279728601"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:1279728601@qq.com"><i class="fa fa-envelope icons"></i>邮箱</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:男"><i class="fa fa-transgender icons"></i>性别</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:1994-06-01"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:<?php echo $author['tel']; ?>"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:<?php echo $author['email']; ?>"><i class="fa fa-envelope icons"></i>邮箱</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:未知"><i class="fa fa-transgender icons"></i>性别</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:0000-00-00"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
 	                    	</ul>
                     	</div>
                     	<p class="readme">
@@ -299,24 +299,24 @@
 		            		<div class="col-lg-3 col-md-4 col-xs-6">
 		            			<div class="thumbnail">
 		            				<?php if($vo['logo'] == ''): ?>
-		            				<a href="<?php echo url('author/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
 										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
-										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php else: ?>
-		            				<a href="<?php echo url('author/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
 										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
-										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php endif; ?>
 								    <div class="caption">
-								        <h3><?php echo $vo['title']; ?></h3>
-								        <p><?php echo $vo['description']; ?></p>
+								        <h3><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['title']; ?></a></h3>
+								        <p><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['description']; ?></a></p>
 								        <p class="list_bottom">
 								        	<a href="#" class="comment" title="发表时间" target="_blank">
 								        		<small class="muted">
@@ -386,7 +386,7 @@
 							  	</div>
 							  	<div class="form-group">
 								    <div class="col-sm-offset-2 col-sm-10">
-								      <button type="submit" class="btn btn-default">确定</button>
+								      <button type="submit" class="btn btn-default">修改</button>
 								    </div>
 								</div>
 							</form>
@@ -395,13 +395,33 @@
 					<div class="panel panel-success">
 						<div class="panel-heading">修改邮箱</div>
 					  	<div class="panel-body">
-					    	Panel content
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/modifyEmail',['id'=>$author['id']]); ?>">
+							  	<div class="form-group">
+							    	<label for="email" class="col-sm-2 control-label">新邮箱</label>
+							    	<div class="col-sm-3">
+							      	<input type="text" class="form-control" id="email" name="email">
+							    	</div>
+							    	<div class="col-sm-3">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+							  	</div>
+							</form>
 					  	</div>
 					</div>
 					<div class="panel panel-info">
 						<div class="panel-heading">修改手机号</div>
 					  	<div class="panel-body">
-					    	Panel content
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/modifyTel',['id'=>$author['id']]); ?>">
+							  	<div class="form-group">
+							    	<label for="tel" class="col-sm-2 control-label">新手机</label>
+							    	<div class="col-sm-3">
+							      	<input type="text" class="form-control" id="tel" name="tel">
+							    	</div>
+							    	<div class="col-sm-3">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+							  	</div>
+							</form>
 					  	</div>
 					</div>
                 </div>

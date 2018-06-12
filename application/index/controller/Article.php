@@ -74,4 +74,13 @@ class Article extends Common
 		$article = model('article')->where('id',$id)->find();
 		return $this->fetch('',['article'=>$article]);
 	}
+	/**
+	 * 删除文章
+	 * @return [type] [description]
+	 */
+	public function del()
+	{
+		$id = input('param.id');
+		
+	}
 }
