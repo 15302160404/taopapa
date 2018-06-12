@@ -1,4 +1,4 @@
-{extend name="base"} {block name="content"}
+{extend name="base"}{block name="title"}编辑文章--博客之家 发现技术的地方{/block} {block name="content"}
 <div class="container">
   <form enctype="multipart/form-data" action="{:url('article/reFinishEdit',['id'=>$article.id])}" method="post" class="form-horizontal">
     <div class="form-group">
