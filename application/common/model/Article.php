@@ -9,4 +9,8 @@ class Article extends Model
 	protected $deleteTime = 'delete_time';
 	protected $pk = 'id';
 	protected $table = 'work_article';
+	public function author()
+	{
+		return $this->belongsTo('author');
+	}
 }

@@ -189,14 +189,14 @@
 		            				<a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="/taopapa/public/article/default.jpg" alt="{$vo.title}">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="{:url('article/reedit',['id'=>$vo.id])}" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="{:url('article/del',['id'=>$vo.id])}" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				{else}
 		            				<a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="{$vo.logo}" alt="{$vo.title}"></a>
 		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="{:url('article/reedit',['id'=>$vo.id])}" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="{:url('article/del',['id'=>$vo.id])}" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>

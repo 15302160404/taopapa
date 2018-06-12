@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528713439;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528785414;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528792350;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528790254;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
-    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
     <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
     <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
@@ -180,6 +179,7 @@
                 <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $vo['create_time']; ?></time>
                     <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
+                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="http://www.muzhuangnet.com/list/mznetblog/" title="作者：<?php echo $vo['author']['username']; ?>" >作者：<?php echo $vo['author']['username']; ?></a></span>
                 </p>
                 <p class="note"><?php echo $vo['description']; ?></p>
             </article>
@@ -340,24 +340,20 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
     <script type="text/javascript">
-      //实例化编辑器
-      var um = UM.getEditor('myEditor');
-      um.ready(function() {
-          //设置编辑器的内容
-          um.setContent('');
-          //获取html内容，返回: <p>hello</p>
-          var html = um.getContent();
-          //获取纯文本内容，返回: hello
-          var txt = um.getContentTxt();
-          var ww = $('body').width();
-          UM.getEditor('myEditor').setHeight(500);
-          UM.getEditor('myEditor').setWidth(ww*0.805);
-      });
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
     </script>
 </body>
 

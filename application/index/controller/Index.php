@@ -6,7 +6,7 @@ class Index extends Controller
 {
     public function index()
     {
-    	$lists = model('article')->order(['id'=>'desc'])->paginate(12);
+    	$lists = model('article')->order(['update_time'=>'desc'])->paginate(12);
         return $this->fetch('',['lists'=>$lists]);
     }
     /**

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\news.html";i:1528785137;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528785414;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\news.html";i:1528785137;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528790254;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
-    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
     <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
     <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
@@ -387,24 +386,20 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
     <script type="text/javascript">
-      //实例化编辑器
-      var um = UM.getEditor('myEditor');
-      um.ready(function() {
-          //设置编辑器的内容
-          um.setContent('');
-          //获取html内容，返回: <p>hello</p>
-          var html = um.getContent();
-          //获取纯文本内容，返回: hello
-          var txt = um.getContentTxt();
-          var ww = $('body').width();
-          UM.getEditor('myEditor').setHeight(500);
-          UM.getEditor('myEditor').setWidth(ww*0.805);
-      });
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
     </script>
 </body>
 

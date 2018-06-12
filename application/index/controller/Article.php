@@ -4,7 +4,7 @@ namespace app\index\controller;
 class Article extends Common
 {
 	/**
-	 * 文章编辑页面渲染
+	 * 新建文章编辑页面渲染
 	 * @return [type] [description]
 	 */
 	public function edit()
@@ -91,6 +91,10 @@ class Article extends Common
 		}
 		return $this->error('还原失败');
 	}
+	/**
+	 * 彻底删除文章
+	 * @return [type] [description]
+	 */
 	public function delYes(){
 		$id = input('param.id');
 		$result = model('article')->destroy($id,true);
@@ -99,5 +103,36 @@ class Article extends Common
 			return $this->success('文章已经不复存在了','author/index');
 		}
 		return $this->error('删除失败');
+	}
+	/**
+	 * 编辑文章页面渲染
+	 * @return [type] [description]
+	 */
+	public function reedit(){
+		$id = input('param.id');
+		$article = model('article')->where('id',$id)->find();
+		return $this->fetch('',['article'=>$article]);
+	}
+	public function reFinishEdit(){
+		if(request()->isPost())
+		{
+			$id = input('param.id');
+			$data = input('post.');
+			$validate = validate('article');
+			if(!$validate->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$result = model('article')->save([
+				'title' => $data['title'],
+				'description' => $data['description'],
+				'content' => $data['content'],
+			],['id'=>$id]);
+			if($result)
+			{
+				return $this->success('修改完成','author/index');
+			}
+			return $this->error('修改失败');
+		}
 	}
 }

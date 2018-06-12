@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528784988;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528785381;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528786219;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528790254;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
-    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
     <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
     <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
@@ -105,7 +104,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
@@ -309,14 +308,14 @@
 		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php else: ?>
 		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
 		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
@@ -503,24 +502,20 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
     <script type="text/javascript">
-      //实例化编辑器
-      var um = UM.getEditor('myEditor');
-      um.ready(function() {
-          //设置编辑器的内容
-          um.setContent('');
-          //获取html内容，返回: <p>hello</p>
-          var html = um.getContent();
-          //获取纯文本内容，返回: hello
-          var txt = um.getContentTxt();
-          var ww = $('body').width();
-          UM.getEditor('myEditor').setHeight(500);
-          UM.getEditor('myEditor').setWidth(ww*0.805);
-      });
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
     </script>
 </body>
 
