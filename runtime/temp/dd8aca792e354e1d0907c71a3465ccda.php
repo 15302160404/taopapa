@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528794984;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528794740;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528795708;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528794740;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -131,15 +131,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Taopapa-博客之家 发现技术的地方</h4>
+                    <h4 class="modal-title">写博客-博客之家 发现技术的地方</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="imgg">
-                      <img src="" alt="">
+                <div class="modal-body" style="text-align: center;">
+                    <div class="imgg" style="margin:10px auto">
+                      <img src="/taopapa/public/article/edit2.jpg" height="150px" align="center" alt="">
                     </div>
-                    <p>1、全能文章编辑页面</p>
-                    <p>2、富文本编辑器增加图片拖拽上传功能</p>
-                    <p>3、增加了富文本编辑器的全屏写作功能</p>
+                    <ol>
+                      <li>全能文章编辑页面</li>
+                      <li>富文本编辑器增加图片拖拽上传功能</li>
+                      <li>增加了富文本编辑器的全屏写作功能</li>
+                    </ol>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal" id="startEdit">开始写博客</button>
