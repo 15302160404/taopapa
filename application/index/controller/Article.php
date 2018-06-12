@@ -1,6 +1,5 @@
 <?php
 namespace app\index\controller;
-
 // use think\Controller;
 class Article extends Common
 {
@@ -49,20 +48,10 @@ class Article extends Common
 			]);
 			if($result)
 			{
-				return $this->success('发布成功！！快去看看效果怎么样','article/list1');
+				return $this->success('发布成功！！快去看看效果怎么样','author/index');
 			}
 			return $this->error('发布失败');
 		}
-	}
-	/**
-	 * 博客列表
-	 * @return [type] [description]
-	 */
-	public function list1()
-	{
-		$author = model('author')->where('username',input('param.username'))->find()['username'];
-		$articles = model('article')->where('status',1)->order(['id'=>'desc'])->paginate(8);
-		return $this->fetch('',['articles'=>$articles,'author'=>$author]);
 	}
 	/**
 	 * 文章详情
@@ -75,12 +64,40 @@ class Article extends Common
 		return $this->fetch('',['article'=>$article]);
 	}
 	/**
-	 * 删除文章
+	 * 软删除文章
 	 * @return [type] [description]
 	 */
 	public function del()
 	{
 		$id = input('param.id');
-		
+		$result = model('article')->destroy($id);
+		if($result)
+		{
+			return $this->success('文章已移至回收站','author/index');
+		}
+		return $this->error('删除失败');
+	}
+	/**
+	 * 复原软删除文章
+	 * @return [type] [description]
+	 */
+	public function restore(){
+		$id = input('param.id');
+		$result = model('article')->save([
+			'delete_time'=>null,
+		],['id'=>$id]);
+		if($result){
+			return $this->success('已经还原了','author/index');
+		}
+		return $this->error('还原失败');
+	}
+	public function delYes(){
+		$id = input('param.id');
+		$result = model('article')->destroy($id,true);
+		if($result)
+		{
+			return $this->success('文章已经不复存在了','author/index');
+		}
+		return $this->error('删除失败');
 	}
 }

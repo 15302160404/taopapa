@@ -12,8 +12,9 @@ class Author extends Controller
 	public function index()
 	{
 		$author = model('author')->where('username',session('username','','author'))->find();
+		$re_articles = model('article')->onlyTrashed()->select();
 		$articles = model('article')->where('author_id',$author['id'])->order(['id'=>'desc'])->select();
-		return $this->fetch('',['author'=>$author,'articles'=>$articles]);
+		return $this->fetch('',['author'=>$author,'articles'=>$articles,'re_articles'=>$re_articles]);
 	}
 	/**
 	 * 用户修改头像

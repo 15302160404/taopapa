@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528721378;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528555050;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528784988;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528785381;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -34,10 +34,10 @@
       .pagination{
         display: block !important;
       }
-      .caozuo{
+      .caozuo,.re_caozuo{
         display: none;
       }
-      .caozuo a{
+      .caozuo a,.re_caozuo a{
         color:#777 !important;
         font-size: 25px;
         padding:0px 10px;
@@ -46,7 +46,14 @@
         color:#999 !important;
         opacity: 0.5;
       }
+      .re_caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
       .list_blog .thumbnail:hover .caozuo{
+        display: block;
+      }
+      .list_blog .thumbnail:hover .re_caozuo{
         display: block;
       }
       .me_data{
@@ -98,7 +105,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
@@ -302,14 +309,14 @@
 		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php else: ?>
 		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
-		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
+										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
@@ -321,9 +328,10 @@
 								        	<a href="#" class="comment" title="发表时间" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-time"></i>
-                    								2016-11-01
+                    								<?php echo $vo['create_time']; ?>
                 								</small>
                 							</a>
+                							<br>
 								        	<a href="#" class="comment" title="查阅" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-eye-open"></i>
@@ -340,7 +348,7 @@
 		            			</div>
 						    </div>
 						    <?php endforeach; endif; else: echo "" ;endif; ?>
-		            	</div>	
+		            	</div>
 		            </div>
                 </div>
                 <!-- 我的博客 end -->
@@ -354,7 +362,63 @@
 
                 <!-- 回收站 start  -->
                 <div role="tabpanel" class="tab-pane contact" id="recycle">
-					<a href="#">回收站</a>
+					<div class="search_blog">
+                		<form class="navbar-form search_blog" action="/Search" method="post">
+	                    	<div class="input-group">
+	                        	<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+	                        	<span class="input-group-btn">
+	            					<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+	            				</span>
+	            			</div>
+	                	</form>
+                	</div>
+		            <div class="list_blog">
+		            	<div class="row">
+		            		<?php if(is_array($re_articles) || $re_articles instanceof \think\Collection || $re_articles instanceof \think\Paginator): $i = 0; $__LIST__ = $re_articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?>
+		            		<div class="col-lg-3 col-md-4 col-xs-6">
+		            			<div class="thumbnail">
+		            				<?php if($vo1['logo'] == ''): ?>
+		            				<img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo1['title']; ?>">
+		            				<span class="caozuo" style="position: absolute; top:25%;left:35%">
+										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+									</span>
+		            				<?php else: ?>
+		            				<img src="<?php echo $vo1['logo']; ?>" alt="<?php echo $vo1['title']; ?>">
+		            				<span class="re_caozuo" style="position: absolute; top:25%;left:35%">
+										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+									</span>
+		            				<?php endif; ?>
+								    <div class="caption">
+								        <h3><?php echo $vo1['title']; ?></h3>
+								        <p><?php echo $vo1['description']; ?></p>
+								        <p class="list_bottom">
+								        	<a href="#" class="comment" title="回收时间" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-time"></i>
+                    								<?php echo date('Y-m-d H:i:s',$vo1['delete_time']); ?>
+                								</small>
+                							</a>
+                							<br>
+								        	<a href="#" class="comment" title="查阅" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-eye-open"></i>
+								        			88
+								        		</small>
+								        	</a>
+								        	<a class="comment" href="#" title="评论" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-comment"></i> 4
+								        		</small>
+								        	</a>
+								        </p>
+								    </div>
+		            			</div>
+						    </div>
+						    <?php endforeach; endif; else: echo "" ;endif; ?>
+		            	</div>
+		            </div>
                 </div>
                 <!-- 回收站 end  -->
 

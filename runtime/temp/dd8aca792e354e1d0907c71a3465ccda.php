@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528555050;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528555050;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528555050;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528785414;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -34,10 +34,10 @@
       .pagination{
         display: block !important;
       }
-      .caozuo{
+      .caozuo,.re_caozuo{
         display: none;
       }
-      .caozuo a{
+      .caozuo a,.re_caozuo a{
         color:#777 !important;
         font-size: 25px;
         padding:0px 10px;
@@ -46,7 +46,14 @@
         color:#999 !important;
         opacity: 0.5;
       }
+      .re_caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
       .list_blog .thumbnail:hover .caozuo{
+        display: block;
+      }
+      .list_blog .thumbnail:hover .re_caozuo{
         display: block;
       }
       .me_data{
@@ -98,7 +105,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>

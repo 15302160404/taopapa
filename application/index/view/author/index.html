@@ -189,14 +189,14 @@
 		            				<a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="/taopapa/public/article/default.jpg" alt="{$vo.title}">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="{:url('article/del',['id'=>$vo.id])}" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				{else}
 		            				<a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="{$vo.logo}" alt="{$vo.title}"></a>
-		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
+										<a href="#" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="{:url('article/del',['id'=>$vo.id])}" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
@@ -208,9 +208,10 @@
 								        	<a href="#" class="comment" title="发表时间" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-time"></i>
-                    								2016-11-01
+                    								{$vo.create_time}
                 								</small>
                 							</a>
+                							<br>
 								        	<a href="#" class="comment" title="查阅" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-eye-open"></i>
@@ -227,7 +228,7 @@
 		            			</div>
 						    </div>
 						    {/volist}
-		            	</div>	
+		            	</div>
 		            </div>
                 </div>
                 <!-- 我的博客 end -->
@@ -241,7 +242,63 @@
 
                 <!-- 回收站 start  -->
                 <div role="tabpanel" class="tab-pane contact" id="recycle">
-					<a href="#">回收站</a>
+					<div class="search_blog">
+                		<form class="navbar-form search_blog" action="/Search" method="post">
+	                    	<div class="input-group">
+	                        	<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+	                        	<span class="input-group-btn">
+	            					<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+	            				</span>
+	            			</div>
+	                	</form>
+                	</div>
+		            <div class="list_blog">
+		            	<div class="row">
+		            		{volist name="re_articles" id="vo1"}
+		            		<div class="col-lg-3 col-md-4 col-xs-6">
+		            			<div class="thumbnail">
+		            				{eq name="$vo1.logo" value=""}
+		            				<img src="/taopapa/public/article/default.jpg" alt="{$vo1.title}">
+		            				<span class="caozuo" style="position: absolute; top:25%;left:35%">
+										<a href="{:url('article/restore',['id'=>$vo1.id])}" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="{:url('article/delYes',['id'=>$vo1.id])}" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+									</span>
+		            				{else}
+		            				<img src="{$vo1.logo}" alt="{$vo1.title}">
+		            				<span class="re_caozuo" style="position: absolute; top:25%;left:35%">
+										<a href="{:url('article/restore',['id'=>$vo1.id])}" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="{:url('article/delYes',['id'=>$vo1.id])}" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+									</span>
+		            				{/eq}
+								    <div class="caption">
+								        <h3>{$vo1.title}</h3>
+								        <p>{$vo1.description}</p>
+								        <p class="list_bottom">
+								        	<a href="#" class="comment" title="回收时间" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-time"></i>
+                    								{:date('Y-m-d H:i:s',$vo1.delete_time)}
+                								</small>
+                							</a>
+                							<br>
+								        	<a href="#" class="comment" title="查阅" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-eye-open"></i>
+								        			88
+								        		</small>
+								        	</a>
+								        	<a class="comment" href="#" title="评论" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-comment"></i> 4
+								        		</small>
+								        	</a>
+								        </p>
+								    </div>
+		            			</div>
+						    </div>
+						    {/volist}
+		            	</div>
+		            </div>
                 </div>
                 <!-- 回收站 end  -->
 
