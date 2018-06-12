@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528794790;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528794740;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528805918;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528809242;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -56,7 +56,7 @@
         display: block;
       }
       .me_data{
-        margin-top:20px;
+        margin-top:60px;
       }
     </style>
 </head>
@@ -165,21 +165,21 @@
             
             <?php if(($lists)): if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank">
+                <a class="focus" href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>" target="_blank">
                     <?php if($vo['logo'] == ''): ?>
                     <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
                     <?php else: ?>
                     <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
                     <?php endif; ?>
                 </a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a>
+                <header><a class="cat" href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
+                    <h2><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a>
                 </h2>
                 </header>
                 <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $vo['create_time']; ?></time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
-                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="http://www.muzhuangnet.com/list/mznetblog/" title="作者：<?php echo $vo['author']['username']; ?>" >作者：<?php echo $vo['author']['username']; ?></a></span>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="#" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
+                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：<?php echo $vo['author']['username']; ?>" >作者：<?php echo $vo['author']['username']; ?></a></span>
                 </p>
                 <p class="note"><?php echo $vo['description']; ?></p>
             </article>
@@ -291,7 +291,7 @@
             <ul>
                 <?php if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                 <li>
-                    <a title="<?php echo $vo['title']; ?>" href="<?php echo url('author/detail'); ?>">
+                    <a title="<?php echo $vo['title']; ?>" href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>">
                         <span class="thumbnail">
                             <?php if($vo['logo'] == ''): ?>
                             <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: block;">

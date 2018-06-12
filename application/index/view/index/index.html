@@ -47,21 +47,21 @@
             {if condition="($lists)"}
             {volist name="lists" id="vo"}
             <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="{$vo.title}" target="_blank">
+                <a class="focus" href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}" target="_blank">
                     {eq name="$vo.logo" value=""}
                     <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: inline;">
                     {else}
                     <img class="thumb" data-original="{$vo.logo}" src="{$vo.logo}" alt="{$vo.title}"  style="display: inline;">
                     {/eq}
                 </a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="{$vo.title}">{$vo.title}<i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="{$vo.title}" target="_blank" >{$vo.title}</a>
+                <header><a class="cat" href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}">{$vo.title}<i></i></a>
+                    <h2><a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}" target="_blank" >{$vo.title}</a>
                 </h2>
                 </header>
                 <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i>{$vo.create_time}</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
-                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="http://www.muzhuangnet.com/list/mznetblog/" title="作者：{$vo.author.username}" >作者：{$vo.author.username}</a></span>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="#" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
+                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：{$vo.author.username}" >作者：{$vo.author.username}</a></span>
                 </p>
                 <p class="note">{$vo.description}</p>
             </article>
@@ -174,7 +174,7 @@
             <ul>
                 {volist name="lists" id="vo"}
                 <li>
-                    <a title="{$vo.title}" href="{:url('author/detail')}">
+                    <a title="{$vo.title}" href="{:url('article/detail',['id'=>$vo.id])}">
                         <span class="thumbnail">
                             {eq name="$vo.logo" value=""}
                             <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: block;">

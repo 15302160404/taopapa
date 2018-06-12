@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528794944;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528794740;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528812001;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528809242;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -56,7 +56,7 @@
         display: block;
       }
       .me_data{
-        margin-top:20px;
+        margin-top:60px;
       }
     </style>
 </head>
@@ -186,12 +186,12 @@
 	                    	<ul class="aaaa">
 	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:<?php echo $author['tel']; ?>"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
 	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:<?php echo $author['email']; ?>"><i class="fa fa-envelope icons"></i>邮箱</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:未知"><i class="fa fa-transgender icons"></i>性别</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:0000-00-00"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:<?php switch($author['sex']): case "0": ?>男<?php break; case "1": ?>女<?php break; case "2": ?>未知<?php break; endswitch; ?>"><i class="fa fa-transgender icons"></i>性别</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:<?php echo $author['birthday']; ?>"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
 	                    	</ul>
                     	</div>
                     	<p class="readme">
-                    		我是菜鸟
+                    		<?php echo $author['note']; ?>
                     	</p>
                     	<p class="bb">
                     		<kbd class="bg-info">等级 <span class="badge">42</span></kbd>
@@ -313,7 +313,7 @@
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php else: ?>
-		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>" height="173px"></a>
 		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
 										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
 										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
@@ -383,7 +383,7 @@
 										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
 									</span>
 		            				<?php else: ?>
-		            				<img src="<?php echo $vo1['logo']; ?>" alt="<?php echo $vo1['title']; ?>">
+		            				<img src="<?php echo $vo1['logo']; ?>" alt="<?php echo $vo1['title']; ?>" height="173px">
 		            				<span class="re_caozuo" style="position: absolute; top:25%;left:35%">
 										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
 										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
@@ -484,6 +484,38 @@
 								      <button type="submit" class="btn btn-default">修改</button>
 								    </div>
 							  	</div>
+							</form>
+					  	</div>
+					</div>
+					<div class="panel panel-danger">
+						<div class="panel-heading">其他</div>
+					  	<div class="panel-body">
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/remark',['id'=>$author['id']]); ?>">
+					    		<div class="form-group">
+							    	<label for="birth" class="col-sm-2 control-label">生日</label>
+							    	<div class="col-sm-3">
+							      	<input type="date" class="form-control" id="birth" name="birthday">
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="birth" class="col-sm-2 control-label">性别</label>
+							    	<div class="col-sm-3">
+								      	<input type="radio" name="sex" value="0">男
+								      	<input type="radio" name="sex" value="1" style="margin-left:10px;">女
+								      	<input type="radio" name="sex" value="2" style="margin-left:10px;">未知
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="remark" class="col-sm-2 control-label">个性备注</label>
+							    	<div class="col-sm-3">
+							      	<textarea name="note" id="remark" cols="50" rows="5"></textarea>
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+								    <div class="col-sm-offset-2 col-sm-10">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+								</div>
 							</form>
 					  	</div>
 					</div>

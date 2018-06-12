@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528555050;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528790254;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528794966;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528794740;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -7,7 +7,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Taopapa-博客之家 发现技术的地方</title>
+    <title>文章详情--博客之家 发现技术的地方</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">

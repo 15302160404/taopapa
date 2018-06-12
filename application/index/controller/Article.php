@@ -27,9 +27,9 @@ class Article extends Common
 		    $imgPath = '';
 		    // 移动到框架应用根目录/public/uploads/ 目录下
 		    if($file){
-		        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' .DS.'article'. DS . $author_username.'_blogLogo');
+		        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS .'article'. DS .'bloglogo' . DS . $author_username);
 		        if($info){
-		            $imgPath = dirname($_SERVER['SCRIPT_NAME']). DS .'article'. DS . $author_username .'_blogLogo'.DS.$info->getSaveName();
+		            $imgPath = dirname($_SERVER['SCRIPT_NAME']) . DS .'article'. DS .'bloglogo'. DS . $author_username .DS.$info->getSaveName();
 		        }else{
 		            return $this->error($file->getError());
 		        }
@@ -73,6 +73,7 @@ class Article extends Common
 		$result = model('article')->destroy($id);
 		if($result)
 		{
+			model('article')->save(['status'=>0],['id'=>$id]);
 			return $this->success('文章已移至回收站','author/index');
 		}
 		return $this->error('删除失败');
@@ -85,6 +86,7 @@ class Article extends Common
 		$id = input('param.id');
 		$result = model('article')->save([
 			'delete_time'=>null,
+			'status'=>1
 		],['id'=>$id]);
 		if($result){
 			return $this->success('已经还原了','author/index');

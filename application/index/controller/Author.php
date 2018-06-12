@@ -42,6 +42,10 @@ class Author extends Controller
 	    	return $this->success('修改成功','author/index');
 	    }
 	}
+	/**
+	 * 个人中心修改密码
+	 * @return [type] [description]
+	 */
 	public function modifyPassword(){
 		if(request()->isPost())
 		{
@@ -70,6 +74,10 @@ class Author extends Controller
 			return $this->success('修改成功','author/index');
 		}
 	}
+	/**
+	 * 修改邮箱
+	 * @return [type] [description]
+	 */
 	public function modifyEmail()
 	{
 		if(request()->isPost())
@@ -95,6 +103,10 @@ class Author extends Controller
 			return $this->success('修改成功','author/index');
 		}
 	}
+	/**
+	 * 修改手机号
+	 * @return [type] [description]
+	 */
 	public function modifyTel()
 	{
 		if(request()->isPost())
@@ -118,6 +130,29 @@ class Author extends Controller
 				return $this->error('修改失败');
 			}
 			return $this->success('修改成功','author/index');		
+		}
+	}
+	/**
+	 * 修改备注
+	 * @return [type] [description]
+	 */
+	public function remark()
+	{
+		if(request()->isPost())
+		{
+			$id = input('param.id');
+			$data = input('post.');
+			$validate = validate('author');
+			if(!$validate->scene('note')->check($data))
+			{
+				return $this->error($validate->getError());
+			}
+			$result = model('author')->save(['note'=>$data['note'],'birthday'=>$data['birthday'],'sex'=>$data['sex']],['id'=>$id]);
+			if($result)
+			{
+				return $this->success('备注修改完成','author/index');
+			}
+			return $this->error('备注修改失败');
 		}
 	}
 }
