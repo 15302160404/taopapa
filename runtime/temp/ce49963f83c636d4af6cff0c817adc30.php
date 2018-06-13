@@ -1,9 +1,10 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/extra\view\index\index.html";i:1528892674;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>评论</title>
-    <script src="__STATIC__/jquery.min.js"></script>
+    <script src="/taopapa/public/static/jquery.min.js"></script>
 </head>
 <body>
     <form id="formData">
@@ -20,7 +21,7 @@
         var nickname = $('#nickname').val();
         var content = $('#content').val();
         $.ajax({
-            url: "{:url('index/comment1')}",
+            url: "<?php echo url('index/comment1'); ?>",
             data: {
                 nickname:nickname,
                 content:content,

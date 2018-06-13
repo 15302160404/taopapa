@@ -2,7 +2,7 @@ $(document).delegate('.comment-submit','click',function(){
     var content = $.trim($(this).parent().prev().children("textarea").val());//根据布局结构获取当前评论内容
     $(this).parent().prev().children("textarea").val("");//获取完内容后清空输入框
     if(""==content){
-        alert("评论内容不能为空!");  
+        alert("评论内容不能为空!");
     }else{
         var cmdata = new Object();
         cmdata.parent_id = $(this).attr("parent_id");//上级评论id
@@ -11,9 +11,9 @@ $(document).delegate('.comment-submit','click',function(){
         cmdata.logo = "__STATIC__/article/default.jpg";//测试用数据
         var replyswitch = $(this).attr("replyswitch");//获取回复开关锁属性
         $.ajax({
-            url:'{:url(extra/index/addComment)}',
+            url:"",
             data:{
-                comment:JSON.stringify(cmdata)
+                "comment":JSON.stringify(cmdata)
             },
             type:"POST",
             dataType:"json",

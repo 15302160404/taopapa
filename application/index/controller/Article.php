@@ -137,4 +137,25 @@ class Article extends Common
 			return $this->error('修改失败');
 		}
 	}
+	/**
+	 * 评论
+	 * @return [type] [description]
+	 */
+	public function comment()
+	{
+		if(request()->isAjax())
+		{
+			$data = input('post.');
+			$author_id = model('author')->where('username',$data['username'])->find()['id'];
+			$result = model('comment')->save([
+				'content'=>$data['content'],
+				'topic_id'=>$data['topic_id'],
+				'nickname'=>$data['nickname'],
+				'from_uid'=>$author_id,
+			]);
+			if($result){
+				return 1;
+			}
+		}
+	}
 }

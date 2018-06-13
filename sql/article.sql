@@ -71,10 +71,11 @@ key category_id(`category_id`)
 #评论表
 create table `work_comment`(
 `id` int(11) unsigned not null AUTO_INCREMENT,
-`parent_id` int(11) unsigned not null,
 `nickname` varchar(60) not null default '',
-`logo` varchar(100) not null default '',
-`content` text  null ,
-`create_time` int(11)  unsigned not null default 0,
+`content` text  null,
+`topic_id` int(11) unsigned not null,
+`from_uid` int(11) unsigned not null,
+`create_time` int(11) unsigned not null default 0,
+`update_time` int(11) unsigned not null default 0,
 primary key(`id`)
 )engine=innodb AUTO_INCREMENT=1 default charset=utf8;
