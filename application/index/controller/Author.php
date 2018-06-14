@@ -14,7 +14,8 @@ class Author extends Controller
 		$author = model('author')->where('username',session('username','','author'))->find();
 		$re_articles = model('article')->onlyTrashed()->where('author_id',$author['id'])->order(['update_time'=>'desc'])->select();
 		$articles = model('article')->where('author_id',$author['id'])->order(['update_time'=>'desc'])->select();
-		return $this->fetch('',['author'=>$author,'articles'=>$articles,'re_articles'=>$re_articles]);
+		$comments = model('comment')->where('author_id',$author['id'])->order(['update_time'=>'desc'])->select();
+		return $this->fetch('',['author'=>$author,'articles'=>$articles,'re_articles'=>$re_articles,'comments'=>$comments]);
 	}
 	/**
 	 * 用户修改头像

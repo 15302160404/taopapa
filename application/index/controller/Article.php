@@ -61,7 +61,7 @@ class Article extends Common
 	{
 		$id = input('param.id');
 		$num=0;
-		$comments = model('comment')->where('topic_id',$id)->select();
+		$comments = model('comment')->where('article_id',$id)->select();
 		$article = model('article')->where('id',$id)->find();
 		$articles = model('article')->select();
         $comment_list = array();
@@ -159,14 +159,15 @@ class Article extends Common
 			$author_id = model('author')->where('username',$data['username'])->find()['id'];
 			$result = model('comment')->save([
 				'content'=>$data['content'],
-				'topic_id'=>$data['topic_id'],
+				'article_id'=>$data['article_id'],
 				'nickname'=>$data['nickname'],
-				'from_uid'=>$author_id,
+				'contact'=>$data['contact'],
+				'author_id'=>$author_id,
 			]);
 			if($result){
 				model('article')->save([
 					'comment_num'=>++$i,
-				],['id'=>$data['topic_id']]);where();
+				],['id'=>$data['article_id']]);
 				return 1;
 			}
 		}

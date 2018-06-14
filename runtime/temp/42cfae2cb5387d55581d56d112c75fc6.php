@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528901903;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528809242;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528962123;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528951386;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -122,10 +122,17 @@
   <div class="content-wrap">
     <div class="content">
       <header class="article-header">
-        <h1 class="article-title"><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" ><?php echo $article['title']; ?></a></h1>
-        <div class="article-meta"> <span class="item article-meta-time">
-          <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：<?php echo $article['create_time']; ?>"><i class="glyphicon glyphicon-time"></i> <?php echo $article['create_time']; ?></time>
-          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：<?php echo session('username','','author'); ?>"><i class="glyphicon glyphicon-list"></i> <a href="http://www.muzhuangnet.com/list/mznetblog/" title="作者：<?php echo session('username','','author'); ?>" >作者：<?php echo session('username','','author'); ?></a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
+        <h1 class="article-title">
+        <a href="#" title="用DTcms做一个独立博客网站（响应式模板）" ><?php echo $article['title']; ?></a></h1>
+        <div class="article-meta">
+          <span class="item article-meta-time">
+            <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：<?php echo $article['create_time']; ?>"><i class="glyphicon glyphicon-time"></i> <?php echo $article['create_time']; ?></time>
+          </span>
+          <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span>
+          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：<?php echo session('username','','author'); ?>"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：<?php echo session('username','','author'); ?>" >作者：<?php echo session('username','','author'); ?></a></span>
+          <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span>
+          <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> <?php echo count(model('comment')->where('article_id',$article['id'])->select()); ?></span>
+        </div>
       </header>
 
       <article class="article-content">
@@ -169,10 +176,10 @@
         <h3>评论</h3>
       </div>
       <div id="respond">
-            <form id="comment-form" name="comment-form" action="" method="POST">
+            <form id="" name="comment-form" action="" method="POST">
                 <div class="comment">
                     <input name="" id="nickname" class="form-control" size="22" placeholder="您的昵称（必填）" maxlength="15" autocomplete="off" tabindex="1" type="text">
-                    <input name="" id="" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
+                    <input name="" id="contact" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
                     <div class="comment-box">
                         <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
                         <div class="comment-ctrl">
@@ -187,21 +194,30 @@
               $('#comment-submit').click(function(){
                   var nickname = $('#nickname').val();
                   var content = $('#comment-textarea').val();
+                  var contact = $('#contact').val();
                   $.ajax({
                       url: "<?php echo url('article/comment'); ?>",
                       data: {
                           nickname:nickname,
                           content:content,
+                          contact:contact,
                           username:"<?php echo session('username','','author'); ?>",
-                          topic_id:<?php echo $article['id']; ?>
+                          article_id:<?php echo $article['id']; ?>
                       },
                       async: true,   //是否为异步请求
                       cache: false,  //是否缓存结果
                       type: "POST", //请求方式为POST
                       dataType: "json",  //服务器返回的数据是什么类型
                       success: function(data){
-                          var data = JSON.parse(data);
-                          console.log(data);
+                        $('#nickname').val('');
+                        $('#comment-textarea').val('');
+                        $('#contact').val('');
+                        var data = JSON.parse(data);
+                        if(data){
+                          $('.comment-prompt').css('display','none');
+                          $('.comment-success').css('display','block');
+                          window.history.go(0);
+                        }
                       }
                   });
               });
@@ -209,16 +225,19 @@
         </div>
       <div id="postcomments">
         <ol id="comment_list" class="commentlist">
+        <?php if(is_array($comments) || $comments instanceof \think\Collection || $comments instanceof \think\Paginator): $i = 0; $__LIST__ = $comments;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$co): $mod = ($i % 2 );++$i;?>
+        <span style="display: none"><?php echo $num++; ?></span>
           <li class="comment-content">
-            <span class="comment-f">#1</span>
+            <span class="comment-f">#<?php echo $num; ?></span>
             <div class="comment-main">
               <p>
-                <a class="address" href="http://www.muzhuangnet.com/" rel="nofollow" target="_blank">木庄网络博客</a><span class="time">(2016/10/28 11:41:03)</span>
+                <a class="address" href="#" rel="nofollow" target="_blank"><?php echo $co['nickname']; ?></a><span class="time"><?php echo $co['update_time']; ?></span>
                 <br>
-                不错的网站主题，看着相当舒服
+                <?php echo $co['content']; ?>
               </p>
             </div>
           </li>
+          <?php endforeach; endif; else: echo "" ;endif; ?>
         </ol>
       </div>
     </div>
@@ -260,15 +279,20 @@
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
+              <?php if(is_array($comment_list) || $comment_list instanceof \think\Collection || $comment_list instanceof \think\Paginator): $i = 0; $__LIST__ = $comment_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$comm): $mod = ($i % 2 );++$i;?>
                 <li>
-                    <a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html">
+                    <a title="<?php echo $comm['title']; ?>" href="<?php echo url('article/detail',['id'=>$comm['id']]); ?>">
                         <span class="thumbnail">
-                            <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
+                            <?php if($comm['logo'] == ''): ?>
+                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $comm['title']; ?>"  style="display: block;">
+                            <?php else: ?>
+                            <img class="thumb" data-original="<?php echo $comm['logo']; ?>" src="<?php echo $comm['logo']; ?>" alt="<?php echo $comm['title']; ?>"  style="display: block;">
+                            <?php endif; ?>
                         </span>
-                        <span class="text">用DTcms做一个独立博客网站（响应式模板）</span>
+                        <span class="text"><?php echo $comm['title']; ?></span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-time"></i>
-                            2016-11-01
+                            <?php echo $comm['create_time']; ?>
                         </span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-eye-open"></i>
@@ -276,6 +300,7 @@
                         </span>
                     </a>
                 </li>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
         <div class="widget widget_sentence">
@@ -305,6 +330,9 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
+    <script src="/taopapa/public/static/frontend/js/respond.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/nprogress.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.lazyload.min.js"></script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->

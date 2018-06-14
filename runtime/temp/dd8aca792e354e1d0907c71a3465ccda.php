@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528795708;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528794740;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528795708;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528951386;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -56,7 +56,7 @@
         display: block;
       }
       .me_data{
-        margin-top:20px;
+        margin-top:60px;
       }
     </style>
 </head>
@@ -215,6 +215,9 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
+    <script src="/taopapa/public/static/frontend/js/respond.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/nprogress.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.lazyload.min.js"></script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->

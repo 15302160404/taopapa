@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528812001;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528809242;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528962421;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528951386;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -339,7 +339,7 @@
 								        	</a>
 								        	<a class="comment" href="#" title="评论" target="_blank">
 								        		<small class="muted">
-								        			<i class="glyphicon glyphicon-comment"></i> 4
+								        			<i class="glyphicon glyphicon-comment"></i> <?php echo count(model('comment')->where('article_id',$vo['id'])->select()); ?>
 								        		</small>
 								        	</a>
 								        </p>
@@ -355,7 +355,41 @@
                 
 				<!-- 我的消息 start  -->
                 <div role="tabpanel" class="tab-pane contact" id="news">
-					<a href="#">我的消息</a>
+					<div class="container">
+						<ul class="nav nav-tabs">
+						  <li role="presentation" class="active"><a href="#a" aria-controls="notice" role="tab" data-toggle="tab">消息通知</a></li>
+						  <li role="presentation"><a href="#b" aria-controls="contact" role="tab" data-toggle="tab">私信</a></li>
+						  <li role="presentation"><a href="#c" aria-controls="contact" role="tab" data-toggle="tab">@我</a></li>
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane contact active" id="a">
+								<div class="container">
+									<table class="table table-striped">
+										<tr>
+											<th>id</th>
+											<th>发言人</th>
+											<th>目标文章</th>
+											<th>内容</th>
+											<th>联系方式</th>
+											<th>操作</th>
+										</tr>
+										<?php if(is_array($comments) || $comments instanceof \think\Collection || $comments instanceof \think\Paginator): $i = 0; $__LIST__ = $comments;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$coo): $mod = ($i % 2 );++$i;?>
+										<tr>
+											<td><?php echo $coo['id']; ?></td>
+											<td><?php echo $coo['nickname']; ?></td>
+											<td><?php echo $coo['article']['title']; ?></td>
+											<td><?php echo $coo['content']; ?></td>
+											<td><?php echo $coo['contact']; ?></td>
+											<td>1</td>
+										</tr>
+										<?php endforeach; endif; else: echo "" ;endif; ?>
+									</table>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane contact" id="b">系统更新中...</div>
+							<div role="tabpanel" class="tab-pane contact" id="c">系统更新中...</div>
+						</div>
+					</div>
                 </div>
                 <!-- 我的消息 end  -->
 
@@ -399,18 +433,6 @@
                     								<?php echo date('Y-m-d H:i:s',$vo1['delete_time']); ?>
                 								</small>
                 							</a>
-                							<br>
-								        	<a href="#" class="comment" title="查阅" target="_blank">
-								        		<small class="muted">
-								        			<i class="glyphicon glyphicon-eye-open"></i>
-								        			88
-								        		</small>
-								        	</a>
-								        	<a class="comment" href="#" title="评论" target="_blank">
-								        		<small class="muted">
-								        			<i class="glyphicon glyphicon-comment"></i> 4
-								        		</small>
-								        	</a>
 								        </p>
 								    </div>
 		            			</div>
@@ -534,6 +556,9 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
+    <script src="/taopapa/public/static/frontend/js/respond.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/nprogress.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.lazyload.min.js"></script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->

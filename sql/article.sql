@@ -74,8 +74,9 @@ create table `work_comment`(
 `id` int(11) unsigned not null AUTO_INCREMENT,
 `nickname` varchar(60) not null default '',
 `content` text  null,
-`topic_id` int(11) unsigned not null,
-`from_uid` int(11) unsigned not null,
+`contact` varchar(50) null,
+`article_id` int(11) unsigned not null,
+`author_id` int(11) unsigned not null,
 `create_time` int(11) unsigned not null default 0,
 `update_time` int(11) unsigned not null default 0,
 primary key(`id`)

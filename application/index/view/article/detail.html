@@ -4,10 +4,17 @@
   <div class="content-wrap">
     <div class="content">
       <header class="article-header">
-        <h1 class="article-title"><a href="http://www.muzhuangnet.com/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" >{$article.title}</a></h1>
-        <div class="article-meta"> <span class="item article-meta-time">
-          <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：{$article.create_time}"><i class="glyphicon glyphicon-time"></i> {$article.create_time}</time>
-          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：{:session('username','','author')}"><i class="glyphicon glyphicon-list"></i> <a href="http://www.muzhuangnet.com/list/mznetblog/" title="作者：{:session('username','','author')}" >作者：{:session('username','','author')}</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
+        <h1 class="article-title">
+        <a href="#" title="用DTcms做一个独立博客网站（响应式模板）" >{$article.title}</a></h1>
+        <div class="article-meta">
+          <span class="item article-meta-time">
+            <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：{$article.create_time}"><i class="glyphicon glyphicon-time"></i> {$article.create_time}</time>
+          </span>
+          <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span>
+          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：{:session('username','','author')}"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：{:session('username','','author')}" >作者：{:session('username','','author')}</a></span>
+          <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span>
+          <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> {:count(model('comment')->where('article_id',$article.id)->select())}</span>
+        </div>
       </header>
 
       <article class="article-content">
@@ -51,10 +58,10 @@
         <h3>评论</h3>
       </div>
       <div id="respond">
-            <form id="comment-form" name="comment-form" action="" method="POST">
+            <form id="" name="comment-form" action="" method="POST">
                 <div class="comment">
                     <input name="" id="nickname" class="form-control" size="22" placeholder="您的昵称（必填）" maxlength="15" autocomplete="off" tabindex="1" type="text">
-                    <input name="" id="" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
+                    <input name="" id="contact" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
                     <div class="comment-box">
                         <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
                         <div class="comment-ctrl">
@@ -69,21 +76,30 @@
               $('#comment-submit').click(function(){
                   var nickname = $('#nickname').val();
                   var content = $('#comment-textarea').val();
+                  var contact = $('#contact').val();
                   $.ajax({
                       url: "{:url('article/comment')}",
                       data: {
                           nickname:nickname,
                           content:content,
+                          contact:contact,
                           username:"{:session('username','','author')}",
-                          topic_id:{$article.id}
+                          article_id:{$article.id}
                       },
                       async: true,   //是否为异步请求
                       cache: false,  //是否缓存结果
                       type: "POST", //请求方式为POST
                       dataType: "json",  //服务器返回的数据是什么类型
                       success: function(data){
-                          var data = JSON.parse(data);
-                          console.log(data);
+                        $('#nickname').val('');
+                        $('#comment-textarea').val('');
+                        $('#contact').val('');
+                        var data = JSON.parse(data);
+                        if(data){
+                          $('.comment-prompt').css('display','none');
+                          $('.comment-success').css('display','block');
+                          window.history.go(0);
+                        }
                       }
                   });
               });
@@ -97,7 +113,7 @@
             <span class="comment-f">#{$num}</span>
             <div class="comment-main">
               <p>
-                <a class="address" href="http://www.muzhuangnet.com/" rel="nofollow" target="_blank">{$co.nickname}</a><span class="time">{$co.update_time}</span>
+                <a class="address" href="#" rel="nofollow" target="_blank">{$co.nickname}</a><span class="time">{$co.update_time}</span>
                 <br>
                 {$co.content}
               </p>
