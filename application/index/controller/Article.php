@@ -63,7 +63,14 @@ class Article extends Common
 		$num=0;
 		$comments = model('comment')->where('topic_id',$id)->select();
 		$article = model('article')->where('id',$id)->find();
-		return $this->fetch('',['article'=>$article,'comments'=>$comments,'num'=>$num]);
+		$articles = model('article')->select();
+        $comment_list = array();
+        for($i=0;$i<count($articles);$i++){
+            if($articles[$i]['comment_num']>0){
+                $comment_list[] = $articles[$i];
+            }
+        }
+		return $this->fetch('',['article'=>$article,'comments'=>$comments,'num'=>$num,'comment_list'=>$comment_list]);
 	}
 	/**
 	 * 软删除文章

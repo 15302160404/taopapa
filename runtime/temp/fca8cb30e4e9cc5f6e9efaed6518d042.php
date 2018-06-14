@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\xampp\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528943904;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528942242;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\xampp\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528947631;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528942242;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -263,15 +263,20 @@
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
+              <?php if(is_array($comment_list) || $comment_list instanceof \think\Collection || $comment_list instanceof \think\Paginator): $i = 0; $__LIST__ = $comment_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$comm): $mod = ($i % 2 );++$i;?>
                 <li>
-                    <a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html">
+                    <a title="<?php echo $comm['title']; ?>" href="<?php echo url('article/detail',['id'=>$comm['id']]); ?>">
                         <span class="thumbnail">
-                            <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
+                            <?php if($comm['logo'] == ''): ?>
+                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $comm['title']; ?>"  style="display: block;">
+                            <?php else: ?>
+                            <img class="thumb" data-original="<?php echo $comm['logo']; ?>" src="<?php echo $comm['logo']; ?>" alt="<?php echo $comm['title']; ?>"  style="display: block;">
+                            <?php endif; ?>
                         </span>
-                        <span class="text">用DTcms做一个独立博客网站（响应式模板）</span>
+                        <span class="text"><?php echo $comm['title']; ?></span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-time"></i>
-                            2016-11-01
+                            <?php echo $comm['create_time']; ?>
                         </span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-eye-open"></i>
@@ -279,6 +284,7 @@
                         </span>
                     </a>
                 </li>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
         <div class="widget widget_sentence">

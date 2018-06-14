@@ -145,15 +145,20 @@
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
+              {volist name="comment_list" id="comm"}
                 <li>
-                    <a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html">
+                    <a title="{$comm.title}" href="{:url('article/detail',['id'=>$comm.id])}">
                         <span class="thumbnail">
-                            <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
+                            {eq name="$comm.logo" value=""}
+                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$comm.title}"  style="display: block;">
+                            {else}
+                            <img class="thumb" data-original="{$comm.logo}" src="{$comm.logo}" alt="{$comm.title}"  style="display: block;">
+                            {/eq}
                         </span>
-                        <span class="text">用DTcms做一个独立博客网站（响应式模板）</span>
+                        <span class="text">{$comm.title}</span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-time"></i>
-                            2016-11-01
+                            {$comm.create_time}
                         </span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-eye-open"></i>
@@ -161,6 +166,7 @@
                         </span>
                     </a>
                 </li>
+                {/volist}
             </ul>
         </div>
         <div class="widget widget_sentence">
