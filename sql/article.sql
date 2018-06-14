@@ -51,12 +51,13 @@ unique key categoryname(`categoryname`)
 #文章表
 create table `work_article`(
 `id` int(11) unsigned not null AUTO_INCREMENT,
-`title` varchar(50) not null default '',
+`title` varchar(100) not null default '',
 `logo` varchar(100) not null default '',
 `author_id` int(11) not null default 0,
 `category_id` int(11) not null default 0,
 `description` varchar(250) not null default '',
 `content` text  null ,
+`comment_num` int(11) not null default 0,
 `up` int(11) not null default 0,
 `status` tinyint(1)  not null default 1,
 `create_time` int(11)  unsigned not null default 0,

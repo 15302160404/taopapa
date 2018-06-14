@@ -172,20 +172,20 @@
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
-                {volist name="lists" id="vo"}
+                {volist name="comments" id="comm"}
                 <li>
-                    <a title="{$vo.title}" href="{:url('article/detail',['id'=>$vo.id])}">
+                    <a title="{$comm.title}" href="{:url('article/detail',['id'=>$comm.id])}">
                         <span class="thumbnail">
-                            {eq name="$vo.logo" value=""}
-                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: block;">
+                            {eq name="$comm.logo" value=""}
+                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$comm.title}"  style="display: block;">
                             {else}
-                            <img class="thumb" data-original="{$vo.logo}" src="{$vo.logo}" alt="{$vo.title}"  style="display: block;">
+                            <img class="thumb" data-original="{$comm.logo}" src="{$comm.logo}" alt="{$comm.title}"  style="display: block;">
                             {/eq}
                         </span>
-                        <span class="text">{$vo.title}</span>
+                        <span class="text">{$comm.title}</span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-time"></i>
-                            {$vo.create_time}
+                            {$comm.create_time}
                         </span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-eye-open"></i>

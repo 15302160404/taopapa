@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528676967;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528676967;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\article\edit.html";i:1528942242;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528942242;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -7,7 +7,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Taopapa-博客之家 发现技术的地方</title>
+    <title>写博客--博客之家 发现技术的地方</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
-    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
     <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
     <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
@@ -34,10 +33,10 @@
       .pagination{
         display: block !important;
       }
-      .caozuo{
+      .caozuo,.re_caozuo{
         display: none;
       }
-      .caozuo a{
+      .caozuo a,.re_caozuo a{
         color:#777 !important;
         font-size: 25px;
         padding:0px 10px;
@@ -46,11 +45,18 @@
         color:#999 !important;
         opacity: 0.5;
       }
+      .re_caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
       .list_blog .thumbnail:hover .caozuo{
         display: block;
       }
+      .list_blog .thumbnail:hover .re_caozuo{
+        display: block;
+      }
       .me_data{
-        margin-top:20px;
+        margin-top:60px;
       }
     </style>
 </head>
@@ -98,7 +104,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
@@ -125,18 +131,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Taopapa-博客之家 发现技术的地方</h4>
+                    <h4 class="modal-title">写博客-博客之家 发现技术的地方</h4>
                 </div>
-                <div class="modal-body">
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
-                    <p>One fine body&hellip;</p>
+                <div class="modal-body" style="text-align: center;">
+                    <div class="imgg" style="margin:10px auto">
+                      <img src="/taopapa/public/article/edit2.jpg" height="150px" align="center" alt="">
+                    </div>
+                    <ol>
+                      <li>全能文章编辑页面</li>
+                      <li>富文本编辑器增加图片拖拽上传功能</li>
+                      <li>增加了富文本编辑器的全屏写作功能</li>
+                    </ol>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal" id="startEdit">开始写博客</button>
@@ -195,7 +200,7 @@
         <label for="myEditor" class="col-sm-1 control-label">内容</label>
         <div class="col-sm-11">
             <!--style给定宽度可以影响编辑器的最终宽度-->
-            <textarea name="content" id="myEditor"></textarea>
+            <script id="editor" name="content" type="text/plain"></script>
         </div>
     </div>
   </form>
@@ -210,24 +215,20 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
     <script type="text/javascript">
-      //实例化编辑器
-      var um = UM.getEditor('myEditor');
-      um.ready(function() {
-          //设置编辑器的内容
-          um.setContent('');
-          //获取html内容，返回: <p>hello</p>
-          var html = um.getContent();
-          //获取纯文本内容，返回: hello
-          var txt = um.getContentTxt();
-          var ww = $('body').width();
-          UM.getEditor('myEditor').setHeight(500);
-          UM.getEditor('myEditor').setWidth(ww*0.805);
-      });
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
     </script>
 </body>
 

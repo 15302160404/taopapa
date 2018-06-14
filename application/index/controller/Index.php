@@ -7,7 +7,14 @@ class Index extends Controller
     public function index()
     {
     	$lists = model('article')->order(['update_time'=>'desc'])->paginate(12);
-        return $this->fetch('',['lists'=>$lists]);
+        $articles = model('article')->select();
+        $comments = array();
+        for($i=0;$i<count($articles);$i++){
+            if($articles[$i]['comment_num']>0){
+                $comments[] = $articles[$i];
+            }
+        }
+        return $this->fetch('',['lists'=>$lists,'comments'=>$comments]);
     }
     /**
      * 注销

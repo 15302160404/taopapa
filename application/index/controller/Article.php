@@ -60,8 +60,10 @@ class Article extends Common
 	public function detail()
 	{
 		$id = input('param.id');
+		$num=0;
+		$comments = model('comment')->where('topic_id',$id)->select();
 		$article = model('article')->where('id',$id)->find();
-		return $this->fetch('',['article'=>$article]);
+		return $this->fetch('',['article'=>$article,'comments'=>$comments,'num'=>$num]);
 	}
 	/**
 	 * 软删除文章
@@ -143,6 +145,7 @@ class Article extends Common
 	 */
 	public function comment()
 	{
+		$i=0;
 		if(request()->isAjax())
 		{
 			$data = input('post.');
@@ -154,6 +157,9 @@ class Article extends Common
 				'from_uid'=>$author_id,
 			]);
 			if($result){
+				model('article')->save([
+					'comment_num'=>++$i,
+				],['id'=>$data['topic_id']]);where();
 				return 1;
 			}
 		}

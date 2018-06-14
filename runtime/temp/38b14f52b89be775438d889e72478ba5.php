@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:73:"D:\xampp\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528676967;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528676967;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:73:"D:\xampp\htdocs\taopapa\public/../application/index\view\index\index.html";i:1528946353;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528942242;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
-    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
     <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
     <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
@@ -34,10 +33,10 @@
       .pagination{
         display: block !important;
       }
-      .caozuo{
+      .caozuo,.re_caozuo{
         display: none;
       }
-      .caozuo a{
+      .caozuo a,.re_caozuo a{
         color:#777 !important;
         font-size: 25px;
         padding:0px 10px;
@@ -46,11 +45,18 @@
         color:#999 !important;
         opacity: 0.5;
       }
+      .re_caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
       .list_blog .thumbnail:hover .caozuo{
         display: block;
       }
+      .list_blog .thumbnail:hover .re_caozuo{
+        display: block;
+      }
       .me_data{
-        margin-top:20px;
+        margin-top:60px;
       }
     </style>
 </head>
@@ -98,7 +104,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
@@ -159,22 +165,23 @@
             
             <?php if(($lists)): if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank">
+                <a class="focus" href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>" target="_blank">
                     <?php if($vo['logo'] == ''): ?>
                     <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
                     <?php else: ?>
                     <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: inline;">
                     <?php endif; ?>
                 </a>
-                <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
-                    <h2><a href="http://www.muzhuangnet.com/show/269.html" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a>
+                <header><a class="cat" href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?><i></i></a>
+                    <h2><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>" target="_blank" ><?php echo $vo['title']; ?></a>
                 </h2>
                 </header>
                 <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i><?php echo $vo['create_time']; ?></time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="http://www.muzhuangnet.com/show/269.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="#" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 4</a>
+                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：<?php echo $vo['author']['username']; ?>" >作者：<?php echo $vo['author']['username']; ?></a></span>
                 </p>
-                <p class="note"><?php echo $vo['content']; ?></p>
+                <p class="note"><?php echo $vo['description']; ?></p>
             </article>
             <?php endforeach; endif; else: echo "" ;endif; endif; ?>
             <article class="excerpt excerpt-1">
@@ -282,20 +289,20 @@
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
             <ul>
-                <?php if(is_array($lists) || $lists instanceof \think\Collection || $lists instanceof \think\Paginator): $i = 0; $__LIST__ = $lists;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <?php if(is_array($comments) || $comments instanceof \think\Collection || $comments instanceof \think\Paginator): $i = 0; $__LIST__ = $comments;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$comm): $mod = ($i % 2 );++$i;?>
                 <li>
-                    <a title="<?php echo $vo['title']; ?>" href="<?php echo url('author/detail'); ?>">
+                    <a title="<?php echo $comm['title']; ?>" href="<?php echo url('article/detail',['id'=>$comm['id']]); ?>">
                         <span class="thumbnail">
-                            <?php if($vo['logo'] == ''): ?>
-                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>"  style="display: block;">
+                            <?php if($comm['logo'] == ''): ?>
+                            <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="<?php echo $comm['title']; ?>"  style="display: block;">
                             <?php else: ?>
-                            <img class="thumb" data-original="<?php echo $vo['logo']; ?>" src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"  style="display: block;">
+                            <img class="thumb" data-original="<?php echo $comm['logo']; ?>" src="<?php echo $comm['logo']; ?>" alt="<?php echo $comm['title']; ?>"  style="display: block;">
                             <?php endif; ?>
                         </span>
-                        <span class="text"><?php echo $vo['title']; ?></span>
+                        <span class="text"><?php echo $comm['title']; ?></span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-time"></i>
-                            <?php echo $vo['create_time']; ?>
+                            <?php echo $comm['create_time']; ?>
                         </span>
                         <span class="muted">
                             <i class="glyphicon glyphicon-eye-open"></i>
@@ -333,24 +340,20 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
     <script type="text/javascript">
-      //实例化编辑器
-      var um = UM.getEditor('myEditor');
-      um.ready(function() {
-          //设置编辑器的内容
-          um.setContent('');
-          //获取html内容，返回: <p>hello</p>
-          var html = um.getContent();
-          //获取纯文本内容，返回: hello
-          var txt = um.getContentTxt();
-          var ww = $('body').width();
-          UM.getEditor('myEditor').setHeight(500);
-          UM.getEditor('myEditor').setWidth(ww*0.805);
-      });
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
     </script>
 </body>
 

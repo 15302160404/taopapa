@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528688216;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528676967;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\xampp\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528942242;s:56:"D:\xampp\htdocs\taopapa\application\index\view\base.html";i:1528942242;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -7,7 +7,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Taopapa-博客之家 发现技术的地方</title>
+    <title>个人中心--博客之家 发现技术的地方</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
     <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
-    <link href="/taopapa/public/static/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
     <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
     <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
     <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
@@ -34,10 +33,10 @@
       .pagination{
         display: block !important;
       }
-      .caozuo{
+      .caozuo,.re_caozuo{
         display: none;
       }
-      .caozuo a{
+      .caozuo a,.re_caozuo a{
         color:#777 !important;
         font-size: 25px;
         padding:0px 10px;
@@ -46,11 +45,18 @@
         color:#999 !important;
         opacity: 0.5;
       }
+      .re_caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
       .list_blog .thumbnail:hover .caozuo{
         display: block;
       }
+      .list_blog .thumbnail:hover .re_caozuo{
+        display: block;
+      }
       .me_data{
-        margin-top:20px;
+        margin-top:60px;
       }
     </style>
 </head>
@@ -98,7 +104,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
-                        <li><a data-cont="博客" title="博客" href="<?php echo url('article/list1',['username'=>session('username','','author')]); ?>">IT新闻</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
                         <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
                         <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
@@ -180,12 +186,12 @@
 	                    	<ul class="aaaa">
 	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:<?php echo $author['tel']; ?>"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
 	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:<?php echo $author['email']; ?>"><i class="fa fa-envelope icons"></i>邮箱</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:未知"><i class="fa fa-transgender icons"></i>性别</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:0000-00-00"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:<?php switch($author['sex']): case "0": ?>男<?php break; case "1": ?>女<?php break; case "2": ?>未知<?php break; endswitch; ?>"><i class="fa fa-transgender icons"></i>性别</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:<?php echo $author['birthday']; ?>"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
 	                    	</ul>
                     	</div>
                     	<p class="readme">
-                    		我是菜鸟
+                    		<?php echo $author['note']; ?>
                     	</p>
                     	<p class="bb">
                     		<kbd class="bg-info">等级 <span class="badge">42</span></kbd>
@@ -299,31 +305,32 @@
 		            		<div class="col-lg-3 col-md-4 col-xs-6">
 		            			<div class="thumbnail">
 		            				<?php if($vo['logo'] == ''): ?>
-		            				<a href="<?php echo url('author/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
-										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php else: ?>
-		            				<a href="<?php echo url('author/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>"></a>
-		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="#" title="编辑" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
-										<a href="#" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>" height="173px"></a>
+		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
+										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
 		            				<?php endif; ?>
 								    <div class="caption">
-								        <h3><?php echo $vo['title']; ?></h3>
-								        <p><?php echo $vo['description']; ?></p>
+								        <h3><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['title']; ?></a></h3>
+								        <p><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['description']; ?></a></p>
 								        <p class="list_bottom">
 								        	<a href="#" class="comment" title="发表时间" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-time"></i>
-                    								2016-11-01
+                    								<?php echo $vo['create_time']; ?>
                 								</small>
                 							</a>
+                							<br>
 								        	<a href="#" class="comment" title="查阅" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-eye-open"></i>
@@ -340,7 +347,7 @@
 		            			</div>
 						    </div>
 						    <?php endforeach; endif; else: echo "" ;endif; ?>
-		            	</div>	
+		            	</div>
 		            </div>
                 </div>
                 <!-- 我的博客 end -->
@@ -354,7 +361,63 @@
 
                 <!-- 回收站 start  -->
                 <div role="tabpanel" class="tab-pane contact" id="recycle">
-					<a href="#">回收站</a>
+					<div class="search_blog">
+                		<form class="navbar-form search_blog" action="/Search" method="post">
+	                    	<div class="input-group">
+	                        	<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+	                        	<span class="input-group-btn">
+	            					<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+	            				</span>
+	            			</div>
+	                	</form>
+                	</div>
+		            <div class="list_blog">
+		            	<div class="row">
+		            		<?php if(is_array($re_articles) || $re_articles instanceof \think\Collection || $re_articles instanceof \think\Paginator): $i = 0; $__LIST__ = $re_articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?>
+		            		<div class="col-lg-3 col-md-4 col-xs-6">
+		            			<div class="thumbnail">
+		            				<?php if($vo1['logo'] == ''): ?>
+		            				<img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo1['title']; ?>">
+		            				<span class="caozuo" style="position: absolute; top:25%;left:35%">
+										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+									</span>
+		            				<?php else: ?>
+		            				<img src="<?php echo $vo1['logo']; ?>" alt="<?php echo $vo1['title']; ?>" height="173px">
+		            				<span class="re_caozuo" style="position: absolute; top:25%;left:35%">
+										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+									</span>
+		            				<?php endif; ?>
+								    <div class="caption">
+								        <h3><?php echo $vo1['title']; ?></h3>
+								        <p><?php echo $vo1['description']; ?></p>
+								        <p class="list_bottom">
+								        	<a href="#" class="comment" title="回收时间" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-time"></i>
+                    								<?php echo date('Y-m-d H:i:s',$vo1['delete_time']); ?>
+                								</small>
+                							</a>
+                							<br>
+								        	<a href="#" class="comment" title="查阅" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-eye-open"></i>
+								        			88
+								        		</small>
+								        	</a>
+								        	<a class="comment" href="#" title="评论" target="_blank">
+								        		<small class="muted">
+								        			<i class="glyphicon glyphicon-comment"></i> 4
+								        		</small>
+								        	</a>
+								        </p>
+								    </div>
+		            			</div>
+						    </div>
+						    <?php endforeach; endif; else: echo "" ;endif; ?>
+		            	</div>
+		            </div>
                 </div>
                 <!-- 回收站 end  -->
 
@@ -424,6 +487,38 @@
 							</form>
 					  	</div>
 					</div>
+					<div class="panel panel-danger">
+						<div class="panel-heading">其他</div>
+					  	<div class="panel-body">
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/remark',['id'=>$author['id']]); ?>">
+					    		<div class="form-group">
+							    	<label for="birth" class="col-sm-2 control-label">生日</label>
+							    	<div class="col-sm-3">
+							      	<input type="date" class="form-control" id="birth" name="birthday">
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="birth" class="col-sm-2 control-label">性别</label>
+							    	<div class="col-sm-3">
+								      	<input type="radio" name="sex" value="0">男
+								      	<input type="radio" name="sex" value="1" style="margin-left:10px;">女
+								      	<input type="radio" name="sex" value="2" style="margin-left:10px;">未知
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="remark" class="col-sm-2 control-label">个性备注</label>
+							    	<div class="col-sm-3">
+							      	<textarea name="note" id="remark" cols="50" rows="5"></textarea>
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+								    <div class="col-sm-offset-2 col-sm-10">
+								      <button type="submit" class="btn btn-default">修改</button>
+								    </div>
+								</div>
+							</form>
+					  	</div>
+					</div>
                 </div>
                 <!-- 帐号设置 end -->
             </div>
@@ -439,24 +534,20 @@
     <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
     <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
     <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.config.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/taopapa/public/static/umeditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="/taopapa/public/static/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
     <script type="text/javascript">
-      //实例化编辑器
-      var um = UM.getEditor('myEditor');
-      um.ready(function() {
-          //设置编辑器的内容
-          um.setContent('');
-          //获取html内容，返回: <p>hello</p>
-          var html = um.getContent();
-          //获取纯文本内容，返回: hello
-          var txt = um.getContentTxt();
-          var ww = $('body').width();
-          UM.getEditor('myEditor').setHeight(500);
-          UM.getEditor('myEditor').setWidth(ww*0.805);
-      });
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
     </script>
 </body>
 

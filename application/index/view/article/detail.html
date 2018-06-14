@@ -91,16 +91,19 @@
         </div>
       <div id="postcomments">
         <ol id="comment_list" class="commentlist">
+        {volist name="comments" id="co"}
+        <span style="display: none">{$num++}</span>
           <li class="comment-content">
-            <span class="comment-f">#1</span>
+            <span class="comment-f">#{$num}</span>
             <div class="comment-main">
               <p>
-                <a class="address" href="http://www.muzhuangnet.com/" rel="nofollow" target="_blank">木庄网络博客</a><span class="time">(2016/10/28 11:41:03)</span>
+                <a class="address" href="http://www.muzhuangnet.com/" rel="nofollow" target="_blank">{$co.nickname}</a><span class="time">{$co.update_time}</span>
                 <br>
-                不错的网站主题，看着相当舒服
+                {$co.content}
               </p>
             </div>
           </li>
+          {/volist}
         </ol>
       </div>
     </div>
