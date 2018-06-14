@@ -247,7 +247,7 @@
 								<div class="container">
 									<table class="table table-striped">
 										<tr>
-											<th>id</th>
+											<th>##</th>
 											<th>发言人</th>
 											<th>目标文章</th>
 											<th>内容</th>
@@ -256,11 +256,11 @@
 										</tr>
 										{volist name="comments" id="coo"}
 										<tr>
-											<td>{$coo.id}</td>
-											<td>{$coo.nickname}</td>
-											<td>{$coo.article.title}</td>
-											<td>{$coo.content}</td>
-											<td>{$coo.contact}</td>
+											<td><small>{$coo.id}</small></td>
+											<td><a href="http://wlh.whoismy94.top/"><code>{if condition="$coo.author_id==$author.id"}·我{else}·{$coo.nickname}{/if}</code></a></td>
+											<td><a href="{:url('article/detail',['id'=>$coo.article_id])}"><strong>{$coo.article.title}</strong></a></td>
+											<td><small>{$coo.content}</small></td>
+											<td><a href="#"><kbd>{$coo.contact}</kbd></a></td>
 											<td>1</td>
 										</tr>
 										{/volist}

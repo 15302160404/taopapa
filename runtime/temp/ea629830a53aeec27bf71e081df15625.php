@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528962421;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528951386;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1528966895;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528964404;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -99,19 +99,20 @@
                         <div class="input-group">
                             <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
                             <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
+                            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+                            </span>
+                        </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
                         <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
-                        <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
-                        <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
-                        <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
-                        <li><a data-cont="源码分享" title="源码分享" href="http://www.muzhuangnet.com/list/share/">源码分享</a></li>
-                        <li><a data-cont="论坛" title="论坛" href="http://www.muzhuangnet.com/list/money/">论坛</a></li>
-                        <li><a data-cont="资讯分享" title="资讯分享" href="http://www.muzhuangnet.com/list/news/">资讯分享</a></li>
+                        <li><a data-cont="会员专区" title="会员专区" href="#">会员专区</a></li>
+                        <li><a data-cont="活动" title="活动" href="#">活动</a></li>
+                        <li><a data-cont="IT技术笔记" title="IT技术笔记" href="#">IT技术笔记</a></li>
+                        <li><a data-cont="源码分享" title="源码分享" href="#">源码分享</a></li>
+                        <li><a data-cont="论坛" title="论坛" href="#">论坛</a></li>
+                        <li><a data-cont="资讯分享" title="资讯分享" href="#">资讯分享</a></li>
                     </ul>
                 </div>
             </div>
@@ -366,7 +367,7 @@
 								<div class="container">
 									<table class="table table-striped">
 										<tr>
-											<th>id</th>
+											<th>##</th>
 											<th>发言人</th>
 											<th>目标文章</th>
 											<th>内容</th>
@@ -375,11 +376,11 @@
 										</tr>
 										<?php if(is_array($comments) || $comments instanceof \think\Collection || $comments instanceof \think\Paginator): $i = 0; $__LIST__ = $comments;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$coo): $mod = ($i % 2 );++$i;?>
 										<tr>
-											<td><?php echo $coo['id']; ?></td>
-											<td><?php echo $coo['nickname']; ?></td>
-											<td><?php echo $coo['article']['title']; ?></td>
-											<td><?php echo $coo['content']; ?></td>
-											<td><?php echo $coo['contact']; ?></td>
+											<td><small><?php echo $coo['id']; ?></small></td>
+											<td><a href="http://wlh.whoismy94.top/"><code><?php if($coo['author_id']==$author['id']): ?>·我<?php else: ?>·<?php echo $coo['nickname']; endif; ?></code></a></td>
+											<td><a href="<?php echo url('article/detail',['id'=>$coo['article_id']]); ?>"><strong><?php echo $coo['article']['title']; ?></strong></a></td>
+											<td><small><?php echo $coo['content']; ?></small></td>
+											<td><a href="#"><kbd><?php echo $coo['contact']; ?></kbd></a></td>
 											<td>1</td>
 										</tr>
 										<?php endforeach; endif; else: echo "" ;endif; ?>

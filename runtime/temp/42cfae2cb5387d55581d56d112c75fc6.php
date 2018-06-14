@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528962123;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528951386;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\article\detail.html";i:1528965458;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1528964404;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 
@@ -99,19 +99,20 @@
                         <div class="input-group">
                             <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
                             <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
+                            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+                            </span>
+                        </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
                         <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
                         <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
-                        <li><a data-cont="会员专区" title="会员专区" href="404.html">会员专区</a></li>
-                        <li><a data-cont="活动" title="活动" href="http://www.muzhuangnet.com/list/mznetblog/">活动</a></li>
-                        <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/">IT技术笔记</a></li>
-                        <li><a data-cont="源码分享" title="源码分享" href="http://www.muzhuangnet.com/list/share/">源码分享</a></li>
-                        <li><a data-cont="论坛" title="论坛" href="http://www.muzhuangnet.com/list/money/">论坛</a></li>
-                        <li><a data-cont="资讯分享" title="资讯分享" href="http://www.muzhuangnet.com/list/news/">资讯分享</a></li>
+                        <li><a data-cont="会员专区" title="会员专区" href="#">会员专区</a></li>
+                        <li><a data-cont="活动" title="活动" href="#">活动</a></li>
+                        <li><a data-cont="IT技术笔记" title="IT技术笔记" href="#">IT技术笔记</a></li>
+                        <li><a data-cont="源码分享" title="源码分享" href="#">源码分享</a></li>
+                        <li><a data-cont="论坛" title="论坛" href="#">论坛</a></li>
+                        <li><a data-cont="资讯分享" title="资讯分享" href="#">资讯分享</a></li>
                     </ul>
                 </div>
             </div>
@@ -129,7 +130,7 @@
             <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：<?php echo $article['create_time']; ?>"><i class="glyphicon glyphicon-time"></i> <?php echo $article['create_time']; ?></time>
           </span>
           <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span>
-          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：<?php echo session('username','','author'); ?>"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：<?php echo session('username','','author'); ?>" >作者：<?php echo session('username','','author'); ?></a></span>
+          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：<?php echo session('username','','author'); ?>"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：<?php echo session('username','','author'); ?>" >作者：<?php echo $article['author']['username']; ?></a></span>
           <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span>
           <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> <?php echo count(model('comment')->where('article_id',$article['id'])->select()); ?></span>
         </div>
@@ -155,12 +156,36 @@
             }
             return result;
         }</pre> -->
-        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a></div>
-
-              <script>                  window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
-      </article>
-      <div class="article-tags">标签：<a href="http://www.muzhuangnet.com/tags/list/3/" rel="tag" >taopapa博客之家</a><a href="http://www.muzhuangnet.com/tags/list/5/" rel="tag" >修复优化</a>
+        <div class="bdsharebuttonbox">
+          <a href="#" class="bds_more" data-cmd="more"></a>
+          <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+          <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+          <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+          <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+          <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+          <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
         </div>
+          <script>
+            window._bd_share_config = {
+              "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdMiniList": false,
+                "bdPic": "",
+                "bdStyle": "1",
+                "bdSize": "32" 
+              }, 
+              "share": {}
+            };
+          with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        </script>
+      </article>
+      <div class="article-tags">
+        标签：
+        <a href="http://www.whoismy94.top" rel="tag" >taopapa博客之家</a>
+        <a href="http://www.muzhuangnet.com/tags/list/5/" rel="tag" >修复优化</a>
+      </div>
       <div class="relates">
         <div class="title">
           <h3>相关推荐</h3>

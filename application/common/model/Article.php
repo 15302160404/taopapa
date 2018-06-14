@@ -13,4 +13,8 @@ class Article extends Model
 	{
 		return $this->belongsTo('author');
 	}
+	public function category()
+	{
+		return $this->belongsTo('category');
+	}
 }
