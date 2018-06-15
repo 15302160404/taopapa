@@ -37,10 +37,10 @@
                 <h3>最新发布</h3>
                 <div class="more">
                     <a href="{:url('article/list1')}" title="业界新闻">业界新闻</a>
-                    <a href="http://www.muzhuangnet.com/list/code/" title="IT技术笔记">IT技术笔记</a>
-                    <a href="http://www.muzhuangnet.com/list/share/" title="源码分享">源码分享</a>
-                    <a href="http://www.muzhuangnet.com/list/money/" title="靠谱网赚">靠谱网赚</a>
-                    <a href="http://www.muzhuangnet.com/list/news/" title="资讯分享">资讯分享</a>
+                    <a href="#" title="IT技术笔记">IT技术笔记</a>
+                    <a href="#" title="源码分享">源码分享</a>
+                    <a href="#" title="靠谱网赚">靠谱网赚</a>
+                    <a href="#" title="资讯分享">资讯分享</a>
                 </div>
             </div>
             
@@ -59,9 +59,12 @@
                 </h2>
                 </header>
                 <p class="meta">
+                    <span style="display: none;">
+                        {if condition="$vo.author.username==session('username','','author')"}{$name = "·我"}{$url = "author/index"}{else}{$name = $vo.author.username}{$url = "author/person"}{/if}
+                    </span>
                     <time class="time"><i class="glyphicon glyphicon-time"></i>{$vo.create_time}</time>
                     <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="#" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> {:count(model('comment')->where('article_id',$vo.id)->select())}</a>
-                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：{$vo.author.username}" >作者：{$vo.author.username}</a></span>
+                    <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="{:url($url,['username'=>$vo.author.username])}" title="作者：{$name}" >作者：{if condition="$name=='·我'"}<code>·我</code>{else}{$name}{/if}</a></span>
                 </p>
                 <p class="note">{$vo.description}</p>
             </article>

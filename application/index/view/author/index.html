@@ -74,9 +74,6 @@
                     	<p class="readme">
                     		{$author.note}
                     	</p>
-                    	<p class="bb">
-                    		<kbd class="bg-info">等级 <span class="badge">42</span></kbd>
-                    	</p>
                     </div>
                     <div class="me_data">
 						<h3 style="margin-bottom: 10px;">详细资料</h3>
@@ -257,7 +254,7 @@
 										{volist name="comments" id="coo"}
 										<tr>
 											<td><small>{$coo.id}</small></td>
-											<td><a href="http://wlh.whoismy94.top/"><code>{if condition="$coo.author_id==$author.id"}·我{else}·{$coo.nickname}{/if}</code></a></td>
+											<td><a href="http://wlh.whoismy94.top/"><code>{if condition="$coo.author_id==$author.id"}·我{else}{$coo.nickname}{/if}</code></a></td>
 											<td><a href="{:url('article/detail',['id'=>$coo.article_id])}"><strong>{$coo.article.title}</strong></a></td>
 											<td><small>{$coo.content}</small></td>
 											<td><a href="#"><kbd>{$coo.contact}</kbd></a></td>

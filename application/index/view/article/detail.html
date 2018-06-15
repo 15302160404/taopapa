@@ -11,7 +11,8 @@
             <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：{$article.create_time}"><i class="glyphicon glyphicon-time"></i> {$article.create_time}</time>
           </span>
           <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：taopapa博客之家"><i class="glyphicon glyphicon-globe"></i> taopapa博客之家</span>
-          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：{:session('username','','author')}"><i class="glyphicon glyphicon-list"></i> <a href="#" title="作者：{:session('username','','author')}" >作者：{$article.author.username}</a></span>
+          {if condition="$article.author.username==session('username','','author')"}{$name = "·我"}{$url = "author/index"}{else}{$name = $article.author.username}{$url = "author/person"}{/if}
+          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：{:session('username','','author')}"><i class="glyphicon glyphicon-list"></i> <a href="{:url($url,['username'=>$article.author.username])}" title="作者：{$article.author.username}" >作者：{$name}</a></span>
           <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span>
           <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> {:count(model('comment')->where('article_id',$article.id)->select())}</span>
         </div>
@@ -124,6 +125,9 @@
                           $('.comment-success').css('display','block');
                           window.history.go(0);
                         }
+                      },
+                      error: function(data){
+                        alert(data);
                       }
                   });
               });
