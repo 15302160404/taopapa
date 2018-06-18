@@ -31,6 +31,7 @@ class Index extends Controller
      */
     public function news()
     {
-        return $this->fetch();
+        $categorys = model('category')->select();
+        return $this->fetch('',['categorys'=>$categorys]);
     }
 }

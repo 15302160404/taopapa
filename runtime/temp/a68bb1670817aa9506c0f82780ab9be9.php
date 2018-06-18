@@ -1,29 +1,30 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/admin\view\index\index.html";i:1529115656;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\admin\view\main.html";i:1529311634;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>{block name="title"}{/block}</title>
+    <title>后台首页 - taopapa - 博客系统</title>
     <meta name="description" content="This is page-header (.page-header &gt; h1)" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/ace-fonts.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/ace.min.css" id="main-ace-style" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/ace-fonts.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/ace.min.css" id="main-ace-style" />
     <!--[if lte IE 9]>
 			<link rel="stylesheet" href="assets/css/ace-part2.min.css" />
 		<![endif]-->
-    <link rel="stylesheet" href="__STATIC__/assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/webupload/webuploader.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/webupload/webuploader.css" />
     <!-- page specific plugin styles -->
-    <link rel="stylesheet" href="__STATIC__/assets/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/datepicker.css" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/ui.jqgrid.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/datepicker.css" />
+    <link rel="stylesheet" href="/taopapa/public/static/assets/css/ui.jqgrid.css" />
     <!--[if !IE]> -->
     <script type="text/javascript">
-    window.jQuery || document.write("<script src='__STATIC__/assets/js/jquery.min.js'>" + "<" + "/script>");
+    window.jQuery || document.write("<script src='/taopapa/public/static/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
     <!-- <![endif]-->
     <!--[if lte IE 9]>
@@ -59,9 +60,9 @@
             <!-- /section:basics/sidebar.mobile.toggle -->
             <div class="navbar-header pull-left">
                 <!-- #section:basics/navbar.layout.brand -->
-                <a href="{:url('index/index')}" class="navbar-brand">
+                <a href="<?php echo url('index/index'); ?>" class="navbar-brand">
 						<small>
-							<img src="__STATIC__/assets/avatars/logo.png" alt="" />
+							<img src="/taopapa/public/static/assets/avatars/logo.png" alt="" />
 						</small>
 					</a>
             </div>
@@ -80,7 +81,7 @@
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li>
                                         <a href="#">
-											<img src="__STATIC__/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+											<img src="/taopapa/public/static/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 											<span class="msg-body">
 												<span class="msg-title">
 													<span class="blue">B2C:</span>
@@ -95,7 +96,7 @@
                                     </li>
                                     <li>
                                         <a href="#">
-												<img src="__STATIC__/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+												<img src="/taopapa/public/static/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">积分商城:</span>
@@ -111,7 +112,7 @@
                                     </li>
                                     <li>
                                         <a href="#">
-												<img src="__STATIC__/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+												<img src="/taopapa/public/static/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 												<span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">政府机票采购:</span>
@@ -170,10 +171,10 @@
                     <!-- #section:basics/navbar.user_menu -->
                     <li class="light-blue">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="__STATIC__/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/taopapa/public/static/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									欢迎您<br />
-									{:session('username_user','','admin')}
+									<?php echo session('username_user','','admin'); ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -186,14 +187,14 @@
 									</a>
                             </li>
                             <li>
-                                <a href="{:url('user/profile')}">
+                                <a href="<?php echo url('user/profile'); ?>">
 										<i class="ace-icon fa fa-user"></i>
 										个人信息设置
 									</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="{:url('user/logout')}">
+                                <a href="<?php echo url('user/logout'); ?>">
 										<i class="ace-icon fa fa-power-off"></i>
 										登出
 									</a>
@@ -213,14 +214,14 @@
         <div id="sidebar" class="sidebar responsive">
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="{:url('index/index')}">
+                    <a href="<?php echo url('index/index'); ?>">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> 总控制台 </span>
 						</a>
                     <b class="arrow"></b>
                 </li>
                 <li class="">
-                    <a href="{:url('index/index/index')}">
+                    <a href="<?php echo url('index/index/index'); ?>">
                             <i class="menu-icon fa fa-paper-plane"></i>
                             <span class="menu-text"> 前台通道 </span>
                         </a>
@@ -241,7 +242,7 @@
                     <b class="arrow"></b>
                     <ul class="submenu">
                         <li class="">
-                            <a href="{:url('author/index')}">
+                            <a href="<?php echo url('author/index'); ?>">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     作者列表
                                 </a>
@@ -263,14 +264,14 @@
                     <b class="arrow"></b>
                     <ul class="submenu">
                         <li class="">
-                            <a href="{:url('category/index')}">
+                            <a href="<?php echo url('category/index'); ?>">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     所有标签
                                 </a>
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="{:url('category/recycle')}">
+                            <a href="<?php echo url('category/recycle'); ?>">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     回收站
                                 </a>
@@ -327,13 +328,64 @@
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
         </div>
-        {block name="content"}{/block}
+        
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+    <!-- #section:basics/content.breadcrumbs -->
+    <div class="breadcrumbs" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="index.html">UI库首页</a>
+            </li>
+        </ul>
+        <!-- /.breadcrumb -->
+        <!-- #section:basics/content.searchbox -->
+        <div class="nav-search" id="nav-search">
+            <form class="form-search">
+                <span class="input-icon">
+					<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="ace-icon fa fa-search nav-search-icon"></i>
+				</span>
+            </form>
+        </div>
+        <!-- /.nav-search -->
+        <!-- /section:basics/content.searchbox -->
+    </div>
+    <div class="page-content">
+        <!-- /section:settings.box -->
+        <div class="page-content-area">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <div class="alert alert-block alert-info">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <i class="ace-icon fa fa-times"></i>
+                        </button>
+                        <i class="ace-icon fa fa-check green"></i>
+                        <strong class="green">最新公告：</strong> 南航开通华中首条直达美国航线，广州-武汉-旧金山首航，为中部崛起注入创新活力
+                    </div>
+                    <div class="row center">
+                        <img src="/taopapa/public/static/assets/avatars/logo_2.png" />
+                    </div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.page-content-area -->
+    </div>
+    <!-- /.page-content -->
+</div>
+<!-- /.main-content -->
+
         <div class="footer">
             <div class="footer-inner"> 
                 <!-- #section:basics/footer -->
                 <div class="footer-content">
                     <span class="bigger-120">
-						taopapa-博客系统 &copy; {:date('Y')}
+						taopapa-博客系统 &copy; <?php echo date('Y'); ?>
 					</span>
                 </div>
                 <!-- /section:basics/footer -->
@@ -350,25 +402,25 @@
 			</script>
 		<![endif]-->
     <script type="text/javascript">
-    if ('ontouchstart' in document.documentElement) document.write("<script src='__STATIC__/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    if ('ontouchstart' in document.documentElement) document.write("<script src='/taopapa/public/static/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
-    <script src="__STATIC__/assets/js/bootstrap.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/bootstrap.min.js"></script>
     <!-- page specific plugin scripts -->
-    <script src="__STATIC__/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-    <script src="__STATIC__/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-    <script src="__STATIC__/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+    <script src="/taopapa/public/static/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
     <!--[if lte IE 8]>
       <script src="assets/js/excanvas.min.js"></script>
     <![endif]-->
-    <script src="__STATIC__/assets/js/jquery-ui.custom.min.js"></script>
-    <script src="__STATIC__/assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="__STATIC__/assets/webupload/webuploader.js"></script>
-    <script src="__STATIC__/assets/js/jquery.dataTables.min.js"></script>
-    <script src="__STATIC__/assets/js/jquery.dataTables.bootstrap.js"></script>
+    <script src="/taopapa/public/static/assets/js/jquery-ui.custom.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/taopapa/public/static/assets/webupload/webuploader.js"></script>
+    <script src="/taopapa/public/static/assets/js/jquery.dataTables.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/jquery.dataTables.bootstrap.js"></script>
     <!-- ace -->
-    <script src="__STATIC__/assets/js/ace-elements.min.js"></script>
-    <script src="__STATIC__/assets/js/ace-extra.min.js"></script>
-    <script src="__STATIC__/assets/js/ace.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/ace-elements.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/ace-extra.min.js"></script>
+    <script src="/taopapa/public/static/assets/js/ace.min.js"></script>
     <script>
         var pathname = window.location.pathname + window.location.search;
         $(".submenu li a").each(function() {
@@ -421,7 +473,7 @@
         $('.cz .del').click(function(){
             var id= $(this).children('input').val();
             $.ajax({
-                url:"{:url('category/delCategory')}",
+                url:"<?php echo url('category/delCategory'); ?>",
                 data:{
                     id:id,
                 },

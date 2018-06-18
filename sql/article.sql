@@ -48,6 +48,8 @@ create table `work_category`(
 primary key(`id`),
 unique key categoryname(`categoryname`)
 )engine=innodb AUTO_INCREMENT=1 default charset=utf8;
+INSERT INTO `work_category`(categoryname,status,create_time,update_time) 
+VALUES ( '互联网', '1', '1521725536', '1521951698'),( 'IT业界', '1', '1521725511', '1521951611'),( '软件开发', '1', '1521725522', '1521951622'),( '开源', '1', '1521725533', '1521951633'),( '电脑硬件', '1', '1521725544', '1521951644'),( '游戏', '1', '1521725555', '1521951655'),( '创业', '1', '1521725566', '1521951666'),( '手机相关', '1', '1521725577', '1521951677'),( '科学', '1', '1521725588', '1521951688'),( '其他', '1', '1521725599', '1521951699');
 #文章表
 create table `work_article`(
 `id` int(11) unsigned not null AUTO_INCREMENT,

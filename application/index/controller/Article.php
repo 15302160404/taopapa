@@ -9,7 +9,8 @@ class Article extends Common
 	 */
 	public function edit()
 	{
-		return $this->fetch();
+		$categorys = model('category')->select();
+		return $this->fetch('',['categorys'=>$categorys]);
 	}
 	/**
 	 * 发布文章提交处理
@@ -44,7 +45,8 @@ class Article extends Common
 				'author_id' => $author_id,
 				'description' => $data['description'],
 				'content' => $data['content'],
-				'logo' => $imgPath
+				'logo' => $imgPath,
+				'category_id'=>$data['category_id']
 			]);
 			if($result)
 			{
@@ -122,7 +124,8 @@ class Article extends Common
 	public function reedit(){
 		$id = input('param.id');
 		$article = model('article')->where('id',$id)->find();
-		return $this->fetch('',['article'=>$article]);
+		$categorys = model('category')->select();
+		return $this->fetch('',['article'=>$article,'categorys'=>$categorys]);
 	}
 	public function reFinishEdit(){
 		if(request()->isPost())
@@ -170,6 +173,14 @@ class Article extends Common
 				],['id'=>$data['article_id']]);
 				return 1;
 			}
+		}
+	}
+	public function delComment()
+	{
+		$id = input('post.id');
+		$result = model('comment')->where('id',$id)->delete();
+		if($result){
+			return 1;
 		}
 	}
 }

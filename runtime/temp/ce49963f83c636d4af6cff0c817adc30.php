@@ -1,28 +1,29 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:83:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/extra\view\index\index.html";i:1529147696;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="cn">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- jqGrid组件基础样式包-必要 -->
-        <link rel="stylesheet" href="__STATIC__/jqgrid/jqgrid/css/ui.jqgrid.css" />
+        <link rel="stylesheet" href="/taopapa/public/static/jqgrid/jqgrid/css/ui.jqgrid.css" />
         
         <!-- jqGrid主题包-非必要 --> 
         <!-- 在jqgrid/css/css这个目录下还有其他的主题包，可以尝试更换看效果 -->
-        <link rel="stylesheet" href="__STATIC__/jqgrid/jqgrid/css/css/redmond/jquery-ui-1.8.16.custom.css" />
+        <link rel="stylesheet" href="/taopapa/public/static/jqgrid/jqgrid/css/css/redmond/jquery-ui-1.8.16.custom.css" />
 
         <!-- jquery插件包-必要 -->
         <!-- 这个是所有jquery插件的基础，首先第一个引入 -->
-        <script type="text/javascript" src="__STATIC__/jqgrid/js/jquery-1.7.1.js"></script>
+        <script type="text/javascript" src="/taopapa/public/static/jqgrid/js/jquery-1.7.1.js"></script>
         
         <!-- jqGrid插件包-必要 -->
-        <script type="text/javascript" src="__STATIC__/jqgrid/jqgrid/js/jquery.jqGrid.src.js"></script>
+        <script type="text/javascript" src="/taopapa/public/static/jqgrid/jqgrid/js/jquery.jqGrid.src.js"></script>
         
         <!-- jqGrid插件的多语言包-非必要 -->
         <!-- 在jqgrid/js/i18n下还有其他的多语言包，可以尝试更换看效果 -->
-        <script type="text/javascript" src="__STATIC__/jqgrid/jqgrid/js/i18n/grid.locale-cn.js"></script>
+        <script type="text/javascript" src="/taopapa/public/static/jqgrid/jqgrid/js/i18n/grid.locale-cn.js"></script>
         <title>http://blog.mn886.net/jqGrid</title>
         
         <!-- 本页面初始化用到的js包，创建jqGrid的代码就在里面 -->
-        <!-- <script type="text/javascript" src="__STATIC__/jqgrid/js/index.js"></script> -->
+        <!-- <script type="text/javascript" src="/taopapa/public/static/jqgrid/js/index.js"></script> -->
     </head>
     <body>
         <table id="list2"></table> 
@@ -93,20 +94,7 @@
 </html>
 <script type="text/javascript">
 
-// 配置对话框
-$("#consoleDlg").dialog({
-    autoOpen: false,
-    modal: true,    // 设置对话框为模态（modal）对话框
-    resizable: true,
-    width: 480,    
-    buttons: {  // 为对话框添加按钮    
-        "取消": function() {$("#consoleDlg").dialog("close")},
-        "添加": addEmployee,    
-        "保存": updateEmployee,    
-        "删除": deleteEmployee    
-    }    
-});    
-  
+
 var openDialog4Adding = function() {    
         var consoleDlg = $("#consoleDlg");    
         var dialogButtonPanel = consoleDlg.siblings(".ui-dialog-buttonpane");    
@@ -330,7 +318,7 @@ function pageInit(){
     //创建jqGrid组件
     jQuery("#list2").jqGrid(
             {
-                url : '{:url("index/json")}',//组件创建完成之后请求数据的url
+                url : '<?php echo url("index/json"); ?>',//组件创建完成之后请求数据的url
                 datatype : "json",//请求数据返回的类型。可选json,xml,txt
                 colNames : [ 'Inv No', 'Date', 'Client', 'Amount', 'Tax','Total', 'Notes' ],//jqGrid的列显示名字
                 colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....

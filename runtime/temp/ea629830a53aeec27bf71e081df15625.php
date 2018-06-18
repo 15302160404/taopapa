@@ -1,4 +1,124 @@
-{extend name="base"}{block name="title"}个人中心--博客之家 发现技术的地方{/block} {block name="content"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"D:\Bitnami\apache2\htdocs\taopapa\public/../application/index\view\author\index.html";i:1529331657;s:66:"D:\Bitnami\apache2\htdocs\taopapa\application\index\view\base.html";i:1529045144;}*/ ?>
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心--博客之家 发现技术的地方</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/author.css">
+    <link rel="stylesheet" type="text/css" href="/taopapa/public/static/frontend/css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="/taopapa/public/static/frontend/images/icon.png">
+    <link rel="shortcut icon" href="/taopapa/public/static/frontend/images/title.ico">
+    <script src="/taopapa/public/static/frontend/js/jquery-2.1.4.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/nprogress.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.lazyload.min.js"></script>
+    <!--[if gte IE 9]>
+      <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+      <script src="js/html5shiv.min.js" type="text/javascript"></script>
+      <script src="js/respond.min.js" type="text/javascript"></script>
+      <script src="js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+      <script>window.location.href='upgrade-browser.html';</script>
+    <![endif]-->
+    <style>
+      .pagination{
+        display: block !important;
+      }
+      .caozuo,.re_caozuo{
+        display: none;
+      }
+      .caozuo a,.re_caozuo a{
+        color:#777 !important;
+        font-size: 25px;
+        padding:0px 10px;
+      }
+      .caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
+      .re_caozuo a:hover{
+        color:#999 !important;
+        opacity: 0.5;
+      }
+      .list_blog .thumbnail:hover .caozuo{
+        display: block;
+      }
+      .list_blog .thumbnail:hover .re_caozuo{
+        display: block;
+      }
+      .me_data{
+        margin-top:150px;
+      }
+    </style>
+</head>
+
+<body class="user-select">
+    <header class="header">
+        <nav class="navbar navbar-default" id="navbar">
+            <div class="container">
+                <div class="header-topbar hidden-xs link-border">
+                    <?php if(session('username','','author') == ''): ?>
+                    <ul class="site-nav topmenu">
+                        <li><a href="http://www.muzhuangnet.com/tags/">标签云</a></li>
+                        <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow">读者墙</a></li>
+                        <li><a href="http://www.muzhuangnet.com/rss.html" title="RSS订阅">
+                <i class="fa fa-rss">
+                </i> RSS订阅
+            </a></li>
+                        <li><a href="<?php echo url('login/index'); ?>" rel="nofollow">登录</a></li>
+                        <li><a href="<?php echo url('regist/index'); ?>" rel="nofollow">注册</a></li>
+                    </ul>
+                    <?php else: ?>
+                    <ul class="site-nav topmenu">
+                        <li><a href="http://www.muzhuangnet.com/tags/">标签云</a></li>
+                        <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow">读者墙</a></li>
+                        <li><a href="http://www.muzhuangnet.com/rss.html" title="RSS订阅">
+                <i class="fa fa-rss">
+                </i> RSS订阅
+            </a></li>
+                        <li><em class="text-info">欢迎您</em></li>
+                        <li><a href="<?php echo url('author/index'); ?>" rel="nofollow"><?php echo session('username','','author'); ?></a></li>
+                        <li><a href="<?php echo url('index/logout'); ?>">注销</a></li>
+                    </ul>
+                    <?php endif; ?> 勤记录 懂分享</div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <h1 class="logo hvr-bounce-in"><a href="<?php echo url('index/index'); ?>" title="Taopapa-博客之家"><img src="/taopapa/public/static/frontend/images/logo.png" alt="Taopapa-博客之家"></a></h1>
+                </div>
+                <div class="collapse navbar-collapse" id="header-navbar">
+                    <form class="navbar-form visible-xs" action="/Search" method="post">
+                        <div class="input-group">
+                            <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+                            </span>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-cont="Taopapa-博客之家" title="Taopapa-博客之家" href="<?php echo url('index/index'); ?>">首页</a></li>
+                        <li><a data-cont="博客" title="博客" href="<?php echo url('index/news'); ?>">IT新闻</a></li>
+                        <li><a data-cont="写文章" title="写文章" href="<?php echo url('article/edit',['username'=>session('username','','author')]); ?>">写博客</a></li>
+                        <li><a data-cont="会员专区" title="会员专区" href="#">会员专区</a></li>
+                        <li><a data-cont="活动" title="活动" href="#">活动</a></li>
+                        <li><a data-cont="IT技术笔记" title="IT技术笔记" href="#">IT技术笔记</a></li>
+                        <li><a data-cont="源码分享" title="源码分享" href="#">源码分享</a></li>
+                        <li><a data-cont="论坛" title="论坛" href="#">论坛</a></li>
+                        <li><a data-cont="资讯分享" title="资讯分享" href="#">资讯分享</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
 <section class="container">
     <div class="content-wrap">
         <div class="widget widget-tabs"  style="height:100%;">
@@ -25,11 +145,11 @@
                     <dl class="pull-left">
                     	<dt>
                     		<a class="focus" href="#" title="头像" target="_blank" data-toggle="modal" data-target="#face">
-                    			{eq name="$author.logo" value=""}
+                    			<?php if($author['logo'] == ''): ?>
                     			<img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt=""  style="display: inline; width: 200px;">
-                    			{else}
-                    			<img class="thumb" data-original="{$author.logo}" src="{$author.logo}" alt=""  style="display: inline; width: 200px;">
-                    			{/eq}
+                    			<?php else: ?>
+                    			<img class="thumb" data-original="<?php echo $author['logo']; ?>" src="<?php echo $author['logo']; ?>" alt=""  style="display: inline; width: 200px;">
+                    			<?php endif; ?>
                 			</a>
 							<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="face">
 							  	<div class="modal-dialog" role="document">
@@ -38,7 +158,7 @@
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         									<h4 class="modal-title" id="gridSystemModalLabel">修改头像</h4>
 										</div>
-										<form action="{:url('author/face',['username'=>session('username','','author')])}" enctype="multipart/form-data" method="post">
+										<form action="<?php echo url('author/face',['username'=>session('username','','author')]); ?>" enctype="multipart/form-data" method="post">
 											<div class="modal-body">
 												<input type="file" name="image">
 											</div>
@@ -62,18 +182,18 @@
                     <div class="details">
                     	<div class="head">
                     		<h1>
-	                    		<code>{$author.username}</code>
+	                    		<code><?php echo $author['username']; ?></code>
 	                    	</h1>
 	                    	<ul class="aaaa">
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:{$author.tel}"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:{$author.email}"><i class="fa fa-envelope icons"></i>邮箱</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:{switch name='$author.sex'}{case value='0'}男{/case}{case value='1'}女{/case}{case value='2'}未知{/case}{/switch}"><i class="fa fa-transgender icons"></i>性别</a></li>
-	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:{$author.birthday}"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="tel:<?php echo $author['tel']; ?>"><i class="fa fa-mobile fa-lg icons"></i>电话</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="email:<?php echo $author['email']; ?>"><i class="fa fa-envelope icons"></i>邮箱</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="性别:<?php switch($author['sex']): case "0": ?>男<?php break; case "1": ?>女<?php break; case "2": ?>未知<?php break; endswitch; ?>"><i class="fa fa-transgender icons"></i>性别</a></li>
+	                    		<li><a href="#" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="birthday:<?php echo $author['birthday']; ?>"><i class="fa fa-birthday-cake icons"></i>生日</a></li>
 	                    	</ul>
 	                    	
                     	</div>
                     	<p class="readme">
-                    		{$author.note}
+                    		<?php echo $author['note']; ?>
                     	</p>
                     </div>
                     <div class="me_data">
@@ -180,33 +300,33 @@
                 	</div>
 		            <div class="list_blog">
 		            	<div class="row">
-		            		{volist name="articles" id="vo"}
+		            		<?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 		            		<div class="col-lg-3 col-md-4 col-xs-6">
 		            			<div class="thumbnail">
-		            				{eq name="$vo.logo" value=""}
-		            				<a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="/taopapa/public/article/default.jpg" alt="{$vo.title}">
+		            				<?php if($vo['logo'] == ''): ?>
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo['title']; ?>">
 		            				</a>
 		            				<span class="caozuo" style="position: absolute; top:30%;left:25%">
-										<a href="{:url('article/reedit',['id'=>$vo.id])}" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
-										<a href="{:url('article/del',['id'=>$vo.id])}" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
-		            				{else}
-		            				<a href="{:url('article/detail',['id'=>$vo.id])}" title="{$vo.title}"><img src="{$vo.logo}" alt="{$vo.title}" height="173px"></a>
+		            				<?php else: ?>
+		            				<a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>" title="<?php echo $vo['title']; ?>"><img src="<?php echo $vo['logo']; ?>" alt="<?php echo $vo['title']; ?>" height="173px"></a>
 		            				<span class="caozuo" style="position: absolute; top:25%;left:25%">
-										<a href="{:url('article/reedit',['id'=>$vo.id])}" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
-										<a href="{:url('article/del',['id'=>$vo.id])}" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+										<a href="<?php echo url('article/reedit',['id'=>$vo['id']]); ?>" title="编辑" class="glyphicon glyphicon-pencil" aria-hidden="true"></a>
+										<a href="<?php echo url('article/del',['id'=>$vo['id']]); ?>" title="删除" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
 										<a href="#" title="置顶" class="glyphicon glyphicon-open" aria-hidden="true"></a>
 									</span>
-		            				{/eq}
+		            				<?php endif; ?>
 								    <div class="caption">
-								        <h3><a href="{:url('article/detail',['id'=>$vo.id])}">{$vo.title}</a></h3>
-								        <p><a href="{:url('article/detail',['id'=>$vo.id])}">{$vo.description}</a></p>
+								        <h3><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['title']; ?></a></h3>
+								        <p><a href="<?php echo url('article/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['description']; ?></a></p>
 								        <p class="list_bottom">
 								        	<a href="#" class="comment" title="发表时间" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-time"></i>
-                    								{$vo.create_time}
+                    								<?php echo $vo['create_time']; ?>
                 								</small>
                 							</a>
                 							<br>
@@ -218,14 +338,14 @@
 								        	</a>
 								        	<a class="comment" href="#" title="评论" target="_blank">
 								        		<small class="muted">
-								        			<i class="glyphicon glyphicon-comment"></i> {:count(model('comment')->where('article_id',$vo.id)->select())}
+								        			<i class="glyphicon glyphicon-comment"></i> <?php echo count(model('comment')->where('article_id',$vo['id'])->select()); ?>
 								        		</small>
 								        	</a>
 								        </p>
 								    </div>
 		            			</div>
 						    </div>
-						    {/volist}
+						    <?php endforeach; endif; else: echo "" ;endif; ?>
 		            	</div>
 		            </div>
                 </div>
@@ -252,19 +372,19 @@
 											<th>联系方式</th>
 											<th>操作</th>
 										</tr>
-										{volist name="comments" id="coo"}
+										<?php if(is_array($comments) || $comments instanceof \think\Collection || $comments instanceof \think\Paginator): $i = 0; $__LIST__ = $comments;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$coo): $mod = ($i % 2 );++$i;?>
 										<tr>
-											<td><small>{$coo.id}</small></td>
-											<td><a href="http://wlh.whoismy94.top/"><code>{if condition="$coo.author_id==$author.id"}·我{else}{$coo.nickname}{/if}</code></a></td>
-											<td><a href="{:url('article/detail',['id'=>$coo.article_id])}"><strong>{$coo.article.title}</strong></a></td>
-											<td><small>{$coo.content}</small></td>
-											<td><a href="#"><kbd>{$coo.contact}</kbd></a></td>
-											<td><a href="#" id="delComment{$coo.id}"><small>删除</small></a></td>
+											<td><small><?php echo $coo['id']; ?></small></td>
+											<td><a href="http://wlh.whoismy94.top/"><code><?php if($coo['author_id']==$author['id']): ?>·我<?php else: ?><?php echo $coo['nickname']; endif; ?></code></a></td>
+											<td><a href="<?php echo url('article/detail',['id'=>$coo['article_id']]); ?>"><strong><?php echo $coo['article']['title']; ?></strong></a></td>
+											<td><small><?php echo $coo['content']; ?></small></td>
+											<td><a href="#"><kbd><?php echo $coo['contact']; ?></kbd></a></td>
+											<td><a href="#" id="delComment<?php echo $coo['id']; ?>"><small>删除</small></a></td>
 											<script type="text/javascript">
-												$('#delComment{$coo.id}').click(function(){
-													var id={$coo.id};
+												$('#delComment<?php echo $coo['id']; ?>').click(function(){
+													var id=<?php echo $coo['id']; ?>;
 													$.ajax({
-														url:"{:url('article/delComment')}",
+														url:"<?php echo url('article/delComment'); ?>",
 														data:{id:id},
 														async:true,
 														cache:false,
@@ -280,7 +400,7 @@
 												});
 											</script>
 										</tr>
-										{/volist}
+										<?php endforeach; endif; else: echo "" ;endif; ?>
 									</table>
 								</div>
 							</div>
@@ -305,37 +425,37 @@
                 	</div>
 		            <div class="list_blog">
 		            	<div class="row">
-		            		{volist name="re_articles" id="vo1"}
+		            		<?php if(is_array($re_articles) || $re_articles instanceof \think\Collection || $re_articles instanceof \think\Paginator): $i = 0; $__LIST__ = $re_articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?>
 		            		<div class="col-lg-3 col-md-4 col-xs-6">
 		            			<div class="thumbnail">
-		            				{eq name="$vo1.logo" value=""}
-		            				<img src="/taopapa/public/article/default.jpg" alt="{$vo1.title}">
+		            				<?php if($vo1['logo'] == ''): ?>
+		            				<img src="/taopapa/public/article/default.jpg" alt="<?php echo $vo1['title']; ?>">
 		            				<span class="caozuo" style="position: absolute; top:25%;left:35%">
-										<a href="{:url('article/restore',['id'=>$vo1.id])}" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
-										<a href="{:url('article/delYes',['id'=>$vo1.id])}" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
 									</span>
-		            				{else}
-		            				<img src="{$vo1.logo}" alt="{$vo1.title}" height="173px">
+		            				<?php else: ?>
+		            				<img src="<?php echo $vo1['logo']; ?>" alt="<?php echo $vo1['title']; ?>" height="173px">
 		            				<span class="re_caozuo" style="position: absolute; top:25%;left:35%">
-										<a href="{:url('article/restore',['id'=>$vo1.id])}" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
-										<a href="{:url('article/delYes',['id'=>$vo1.id])}" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
+										<a href="<?php echo url('article/restore',['id'=>$vo1['id']]); ?>" title="还原" class="glyphicon glyphicon-repeat" aria-hidden="true"></a>
+										<a href="<?php echo url('article/delYes',['id'=>$vo1['id']]); ?>" title="彻底删除" class="glyphicon glyphicon-remove" aria-hidden="true"></a>
 									</span>
-		            				{/eq}
+		            				<?php endif; ?>
 								    <div class="caption">
-								        <h3>{$vo1.title}</h3>
-								        <p>{$vo1.description}</p>
+								        <h3><?php echo $vo1['title']; ?></h3>
+								        <p><?php echo $vo1['description']; ?></p>
 								        <p class="list_bottom">
 								        	<a href="#" class="comment" title="回收时间" target="_blank">
 								        		<small class="muted">
 								        			<i class="glyphicon glyphicon-time"></i>
-                    								{:date('Y-m-d H:i:s',$vo1.delete_time)}
+                    								<?php echo date('Y-m-d H:i:s',$vo1['delete_time']); ?>
                 								</small>
                 							</a>
 								        </p>
 								    </div>
 		            			</div>
 						    </div>
-						    {/volist}
+						    <?php endforeach; endif; else: echo "" ;endif; ?>
 		            	</div>
 		            </div>
                 </div>
@@ -348,7 +468,7 @@
                     <div class="panel panel-warning">
 						<div class="panel-heading">修改密码</div>
 					  	<div class="panel-body">
-					    	<form class="form-horizontal" method="post" action="{:url('author/modifyPassword',['id'=>$author.id])}">
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/modifyPassword',['id'=>$author['id']]); ?>">
 							  	<div class="form-group">
 							    	<label for="oldPassword" class="col-sm-2 control-label">旧密码</label>
 							    	<div class="col-sm-3">
@@ -378,7 +498,7 @@
 					<div class="panel panel-success">
 						<div class="panel-heading">修改邮箱</div>
 					  	<div class="panel-body">
-					    	<form class="form-horizontal" method="post" action="{:url('author/modifyEmail',['id'=>$author.id])}">
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/modifyEmail',['id'=>$author['id']]); ?>">
 							  	<div class="form-group">
 							    	<label for="email" class="col-sm-2 control-label">新邮箱</label>
 							    	<div class="col-sm-3">
@@ -394,7 +514,7 @@
 					<div class="panel panel-info">
 						<div class="panel-heading">修改手机号</div>
 					  	<div class="panel-body">
-					    	<form class="form-horizontal" method="post" action="{:url('author/modifyTel',['id'=>$author.id])}">
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/modifyTel',['id'=>$author['id']]); ?>">
 							  	<div class="form-group">
 							    	<label for="tel" class="col-sm-2 control-label">新手机</label>
 							    	<div class="col-sm-3">
@@ -410,7 +530,7 @@
 					<div class="panel panel-danger">
 						<div class="panel-heading">其他</div>
 					  	<div class="panel-body">
-					    	<form class="form-horizontal" method="post" action="{:url('author/remark',['id'=>$author.id])}">
+					    	<form class="form-horizontal" method="post" action="<?php echo url('author/remark',['id'=>$author['id']]); ?>">
 					    		<div class="form-group">
 							    	<label for="birth" class="col-sm-2 control-label">生日</label>
 							    	<div class="col-sm-3">
@@ -445,4 +565,33 @@
         </div>
     </div>
 </section>
-{/block}
+
+    <footer class="footer">
+        <div class="container">
+            <div><a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">粤ICP备18054061号-1</a> <br><br>&nbsp;本站[<a href="http://www.whoismy94.top/">Taopapa-博客之家</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！&nbsp; </div>
+        </div>
+    </footer>
+    <script src="/taopapa/public/static/frontend/js/bootstrap.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.ias.js"></script>
+    <script src="/taopapa/public/static/frontend/js/scripts.js"></script>
+    <script src="/taopapa/public/static/frontend/js/respond.min.js"></script>
+    <script src="/taopapa/public/static/frontend/js/nprogress.js"></script>
+    <script src="/taopapa/public/static/frontend/js/jquery.lazyload.min.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/taopapa/public/static/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
+    </script>
+</body>
+
+</html>
