@@ -14,13 +14,12 @@ class Author extends Controller
 		$author = model('author')->where('username',session('username','','author'))->find();
 		$re_articles = model('article')->onlyTrashed()->where('author_id',$author['id'])->order(['update_time'=>'desc'])->select();
 		$articles = model('article')->where('author_id',$author['id'])->order(['update_time'=>'desc'])->select();
-		$id=0;
-		for($i=0;$i<count($articles);$i++){
-			if($articles[$i]['author_id']==$author['id']){
-				$id=$articles[$i]['author_id'];
+		$comments = array();
+		for($i = 0;$i<count($articles);$i++){
+			if($articles[$i]['author_id'] == $author['id']){
+				$comments[] = model('comment')->where('article_id',$articles[$i]['id'])->order(['update_time'=>'desc'])->select();
 			}
 		}
-		$comments = model('comment')->where('article_id',$id)->order(['update_time'=>'desc'])->select();
 		return $this->fetch('',['author'=>$author,'articles'=>$articles,'re_articles'=>$re_articles,'comments'=>$comments]);
 	}
 	/**

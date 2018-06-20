@@ -155,7 +155,6 @@ class Article extends Common
 	 */
 	public function comment()
 	{
-		$i=0;
 		if(request()->isAjax())
 		{
 			$data = input('post.');
@@ -168,18 +167,24 @@ class Article extends Common
 				'author_id'=>$author_id,
 			]);
 			if($result){
+				$comment_num = count(model('comment')->where('article_id',$data['article_id'])->select());
 				model('article')->save([
-					'comment_num'=>++$i,
+					'comment_num'=>$comment_num,
 				],['id'=>$data['article_id']]);
 				return 1;
 			}
+			return 0;
 		}
 	}
 	public function delComment()
 	{
 		$id = input('post.id');
+		$article_id = model('comment')->where('id',$id)->find()['article_id'];
+		$article = model('article')->where('id',$article_id)->find();
 		$result = model('comment')->where('id',$id)->delete();
 		if($result){
+			$comment_num = $article['comment_num'] - 1;
+			model('article')->save(['comment_num'=>$comment_num],['id'=>$article['id']]);
 			return 1;
 		}
 	}

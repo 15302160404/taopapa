@@ -63,7 +63,7 @@
                         {if condition="$vo.author.username==session('username','','author')"}{$name = "·我"}{$url = "author/index"}{else}{$name = $vo.author.username}{$url = "author/person"}{/if}
                     </span>
                     <time class="time"><i class="glyphicon glyphicon-time"></i>{$vo.create_time}</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="#" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> {:count(model('comment')->where('article_id',$vo.id)->select())}</a>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="#" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> {$vo.comment_num}</a>
                     <span class="item article-meta-category"><i class="glyphicon glyphicon-list"></i> <a href="{:url($url,['username'=>$vo.author.username])}" title="作者：{$name}" >作者：{if condition="$name=='·我'"}<code>·我</code>{else}{$name}{/if}</a></span>
                 </p>
                 <p class="note">{$vo.description}</p>

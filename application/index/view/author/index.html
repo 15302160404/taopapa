@@ -218,7 +218,7 @@
 								        	</a>
 								        	<a class="comment" href="#" title="评论" target="_blank">
 								        		<small class="muted">
-								        			<i class="glyphicon glyphicon-comment"></i> {:count(model('comment')->where('article_id',$vo.id)->select())}
+								        			<i class="glyphicon glyphicon-comment"></i> {$vo.comment_num}
 								        		</small>
 								        	</a>
 								        </p>
@@ -252,35 +252,37 @@
 											<th>联系方式</th>
 											<th>操作</th>
 										</tr>
-										{volist name="comments" id="coo"}
-										<tr>
-											<td><small>{$coo.id}</small></td>
-											<td><a href="http://wlh.whoismy94.top/"><code>{if condition="$coo.author_id==$author.id"}·我{else}{$coo.nickname}{/if}</code></a></td>
-											<td><a href="{:url('article/detail',['id'=>$coo.article_id])}"><strong>{$coo.article.title}</strong></a></td>
-											<td><small>{$coo.content}</small></td>
-											<td><a href="#"><kbd>{$coo.contact}</kbd></a></td>
-											<td><a href="#" id="delComment{$coo.id}"><small>删除</small></a></td>
-											<script type="text/javascript">
-												$('#delComment{$coo.id}').click(function(){
-													var id={$coo.id};
-													$.ajax({
-														url:"{:url('article/delComment')}",
-														data:{id:id},
-														async:true,
-														cache:false,
-														type:"post",
-														dataType:"json",
-														success:function(data){
-															window.history.go(0);
-														},
-														error:function(data){
-															alert("删除失败");
-														}
-													});
-												});
-											</script>
-										</tr>
-										{/volist}
+										{foreach $comments as $va}
+											{volist name="$va" id="coo"}
+												<tr>
+													<td><small>{$coo.id}</small></td>
+													<td><a href="http://wlh.whoismy94.top/"><code>{if condition="$coo.author_id==$author.id"}·我{else}{$coo.nickname}{/if}</code></a></td>
+													<td><a href="{:url('article/detail',['id'=>$coo.article_id])}"><strong>{$coo.article.title}</strong></a></td>
+													<td><small>{$coo.content}</small></td>
+													<td><a href="#"><kbd>{$coo.contact}</kbd></a></td>
+													<td><a href="#" id="delComment{$coo.id}"><small>删除</small></a></td>
+													<script type="text/javascript">
+														$('#delComment{$coo.id}').click(function(){
+															var id={$coo.id};
+															$.ajax({
+																url:"{:url('article/delComment')}",
+																data:{id:id},
+																async:true,
+																cache:false,
+																type:"post",
+																dataType:"json",
+																success:function(data){
+																	window.history.go(0);
+																},
+																error:function(data){
+																	alert("删除失败");
+																}
+															});
+														});
+													</script>
+												</tr>
+											{/volist}
+										{/foreach}
 									</table>
 								</div>
 							</div>
