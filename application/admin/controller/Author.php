@@ -16,7 +16,8 @@ class Author extends Controller
 			$username = input('param.username');
 			$author = model('author')->where('username',$username)->find();
 		}
-		return $this->fetch('',['author'=>$author]);
+		$articles = model("article")->where('author_id',$author['id'])->select();
+		return $this->fetch('',['author'=>$author,'articles'=>$articles]);
 	}
 	/**
 	 * 更换头像
