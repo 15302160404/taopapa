@@ -161,6 +161,10 @@ class Author extends Controller
 			return $this->error('备注修改失败');
 		}
 	}
+	/**
+	 * 他人的主页
+	 * @return [type] [description]
+	 */
 	public function person()
 	{
 		$author=model('author')->where('username',input('param.username'))->find();
