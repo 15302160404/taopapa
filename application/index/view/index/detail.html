@@ -5,7 +5,7 @@
     <div class="content">
       <header class="article-header">
         <h1 class="article-title">
-        <a href="#" title="用DTcms做一个独立博客网站（响应式模板）" >{$article.title}</a></h1>
+        <a href="#">{$article.title}</a></h1>
         <div class="article-meta">
           <span class="item article-meta-time">
             <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：{$article.create_time}"><i class="glyphicon glyphicon-time"></i> {$article.create_time}</time>
@@ -68,7 +68,8 @@
       <div class="article-tags">
         标签：
         <a href="http://www.whoismy94.top" rel="tag" >taopapa博客之家</a>
-        <a href="http://www.muzhuangnet.com/tags/list/5/" rel="tag" >修复优化</a>
+        <a href="#" rel="tag" >{$article.category.categoryname}</a>
+
       </div>
       <div class="relates">
         <div class="title">
@@ -193,7 +194,7 @@
             <ul>
               {volist name="comment_list" id="comm"}
                 <li>
-                    <a title="{$comm.title}" href="{:url('article/detail',['id'=>$comm.id])}">
+                    <a title="{$comm.title}" href="{:url('index/detail',['id'=>$comm.id])}">
                         <span class="thumbnail">
                             {eq name="$comm.logo" value=""}
                             <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$comm.title}"  style="display: block;">
@@ -216,12 +217,12 @@
             </ul>
         </div>
         <div class="widget widget_sentence">
-            <a href="http://www.muzhuangnet.com/show/269.html" target="_blank" rel="nofollow" title="taopapa博客之家">
+            <a href="#" target="_blank" rel="nofollow" title="taopapa博客之家">
                 <img style="width: 100%" src="/taopapa/public/news/aa.jpg" alt="taopapa博客之家" >
             </a>
         </div>
         <div class="widget widget_sentence">
-            <a href="http://web.muzhuangnet.com/" target="_blank" rel="nofollow" title="">
+            <a href="#" target="_blank" rel="nofollow" title="">
                 <img style="width: 100%" src="/taopapa/public/news/bb.jpg" alt="" >
             </a>
         </div>

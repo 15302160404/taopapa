@@ -47,15 +47,15 @@
             {if condition="($lists)"}
             {volist name="lists" id="vo"}
             <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="{:url('common/detail',['id'=>$vo.id])}" title="{$vo.title}">
+                <a class="focus" href="{:url('index/detail',['id'=>$vo.id])}" title="{$vo.title}">
                     {eq name="$vo.logo" value=""}
                     <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$vo.title}"  style="display: inline;">
                     {else}
                     <img class="thumb" data-original="{$vo.logo}" src="{$vo.logo}" alt="{$vo.title}"  style="display: inline;">
                     {/eq}
                 </a>
-                <header><a class="cat" href="{:url('common/detail',['id'=>$vo.id])}" title="{$vo.category.categoryname}">{$vo.category.categoryname}<i></i></a>
-                    <h2><a href="{:url('common/detail',['id'=>$vo.id])}" title="{$vo.title}">{$vo.title}</a>
+                <header><a class="cat" href="{:url('index/detail',['id'=>$vo.id])}" title="{$vo.category.categoryname}">{$vo.category.categoryname}<i></i></a>
+                    <h2><a href="{:url('index/detail',['id'=>$vo.id])}" title="{$vo.title}">{$vo.title}</a>
                 </h2>
                 </header>
                 <p class="meta">
@@ -70,56 +70,6 @@
             </article>
             {/volist}
             {/if}
-            <article class="excerpt excerpt-1">
-                <a class="focus" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank">
-                    <img class="thumb" data-original="/taopapa/public/news/news_title.jpg" src="/taopapa/public/news/news_title.jpg" alt=""  style="display: inline;">
-                </a>
-                <header><a class="cat" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="标题">GitHub被收购<i></i></a>l.
-                    <h2><a href="https://blog.csdn.net/growing_tree/article/details/80572577" title="" target="_blank" >如果 GitHub 被中国互联网巨头收购，一定会换一个响当当的 Slogan！</a></h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/growing_tree/article/details/80572577" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
-                <p class="note">近日听闻全球最大的代码托管平台 GitHub 或将无奈之下卖身微软，作价 50 亿美元，也可能再多一点，实在唏嘘不已。如此优秀的一款产品，终究也要折服于资本和运营的手段下。</p>
-            </article>
-
-            <article class="excerpt excerpt-1">
-                <a class="focus" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="" target="_blank">
-                    <img class="thumb" data-original="/taopapa/public/news/ai.jpg" src="/taopapa/public/news/ai.jpg" alt=""  style="display: inline;">
-                </a>
-                <header><a class="cat" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="标题">跨镜追踪(ReID)技术<i></i></a>
-                    <h2><a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="" target="_blank" >刷新三项世界纪录的跨镜追踪(ReID)技术是怎样实现的？</a></h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/80563893" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
-                <p class="note">跨镜追踪（Person Re-Identification，简称 ReID）技术是现在计算机视觉研究的热门方向，主要解决跨摄像头跨场景下行人的识别与检索。该技术能够根据行人的穿着、体态、发型等信息认知行人，与人脸识别结合能够适用于更多新的应用场景，将人工智能的认知水平提高到一个新阶段。</p>
-            </article>
-
-            <article class="excerpt excerpt-1">
-                <a class="focus" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="" target="_blank">
-                    <img class="thumb" data-original="/taopapa/public/news/ec.png" src="/taopapa/public/news/ec.png" alt=""  style="display: inline;">
-                </a>
-                <header><a class="cat" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="标题">腾讯<i></i></a>
-                    <h2><a href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="" target="_blank" >鹅厂，隐藏着让4万员工拼命工作的套路！</a></h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/csdnsevenn/article/details/80553341" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
-                <p class="note">看一个老板有没有格局就看他身边的人，有没有赚大钱就行了。一个人不愿意把钱分出去，把名让出去，把权利放下去，还说自己有格局，有情怀，绝大部分都是神棍。这个角度看，格局最高的可能是腾讯，因为就是连买腾讯股票的股民基本都没亏过。</p>
-            </article>
-            <article class="excerpt excerpt-1">
-                <a class="focus" href="https://blog.csdn.net/guleileo/article/details/80585981" title="" target="_blank">
-                    <img class="thumb" data-original="/taopapa/public/news/ai2.jpg" src="/taopapa/public/news/ai2.jpg" alt=""  style="display: inline;">
-                </a>
-                <header><a class="cat" href="https://blog.csdn.net/guleileo/article/details/80585981" title="标题">人工智能头条<i></i></a>
-                    <h2><a href="https://blog.csdn.net/guleileo/article/details/80585981" title="" target="_blank" >身份采集、活体检测、人脸比对...旷视是如何做FaceID的？</a></h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i>2018-06-04</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 6666</span> <a class="comment" href="https://blog.csdn.net/guleileo/article/details/80585981" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 555</a></p>
-                <p class="note">“刷脸”曾一度是人们互相调侃时的用语，如今早已深深地融入我们的生活。从可以人脸解锁的手机，到人脸识别打卡机，甚至地铁“刷脸”进站……</p>
-            </article>
             {$lists->render()}
 
         </div>
@@ -177,7 +127,7 @@
             <ul>
                 {volist name="comments" id="comm"}
                 <li>
-                    <a title="{$comm.title}" href="{:url('common/detail',['id'=>$comm.id])}">
+                    <a title="{$comm.title}" href="{:url('index/detail',['id'=>$comm.id])}">
                         <span class="thumbnail">
                             {eq name="$comm.logo" value=""}
                             <img class="thumb" data-original="/taopapa/public/article/default.jpg" src="/taopapa/public/article/default.jpg" alt="{$comm.title}"  style="display: block;">

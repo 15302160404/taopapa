@@ -18,7 +18,7 @@ class Article extends Controller
 		{
 			if($authors[$i]['id'] != 0)
 			{
-				$arr[$i] = model('article')->where('author_id',$authors[$i]['id'])->select();
+				$arr[$i] = model('article')->withTrashed()->where('author_id',$authors[$i]['id'])->select();
 			}
 		}
 		return $this->fetch('',['arr'=>$arr]);

@@ -30,20 +30,21 @@
 	<div class="page-content">
 		<!-- /section:settings.box -->
 		<div class="page-content-area">
-			
-{foreach $arr as $author}
+
 			<div class="row">
 				<div class="col-xs-12">
+				{foreach $arr as $author}
 					<!-- PAGE CONTENT BEGINS -->
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="widget-box">
 								<div class="widget-header">
 									<h4 class="smaller">
-										<span style="display: none;">{$i = 0}</span>
-										{:model('author')->where('id',$author[$i]['author_id'])->find()['username']}
+										{volist name="$author" id="co"}
+											<span style="display: none">{$name=$co.author.username}</span>
+										{/volist}
+										{$name}
 										<small>所有文章</small>
-										<span style="display: none;">{$i++}</span>
 									</h4>
 								</div>
 								<div class="widget-body">
@@ -99,10 +100,11 @@
 							</div>
 						</div><!-- /.col -->
 					</div><!-- /.row -->
+					{/foreach}
 					<!-- PAGE CONTENT ENDS -->
 				</div><!-- /.col -->
 			</div><!-- /.row -->
-			{/foreach}
+			
 		</div><!-- /.page-content-area -->
 	</div><!-- /.page-content -->
 </div>
