@@ -10,4 +10,8 @@ class Comment extends Model
 	{
 		return $this->belongsTo('article');
 	}
+	public function author()
+	{
+		return $this->belongsTo('author');
+	}
 }

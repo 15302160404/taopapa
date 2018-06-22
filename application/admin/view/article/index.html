@@ -1,4 +1,109 @@
 {extend name="main"}{block name="title"}用户文章管理 - taopapa - 博客系统{/block}
 {block name="content"}
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">文章管理</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">用户文章</a>
+			</li>
+		</ul><!-- /.breadcrumb -->
 
+		<!-- #section:basics/content.searchbox -->
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="ace-icon fa fa-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div><!-- /.nav-search -->
+	</div>
+
+
+	<div class="page-content">
+		<!-- /section:settings.box -->
+		<div class="page-content-area">
+			
+{foreach $arr as $author}
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="widget-box">
+								<div class="widget-header">
+									<h4 class="smaller">
+										<span style="display: none;">{$i = 0}</span>
+										{:model('author')->where('id',$author[$i]['author_id'])->find()['username']}
+										<small>所有文章</small>
+										<span style="display: none;">{$i++}</span>
+									</h4>
+								</div>
+								<div class="widget-body">
+									<div class="widget-main">
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="row-fluid">
+													<ul class="ace-thumbnails">
+														{volist name="$author" id="vo"}
+														<li>
+															<a href="{:url('article/detail',['id'=>$vo.id])}" data-rel="colorbox">
+																<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-1.jpg" height="150" width="150" />
+																<div class="tags">
+																	<span class="label-holder">
+																		<span class="label label-info" title="标题">{$vo.title}</span>
+																	</span>
+																	<span class="label-holder">
+																		<span class="label label-danger" title="作者">{$vo.author.username}</span>
+																	</span>
+																	<span class="label-holder">
+																		<span class="label label-success" title="评论">{$vo.comment_num}</span>
+																	</span>
+																	<span class="label-holder">
+																		<span class="label label-warning arrowed-in" title="标签">{$vo.category.categoryname}</span>
+																	</span>
+																</div>
+															</a>
+															<div class="tools">
+																<a href="#">
+																	<i class="icon-link"></i>
+																</a>
+
+																<a href="#">
+																	<i class="icon-paper-clip"></i>
+																</a>
+
+																<a href="#">
+																	<i class="icon-pencil"></i>
+																</a>
+
+																<a href="#">
+																	<i class="icon-remove red"></i>
+																</a>
+															</div>
+														</li>
+														{/volist}
+													</ul>
+												</div>
+											</div><!-- col -->
+										</div><!-- row -->
+									</div>
+								</div>
+							</div>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+			{/foreach}
+		</div><!-- /.page-content-area -->
+	</div><!-- /.page-content -->
+</div>
 {/block}

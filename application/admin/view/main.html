@@ -8,6 +8,7 @@
     <meta name="description" content="This is page-header (.page-header &gt; h1)" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link rel="stylesheet" href="__STATIC__/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__STATIC__/assets/css/jquery-ui.custom.min.css" />
     <link rel="stylesheet" href="__STATIC__/assets/css/font-awesome.min.css" />
     <link rel="stylesheet" href="__STATIC__/assets/css/ace-fonts.css" />
     <link rel="stylesheet" href="__STATIC__/assets/css/ace.min.css" id="main-ace-style" />
@@ -21,6 +22,8 @@
     <link rel="stylesheet" href="__STATIC__/assets/css/jquery-ui.min.css" />
     <link rel="stylesheet" href="__STATIC__/assets/css/datepicker.css" />
     <link rel="stylesheet" href="__STATIC__/assets/css/ui.jqgrid.css" />
+
+    <script src="__STATIC__/assets/js/ace-extra.min.js"></script>
     <!--[if !IE]> -->
     <script type="text/javascript">
     window.jQuery || document.write("<script src='__STATIC__/assets/js/jquery.min.js'>" + "<" + "/script>");
@@ -288,6 +291,28 @@
                 <!-- 文章管理 end -->
 
 
+                <!-- 评论管理 start -->
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-comments-o"></i>
+                            <span class="menu-text"> 评论管理 </span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="{:url('comment/index')}">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    我的文章评论
+                                </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 评论管理 end -->
+
+
                 <!-- 标签管理 start -->
                 <li class="">
                     <a href="#" class="dropdown-toggle">
@@ -402,8 +427,22 @@
     <script src="__STATIC__/assets/js/jquery.dataTables.bootstrap.js"></script>
     <!-- ace -->
     <script src="__STATIC__/assets/js/ace-elements.min.js"></script>
-    <script src="__STATIC__/assets/js/ace-extra.min.js"></script>
     <script src="__STATIC__/assets/js/ace.min.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__STATIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__STATIC__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+        ue.ready(function() {
+            //设置编辑器的内容
+            ue.setContent();
+            //获取html内容，返回: <p>hello</p>
+            var html = ue.getContent();
+            //获取纯文本内容，返回: hello
+            var txt = ue.getContentTxt();
+        });
+    </script>
     <script>
         var pathname = window.location.pathname + window.location.search;
         $(".submenu li a").each(function() {

@@ -79,6 +79,7 @@ create table `work_comment`(
 `contact` varchar(50) null,
 `article_id` int(11) unsigned not null,
 `author_id` int(11) unsigned not null,
+`admin_id` int(11) unsigned not null default 0,
 `create_time` int(11) unsigned not null default 0,
 `update_time` int(11) unsigned not null default 0,
 primary key(`id`)

@@ -132,15 +132,49 @@
                                                     </div>
                                                 </div>
                                                 <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 年龄 </div>
+                                                    <div class="profile-info-name"> 手机 </div>
                                                     <div class="profile-info-value">
-                                                        <span>{:date('Y')-1994}</span>
+                                                    {eq name="$author.tel" value=''}
+                                                        <span>未知</span>
+                                                        {else}
+                                                        <span>{$author.tel}</span>
+                                                    {/eq}
                                                     </div>
                                                 </div>
                                                 <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 加入公司时间 </div>
+                                                    <div class="profile-info-name"> 邮箱 </div>
                                                     <div class="profile-info-value">
-                                                        <span>{:date('d/m/Y')}</span>
+                                                    {eq name="$author.email" value=''}
+                                                        <span>未知</span>
+                                                        {else}
+                                                        <span>{$author.email}</span>
+                                                    {/eq}
+                                                    </div>
+                                                </div>
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 性别 </div>
+                                                    <div class="profile-info-value">
+                                                    {eq name="$author.sex" value=''}
+                                                        <span>未知</span>
+                                                        {else}
+                                                        <span>{if condition="$author.sex == 1"}女{else/}男{/if}</span>
+                                                    {/eq}
+                                                    </div>
+                                                </div>
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 年龄 </div>
+                                                    <div class="profile-info-value">
+                                                        {eq name="$author.birthday" value=''}
+                                                            <span>未知</span>
+                                                            {else /}
+                                                            <span>{:date('Y',time())-date('Y',strtotime($author.birthday))}</span>
+                                                        {/eq}
+                                                    </div>
+                                                </div>
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name">注册时间</div>
+                                                    <div class="profile-info-value">
+                                                        <span>{:date('Y-m-d',strtotime($author.create_time))}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -581,7 +615,7 @@
                                         <li>
                                             <a href="#" data-rel="colorbox">
                                                 {eq name="$ar.logo" value=""}
-                                                <img src="/taopapa/public/article/default.jpg" alt="{$ar.title}" height="150" width="150">
+                                                <img src="__STATIC__/assets/images/gallery/thumb-1.jpg" alt="{$ar.title}" height="150" width="150">
                                                 {else}
                                                 <img alt="{$ar.title}" src="{$ar.logo}" height="150" width="150"/>
                                                 {/eq}

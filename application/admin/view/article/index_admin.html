@@ -1,0 +1,215 @@
+{extend name="main"}{block name="title"}我的文章管理 - taopapa - 博客系统{/block}
+{block name="content"}
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+	<!-- #section:basics/content.breadcrumbs -->
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">我的文章</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">文章中心</a>
+			</li>
+		</ul><!-- /.breadcrumb -->
+
+		<!-- #section:basics/content.searchbox -->
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="ace-icon fa fa-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div><!-- /.nav-search -->
+	</div>
+
+
+	<!-- /section:basics/content.breadcrumbs -->
+	<div class="page-content">
+
+		<!-- /section:settings.box -->
+		<div class="page-content-area">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="tabbable">
+						<!-- #section:pages/faq -->
+						<ul class="nav nav-tabs padding-18 tab-size-bigger" id="myTab">
+							<li class="active">
+								<a data-toggle="tab" href="#faq-tab-1">
+									<i class="blue ace-icon fa fa-cogs bigger-120"></i>
+									管理文章
+								</a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#faq-tab-2">
+									<i class="green ace-icon fa fa-pencil bigger-120"></i>
+									新增文章
+								</a>
+							</li>
+						</ul>
+
+						<!-- /section:pages/faq -->
+						<div class="tab-content no-border padding-24">
+							<div id="faq-tab-1" class="tab-pane fade in active">
+								<h4 class="blue">
+									<i class="ace-icon fa fa-cogs bigger-110"></i>
+									管理文章
+								</h4>
+								<div class="space-8"></div>
+								<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="widget-box">
+												<div class="widget-body">
+													<div class="widget-main">
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="row-fluid">
+																	<ul class="ace-thumbnails">
+																		{volist name="articles" id="vo"}
+																		<li>
+																			<a href="#" data-rel="colorbox">
+																				{eq name="$vo.logo" value=""}
+																				<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-1.jpg" height="150" width="150" />
+																				{else/}
+																				<img alt="150x150" src="{$vo.logo}" height="150" width="150" />
+																				{/eq}
+																				<div class="tags">
+																					<span class="label-holder">
+																						<span class="label label-info" title="标题">{$vo.title}</span>
+																					</span>
+																					<span class="label-holder">
+																						<span class="label label-danger" title="作者">Taopapa</span>
+																					</span>
+																					<span class="label-holder">
+																						<span class="label label-success" title="评论">{$vo.comment_num}</span>
+																					</span>
+																					<span class="label-holder">
+																						<span class="label label-warning arrowed-in" title="标签">{$vo.category.categoryname}</span>
+																					</span>
+																				</div>
+																			</a>
+																			<div class="tools">
+																				<a href="{:url('article/reedit',['id'=>$vo.id])}" title="编辑">
+																					<i class="fa fa-pencil blue"></i>
+																				</a>
+																				<a href="#" title="删除" id="del{$vo.id}">
+																					<i class="fa fa-trash-o red"></i>
+																				</a>
+																				<script type="text/javascript">
+																					$('#del{$vo.id}').click(function(){
+																						$.ajax({
+																							url:"{:url('article/del')}",
+																							data:{
+																								id:{$vo.id}
+																							},
+																							async:true,
+																							cache:false,
+																							type:"post",
+																							dataType:"json",
+																							success:function(){
+																								window.history.go(0);
+																							},
+																							error:function(){
+																								alert('删除失败');
+																							},
+																						});
+																					});
+																				</script>
+																			</div>
+																		</li>
+																		{/volist}
+																	</ul>
+																</div>
+															</div><!-- col -->
+														</div><!-- row -->
+													</div>
+												</div>
+											</div>
+										</div><!-- /.col -->
+									</div><!-- /.row -->
+									
+								</div>
+							</div>
+
+							<div id="faq-tab-2" class="tab-pane fade">
+								<h4 class="blue">
+									<i class="green ace-icon fa fa-pencil bigger-110"></i>
+									新增文章
+								</h4>
+
+								<div class="space-8"></div>
+
+								<div id="faq-list-2" class="panel-group accordion-style1 accordion-style2">
+									<form action="{:url('article/edit')}" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
+										<div class="form-group">
+											<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 标题：</label>
+											<div class="col-sm-11">
+												<div class="pos-rel">
+													<input type="text" id="form-field-1" placeholder="输入标题" class="col-sm-6" name="title"/>
+													<div class="col-sm-1 col-sm-offset-4">
+														<button class="btn btn-info" type="submit">
+															<i class="ace-icon fa fa-check bigger-110"></i>
+															立即提交
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-1 control-label no-padding-right" for="limited">文章封面：</label>
+											<div class="col-sm-11">
+												<div class="pos-rel">
+													<input type="file" name="image">
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-1 control-label no-padding-right" for="form-field-tags">标签：</label>
+											<div class="col-sm-11">
+												<div class="pos-rel">
+													<select class="form-control" id="form-field-select-1" name="category_id">
+														<option value="">请选择标签</option>
+														{volist name="categorys" id="ca"}
+														<option value="{$ca.id}">{$ca.categoryname}</option>
+														{/volist}
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-1 control-label no-padding-right" for="limited">描述：</label>
+											<div class="col-sm-11">
+												<div class="pos-rel">
+													<textarea class="form-control limited autosize-transition" id="limited" name="description"></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-1 control-label no-padding-right" for="limited">内容：</label>
+											<div class="col-sm-11">
+												<div class="pos-rel">
+													<!--style给定宽度可以影响编辑器的最终宽度-->
+	            									<script id="editor" name="content" type="text/plain"></script>
+												</div>
+											</div>
+										</div>
+									</form>
+									<!-- #section:elements.form -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content-area -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+{/block}

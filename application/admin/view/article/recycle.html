@@ -1,0 +1,154 @@
+{extend name="main"}{block name="title"}回收站 - taopapa - 博客系统{/block}
+{block name="content"}
+<!-- /section:basics/sidebar -->
+<div class="main-content">
+	<!-- #section:basics/content.breadcrumbs -->
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">文章管理</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)">回收站</a>
+			</li>
+		</ul><!-- /.breadcrumb -->
+
+		<!-- #section:basics/content.searchbox -->
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="ace-icon fa fa-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div><!-- /.nav-search -->
+	</div>
+
+
+	<!-- /section:basics/content.breadcrumbs -->
+	<div class="page-content">
+
+		<!-- /section:settings.box -->
+		<div class="page-content-area">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					<div class="tabbable">
+						<!-- /section:pages/faq -->
+						<div class="tab-content no-border padding-24">
+							<div id="faq-tab-1" class="tab-pane fade in active">
+								<h4 class="blue">
+									<i class="ace-icon fa fa-exclamation-circle bigger-110"></i>
+									回收站
+								</h4>
+
+								<div class="space-8"></div>
+
+								<div id="faq-list-1" class="panel-group accordion-style1 accordion-style2">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="widget-box">
+												<div class="widget-body">
+													<div class="widget-main">
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="row-fluid">
+																	<ul class="ace-thumbnails">
+																		{volist name="articles" id="vo"}
+																		<li>
+																			<a href="#" data-rel="colorbox">
+																				{eq name="$vo.logo" value=""}
+																				<img alt="150x150" src="__STATIC__/assets/images/gallery/thumb-1.jpg" height="150" width="150" />
+																				{else/}
+																				<img alt="150x150" src="{$vo.logo}" height="150" width="150" />
+																				{/eq}
+																				<div class="tags">
+																					<span class="label-holder">
+																						<span class="label label-info" title="标题">{$vo.title}</span>
+																					</span>
+																					<span class="label-holder">
+																						<span class="label label-danger" title="作者">Taopapa</span>
+																					</span>
+																					<span class="label-holder">
+																						<span class="label label-success" title="评论">{$vo.comment_num}</span>
+																					</span>
+																					<span class="label-holder">
+																						<span class="label label-warning arrowed-in" title="标签">{$vo.category.categoryname}</span>
+																					</span>
+																				</div>
+																			</a>
+																			<div class="tools">
+																				<a href="#" title="还原" id="delNo{$vo.id}">
+																					<i class="fa fa-exchange blue"></i>
+																				</a>
+																				<script type="text/javascript">
+																					$('#delNo{$vo.id}').click(function(){
+																						$.ajax({
+																							url:"{:url('article/delNo')}",
+																							data:{
+																								id:{$vo.id}
+																							},
+																							async:true,
+																							cache:false,
+																							type:"post",
+																							dataType:"json",
+																							success:function(){
+																								window.history.go(0);
+																							},
+																							error:function(){
+																								alert('还原失败');
+																							},
+																						});
+																					});
+																				</script>
+																				<a href="#" title="删除" id="delYes{$vo.id}">
+																					<i class="fa fa-trash-o red"></i>
+																				</a>
+																				<script type="text/javascript">
+																					$('#delYes{$vo.id}').click(function(){
+																						$.ajax({
+																							url:"{:url('article/delYes')}",
+																							data:{
+																								id:{$vo.id}
+																							},
+																							async:true,
+																							cache:false,
+																							type:"post",
+																							dataType:"json",
+																							success:function(){
+																								window.history.go(0);
+																							},
+																							error:function(){
+																								alert('删除失败');
+																							},
+																						});
+																					});
+																				</script>
+																			</div>
+																		</li>
+																		{/volist}
+																	</ul>
+																</div>
+															</div><!-- col -->
+														</div><!-- row -->
+													</div>
+												</div>
+											</div>
+										</div><!-- /.col -->
+									</div><!-- /.row -->
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content-area -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+{/block}

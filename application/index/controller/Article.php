@@ -28,7 +28,7 @@ class Article extends Common
 		    $imgPath = '';
 		    // 移动到框架应用根目录/public/uploads/ 目录下
 		    if($file){
-		        $info = $file->validate(['size'=>307200,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS .'article'. DS .'bloglogo' . DS . $author_username);
+		        $info = $file->validate(['size'=>30720000,'ext'=>'jpg,png,gif'])->rule('uniqid')->move(ROOT_PATH . 'public' . DS .'article'. DS .'bloglogo' . DS . $author_username);
 		        if($info){
 		            $imgPath = dirname($_SERVER['SCRIPT_NAME']) . DS .'article'. DS .'bloglogo'. DS . $author_username .DS.$info->getSaveName();
 		        }else{
@@ -54,25 +54,6 @@ class Article extends Common
 			}
 			return $this->error('发布失败');
 		}
-	}
-	/**
-	 * 文章详情
-	 * @return [type] [description]
-	 */
-	public function detail()
-	{
-		$id = input('param.id');
-		$num=0;
-		$comments = model('comment')->where('article_id',$id)->select();
-		$article = model('article')->where('id',$id)->find();
-		$articles = model('article')->select();
-        $comment_list = array();
-        for($i=0;$i<count($articles);$i++){
-            if($articles[$i]['comment_num']>0){
-                $comment_list[] = $articles[$i];
-            }
-        }
-		return $this->fetch('',['article'=>$article,'comments'=>$comments,'num'=>$num,'comment_list'=>$comment_list]);
 	}
 	/**
 	 * 软删除文章
@@ -158,13 +139,20 @@ class Article extends Common
 		if(request()->isAjax())
 		{
 			$data = input('post.');
+			$aid = 0;
 			$author_id = model('author')->where('username',$data['username'])->find()['id'];
+			$admin_id = model('article')->where('id',$data['article_id'])->find()['author_id'];
+			if($admin_id == 0)
+			{
+				$aid = 1;
+			}
 			$result = model('comment')->save([
 				'content'=>$data['content'],
 				'article_id'=>$data['article_id'],
 				'nickname'=>$data['nickname'],
 				'contact'=>$data['contact'],
 				'author_id'=>$author_id,
+				'admin_id'=>$aid,
 			]);
 			if($result){
 				$comment_num = count(model('comment')->where('article_id',$data['article_id'])->select());
